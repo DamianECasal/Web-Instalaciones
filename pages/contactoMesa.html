@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo *6565 - Contacto MDD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --claro-red: #d93025;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .header-title {
+            background: white;
+            border-bottom: 4px solid var(--claro-red);
+            padding: 25px 0;
+            margin-bottom: 30px;
+        }
+
+        .alert-exclusive {
+            background-color: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            color: #d93025;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .ivr-option-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            height: 100%;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .option-header {
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .option-1 { background-color: #333; }
+        .option-2 { background-color: var(--claro-red); }
+
+        .category-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .motive-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .motive-list li {
+            padding: 6px 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f9f9f9;
+            color: #444;
+        }
+
+        .motive-list li i {
+            color: var(--claro-red);
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        .number-badge {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-title shadow-sm">
+    <div class="container d-flex align-items-center">
+        <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
+        <div>
+            <h2 class="mb-0 fw-bold">Contacto con Mesa de Despacho</h2>
+            <p class="text-muted small mb-0">Vigente a partir del lunes 3 de julio de 2023</p>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5">
+    
+    <div class="alert-exclusive shadow-sm">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        IMPORTANTE: El *6565 es de uso EXCLUSIVO para técnicos. NO se le debe brindar el mismo a los clientes.
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card ivr-option-card shadow-sm">
+                <div class="option-header option-1">
+                    <span class="number-badge">MARCA 1</span>
+                    <h5 class="mb-0">PROBLEMAS LÓGICOS O FÍSICOS </h5>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <div class="category-title">Por problemas Lógicos </div>
+                    <ul class="motive-list">
+                        <li><i class="fas fa-check"></i>Problema de Sistemas</li>
+                        <li><i class="fas fa-check"></i>Problema de Sistemas TV</li>
+                        <li><i class="fas fa-check"></i>Problema Telefonía</li>
+                        <li><i class="fas fa-check"></i>Error en Provisión</li>
+                        <li><i class="fas fa-check"></i>No Filtra</li>
+                    </ul>
+
+                    <div class="category-title">Por Problemas Físicos </div>
+                    <ul class="motive-list">
+                        <li><i class="fas fa-check"></i>Falta caja en cuadra</li>
+                        <li><i class="fas fa-check"></i>Fuera de Cobertura</li>
+                        <li><i class="fas fa-check"></i>Fuera de Norma</li>
+                        <li><i class="fas fa-check"></i>Sin capacidad</li>
+                        <li><i class="fas fa-check"></i>Sin potencia</li>
+                        <li><i class="fas fa-check"></i>Mala potencia</li>
+                        <li><i class="fas fa-check"></i>Ramas cruzadas</li>
+                        <li><i class="fas fa-check"></i>Pasiva rota</li>
+                        <li><i class="fas fa-check"></i>CTO mal asignado</li>
+                        <li><i class="fas fa-check"></i>CTO no asignado</li>
+                        <li><i class="fas fa-check"></i>Adecuación</li>
+                        <li><i class="fas fa-check"></i>Poste de CAJA en mal estado</li>
+                        <li><i class="fas fa-check"></i>Cliente desconectado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card ivr-option-card shadow-sm">
+                <div class="option-header option-2">
+                    <span class="number-badge">MARCA 2</span>
+                    <h5 class="mb-0">OTROS PROBLEMAS </h5>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <div class="category-title">Por Contacto Con cliente </div>
+                    <ul class="motive-list">
+                        <li><i class="fas fa-check"></i>Cliente Ausente</li>
+                        <li><i class="fas fa-check"></i>Adelanto de OT</li>
+                        <li><i class="fas fa-check"></i>Referencias de domicilio</li>
+                    </ul>
+
+                    <div class="category-title">Por oferta comercial </div>
+                    <ul class="motive-list">
+                        <li><i class="fas fa-check"></i>Carga errónea de componentes (Nombre/apellido/Dni)</li>
+                        <li><i class="fas fa-check"></i>Diferencia de STB</li>
+                        <li><i class="fas fa-check"></i>Duplicidad de Carga</li>
+                        <li><i class="fas fa-check"></i>Mejor Oferta Comercial</li>
+                        <li><i class="fas fa-check"></i>Plan Comercial Erróneo</li>
+                        <li><i class="fas fa-check"></i>Servicio Caído 2Play</li>
+                        <li><i class="fas fa-check"></i>Cambio de Servicio contratado</li>
+                        <li><i class="fas fa-check"></i>Falta de Grilla</li>
+                    </ul>
+
+                    <div class="category-title">Interrupción por Responsabilidad de cliente </div>
+                    <ul class="motive-list">
+                        <li><i class="fas fa-check"></i>Cañerías Obstruidas</li>
+                        <li><i class="fas fa-check"></i>Sin energía eléctrica</li>
+                        <li><i class="fas fa-check"></i>Sin permisos Cliente</li>
+                        <li><i class="fas fa-check"></i>Sin Permisos Linderos</li>
+                        <li><i class="fas fa-check"></i>Cliente desiste del servicio</li>
+                        <li><i class="fas fa-check"></i>Cliente posterga fecha</li>
+                        <li><i class="fas fa-check"></i>Zona peligrosa</li>
+                        <li><i class="fas fa-check"></i>Domicilio erróneo</li>
+                    </ul>
+
+                    <div class="category-title">Otros problemas </div>
+                    <ul class="motive-list">
+                        <li><i class="fas fa-check"></i>Edificio No Acometido</li>
+                        <li><i class="fas fa-check"></i>Falta de Equipos en Stock</li>
+                        <li><i class="fas fa-check"></i>Sin contacto con adecuaciones</li>
+                        <li><i class="fas fa-check"></i>Inconvenientes climáticos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 text-muted small">
+        Guía de uso interno exclusiva para personal técnico.
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
