@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructivos y Procesos - Portal Instalaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    <style>
+        :root {
+            --claro-red: #d93025;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Buscador */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Estilo de Tarjetas */
+        .instruction-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 5px solid var(--claro-red);
+        }
+
+        .instruction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--claro-red);
+            margin-bottom: 15px;
+        }
+
+        .btn-view {
+            background-color: var(--claro-red);
+            color: white;
+            border-radius: 20px;
+            padding: 5px 20px;
+            font-weight: 500;
+            border: none;
+        }
+
+        .btn-view:hover {
+            background-color: #b2261e;
+            color: white;
+        }
+
+        /* Filtros */
+        .filter-btn {
+            border-radius: 20px;
+            margin: 0 5px;
+            padding: 5px 20px;
+        }
+
+        .btn-check:checked + .btn-outline-danger {
+            background-color: var(--claro-red);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="d-flex align-items-center mb-4">
+        <a href="../index.html" class="btn btn-outline-secondary me-3"><i class="fas fa-arrow-left"></i> Volver</a>
+        <h2 class="mb-0">Instructivos y Procesos</h2>
+</div>
+
+    <div class="search-container">
+        <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+            <input type="text" id="manualSearch" class="form-control border-start-0" placeholder="Buscar instructivo, manual o proceso...">
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <div class="btn-group" role="group">
+            <input type="radio" class="btn-check" name="filter" id="all" checked onclick="filterItems('all')">
+            <label class="btn btn-outline-danger filter-btn" for="all">Todos</label>
+
+            <input type="radio" class="btn-check" name="filter" id="tecnico" onclick="filterItems('tecnico')">
+            <label class="btn btn-outline-danger filter-btn" for="tecnico">Técnico</label>
+
+            <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('procesos')">
+            <label class="btn btn-outline-danger filter-btn" for="procesos">Procesos</label>
+
+            <input type="radio" class="btn-check" name="filter" id="herramientas" onclick="filterItems('herramientas')">
+            <label class="btn btn-outline-danger filter-btn" for="herramientas">Herramientas</label>
+        </div>
+    </div>
+
+    <div class="row g-4" id="manualsGrid">
+        
+        <div class="col-md-4 manual-item" data-category="tecnico">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-tools"></i></div>
+                <h5 class="fw-bold">Manual de Instalación</h5>
+                <p class="text-muted small">Guía paso a paso para la configuración de equipos STB y ONT en domicilio.</p>
+                <div class="mt-auto">
+                    <a href="pdf/manual-3play.pdf" target="_blank" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+                <div class="col-md-4 manual-item" data-category="procesos">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-camera"></i></div>
+                <h5 class="fw-bold">Fotos TOA</h5>
+                <p class="text-muted small">Guía de las fotos que se deben subir a TOA.</p>
+                <div class="mt-auto">
+                    <a href="pdf/manual-3play.pdf" target="_blank" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h5 class="fw-bold">Oracle Field Service Cloud (TOA)</h5>
+                <p class="text-muted small">Instructivo para el cierre de actividades y carga de fotos en la herramienta TOA.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+                <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-map-marked"></i></div>
+                <h5 class="fw-bold">PortalGis</h5>
+                <p class="text-muted small">Instructivo para el uso de mapa de cobertura.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 manual-item" data-category="procesos">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-headset"></i></div>
+                <h5 class="fw-bold">Protocolo de Precontacto</h5>
+                <p class="text-muted small">Normas de comunicación con el cliente previo a la visita técnica.</p>
+                <div class="mt-auto">
+                    <a href="precontacto.html" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+                <div class="col-md-4 manual-item" data-category="procesos">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-id-card"></i></div>
+                <h5 class="fw-bold">MOTIVOS OFSC</h5>
+                <p class="text-muted small">Procesos de cierre de tareas segun su escenario.</p>
+                <div class="mt-auto">
+                    <a href="motivosOfsc.html" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                <h5 class="fw-bold">SYTEX</h5>
+                <p class="text-muted small">Correcta identificación de cables y acometidas según normativa vigente.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-address-book"></i></div>
+                <h5 class="fw-bold">WFM (Agenda)</h5>
+                <p class="text-muted small">Manual de uso agenda.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-phone-alt"></i></div>
+                <h5 class="fw-bold">AVAYA</h5>
+                <p class="text-muted small">Conexion, llamadas y transferencias a mesa.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-globe"></i></div>
+                <h5 class="fw-bold">ORION</h5>
+                <p class="text-muted small">Herramienta que se utiliza para revisar el estado de los clientes de la rama.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-server"></i></div>
+                <h5 class="fw-bold">SGT WEB</h5>
+                <p class="text-muted small">Herramienta que se utiliza para la provision de equipos desde el despacho.</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 manual-item" data-category="herramientas">
+            <div class="card instruction-card shadow-sm p-4">
+                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                <h5 class="fw-bold">VPN</h5>
+                <p class="text-muted small">Instructivo sobre la utilizacion de VPN (Red Privada Virtual).</p>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Buscador interactivo
+    document.getElementById('manualSearch').addEventListener('input', function(e) {
+        const text = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('.manual-item');
+        
+        items.forEach(item => {
+            const title = item.querySelector('h5').innerText.toLowerCase();
+            const desc = item.querySelector('p').innerText.toLowerCase();
+            if (title.includes(text) || desc.includes(text)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
+    // Filtros por categoría
+    function filterItems(category) {
+        const items = document.querySelectorAll('.manual-item');
+        items.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

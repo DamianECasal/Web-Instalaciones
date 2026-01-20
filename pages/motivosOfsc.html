@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Motivos OFSC - Claro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root { --claro-red: #d93025; --success-green: #28a745; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .nav-pills .nav-link.active { background-color: var(--claro-red); }
+        .motive-card { 
+            cursor: pointer; 
+            transition: 0.3s; 
+            border-left: 5px solid var(--claro-red);
+            height: 100%;
+        }
+        .motive-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .realizada { border-left-color: var(--success-green); }
+        .modal-header { background-color: var(--claro-red); color: white; }
+        .badge-step { background-color: #eee; color: #333; margin-right: 5px; }
+        .section-title { font-weight: bold; color: var(--claro-red); margin-top: 15px; text-transform: uppercase; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="d-flex align-items-center mb-4">
+        <a href="../index.html" class="btn btn-outline-secondary me-3"><i class="fas fa-arrow-left"></i> Volver</a>
+        <h2 class="mb-0">MOTIVOS DE CIERRES</h2>
+</div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Buscar motivo (ej: Adecuación, Ausente...)">
+        </div>
+        <div class="col-md-6 text-end">
+            <ul class="nav nav-pills justify-content-end" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" onclick="filterMotives('all')">Todos</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link text-danger" onclick="filterMotives('no-realizada')">No Realizadas</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link text-success" onclick="filterMotives('realizada')">Realizadas</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row g-3" id="motivesGrid">
+        </div>
+</div>
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" id="modalHeader">
+                <h5 class="modal-title" id="motiveTitle">Detalle del Motivo</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="section-title">Descripción</div>
+                <p id="motiveDesc"></p>
+                
+                <div class="section-title">Pasos a Seguir</div>
+                <ul id="motiveSteps" class="list-group list-group-flush mb-3"></ul>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="section-title">Fotos Requeridas</div>
+                        <ul id="motivePhotos" class="small"></ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="section-title">Provisión y Stock</div>
+                        <p id="motiveStock" class="small"></p>
+                    </div>
+                </div>
+
+                <div class="section-title">Notas</div>
+                <div class="p-2 bg-light border rounded small" id="motiveNotes"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const motives = [
+        {
+            id: 1,
+            title: "Adecuación",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 2,
+            title: "Cliente Ausente",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+        {
+            id: 3,
+            title: "Adecuación",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 4,
+            title: "Cliente Ausente",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+         {
+            id: 5,
+            title: "Adecuación",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 6,
+            title: "Cliente Ausente",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+        {
+            id: 7,
+            title: "Instalada Exitosamente",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 8,
+            title: "Instalada Exitosamente",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 9,
+            title: "Instalada Exitosamente",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        }
+    ];
+
+    function renderMotives(data) {
+        const grid = document.getElementById('motivesGrid');
+        grid.innerHTML = '';
+        data.forEach(m => {
+            const card = `
+                <div class="col-md-4 motive-item" data-type="${m.type}">
+                    <div class="card motive-card p-3 shadow-sm ${m.type === 'realizada' ? 'realizada' : ''}" onclick="showDetail(${m.id})">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-0 fw-bold">${m.title}</h6>
+                            <span class="badge ${m.type === 'realizada' ? 'bg-success' : 'bg-danger'}">${m.type === 'realizada' ? 'Realizada' : 'No Realizada'}</span>
+                        </div>
+                    </div>
+                </div>`;
+            grid.innerHTML += card;
+        });
+    }
+
+    function showDetail(id) {
+        const m = motives.find(item => item.id === id);
+        document.getElementById('motiveTitle').innerText = m.title;
+        document.getElementById('motiveDesc').innerText = m.desc;
+        document.getElementById('motiveStock').innerText = m.stock;
+        document.getElementById('motiveNotes').innerText = m.notes;
+        
+        const stepsList = document.getElementById('motiveSteps');
+        stepsList.innerHTML = m.steps.map(s => `<li class="list-group-item"><i class="fas fa-check-circle text-muted me-2"></i>${s}</li>`).join('');
+
+        const photoList = document.getElementById('motivePhotos');
+        photoList.innerHTML = m.photos.map(p => `<li>${p}</li>`).join('');
+
+        const header = document.getElementById('modalHeader');
+        header.style.backgroundColor = m.type === 'realizada' ? 'var(--success-green)' : 'var(--claro-red)';
+
+        new bootstrap.Modal(document.getElementById('detailModal')).show();
+    }
+
+    function filterMotives(type) {
+        if (type === 'all') renderMotives(motives);
+        else renderMotives(motives.filter(m => m.type === type));
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        renderMotives(motives.filter(m => m.title.toLowerCase().includes(term)));
+    });
+
+    renderMotives(motives);
+</script>
+</body>
+</html>

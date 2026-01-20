@@ -1,0 +1,205 @@
+  :root {
+            --claro-red: #d93025;
+            --dark-gray: #333;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: var(--light-bg);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Estilo de la Botonera (Cards) */
+        .btn-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            border-bottom: 5px solid transparent;
+        }
+
+        .btn-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--claro-red);
+            color: var(--claro-red);
+        }
+
+        .btn-card i {
+            font-size: 3rem;
+            color: var(--claro-red);
+            margin-bottom: 20px;
+        }
+
+        .btn-card span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .welcome-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+         :root { --claro-red: #d93025; --success-green: #28a745; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .nav-pills .nav-link.active { background-color: var(--claro-red); }
+        .motive-card { 
+            cursor: pointer; 
+            transition: 0.3s; 
+            border-left: 5px solid var(--claro-red);
+            height: 100%;
+        }
+        .motive-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .realizada { border-left-color: var(--success-green); }
+        .modal-header { background-color: var(--claro-red); color: white; }
+        .badge-step { background-color: #eee; color: #333; margin-right: 5px; }
+        .section-title { font-weight: bold; color: var(--claro-red); margin-top: 15px; text-transform: uppercase; font-size: 0.9rem; }
+
+         :root {
+            --claro-red: #d93025;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Buscador */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Estilo de Tarjetas */
+        .instruction-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 5px solid var(--claro-red);
+        }
+
+        .instruction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--claro-red);
+            margin-bottom: 15px;
+        }
+
+        .btn-view {
+            background-color: var(--claro-red);
+            color: white;
+            border-radius: 20px;
+            padding: 5px 20px;
+            font-weight: 500;
+            border: none;
+        }
+
+        .btn-view:hover {
+            background-color: #b2261e;
+            color: white;
+        }
+
+        /* Filtros */
+        .filter-btn {
+            border-radius: 20px;
+            margin: 0 5px;
+            padding: 5px 20px;
+        }
+
+        .btn-check:checked + .btn-outline-danger {
+            background-color: var(--claro-red);
+            color: white;
+        }
+
+         body {
+            background-color: #f0ebf1; /* Color de fondo tipo Google Forms */
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .form-header {
+            background-color: #d93025; /* Rojo corporativo */
+            height: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .card {
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .main-card {
+            border-top: 10px solid #d93025; /* Banda superior roja */
+        }
+        .required-star {
+            color: #d93025;
+            margin-left: 4px;
+        }
+        .form-label {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .form-subtitle {
+            font-size: 0.85rem;
+            color: #70757a;
+            margin-bottom: 10px;
+        }
+        .btn-submit {
+            background-color: #d93025;
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            font-weight: bold;
+        }
+        .btn-submit:hover {
+            background-color: #b2261e;
+            color: white;
+        }
+        .important-note {
+            color: #d93025;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
