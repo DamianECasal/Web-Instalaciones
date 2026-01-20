@@ -28,7 +28,7 @@
 
 <div class="container py-4">
     <div class="d-flex align-items-center mb-4">
-        <a href="../index.html" class="btn btn-outline-secondary me-3"><i class="fas fa-arrow-left"></i> Volver</a>
+        <a href="../index.html" class="btn btn-outline-secondary me-3"><i class="fas fa-arrow-left"></i> </a>
         <h2 class="mb-0">MOTIVOS DE CIERRES</h2>
 </div>
 
@@ -92,7 +92,7 @@
     const motives = [
         {
             id: 1,
-            title: "Adecuación",
+            title: "Actividad Iniciada por Error",
             type: "no-realizada",
             desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
             steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
@@ -102,9 +102,9 @@
         },
         {
             id: 2,
-            title: "Cliente Ausente",
+            title: "Adecuación",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            desc: ["En los escenarios donde nos encontremos con la caja:", "1. En mal estado.", "2. Mal ubicada (Supera el metraje máximo de altura-según la norma de la plaza).", "3. Pasivas dañadas que no nos permiten realizar la instalación.", "4. Ramas cruzadas."],            
             steps: ["Reportar a mesa de despacho correspondiente."],
             photos: ["Foto panorámica de la fachada con linderos."],
             stock: "NO dejar materiales provisionados.",
@@ -112,7 +112,7 @@
         },
         {
             id: 3,
-            title: "Adecuación",
+            title: "Averia Masiva",
             type: "no-realizada",
             desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
             steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
@@ -122,7 +122,7 @@
         },
         {
             id: 4,
-            title: "Cliente Ausente",
+            title: "Cañerías Obstruidas Cliente",
             type: "no-realizada",
             desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
             steps: ["Reportar a mesa de despacho correspondiente."],
@@ -132,7 +132,7 @@
         },
          {
             id: 5,
-            title: "Adecuación",
+            title: "Cliente Ausente",
             type: "no-realizada",
             desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
             steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
@@ -142,7 +142,17 @@
         },
         {
             id: 6,
-            title: "Cliente Ausente",
+            title: "Cliente no cuenta con Permisos/Accesos",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 7,
+            title: "Cliente Domicilio Erróneo",
             type: "no-realizada",
             desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
             steps: ["Reportar a mesa de despacho correspondiente."],
@@ -151,28 +161,260 @@
             notes: "Asentar 'Cliente ausente'."
         },
         {
-            id: 7,
-            title: "Instalada Exitosamente",
-            type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
-        },
-        {
             id: 8,
-            title: "Instalada Exitosamente",
-            type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            title: "Domicilio reportado por fraude",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
         },
         {
             id: 9,
+            title: "Edificio No Acometido",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+        {
+            id: 10,
+            title: "Estetica En la Instalacion",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+         {
+            id: 11,
+            title: "Falta caja en la cuadra",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 12,
+            title: "Falta Poste de Apoyo",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 13,
+            title: "Inconvenientes Climáticos",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 14,
+            title: "Montante Obstruida",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+        {
+            id: 15,
+            title: "No Filtra Orden en SGT",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 16,
+            title: "Poste en mal estado",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+         {
+            id: 17,
+            title: "Puerto de red mal asignado",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 18,
+            title: "Rechaza Oferta Comercial",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 19,
+            title: "Recoordinar a Pedido de la Contratistas",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+        {
+            id: 20,
+            title: "Recoordinar por falta de stock",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+        {
+            id: 21,
+            title: "Referente Se Retira durante la Instalación",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 22,
+            title: "Sin capacidad",
+            type: "no-realizada",
+            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
+            steps: ["Reportar a mesa de despacho correspondiente."],
+            photos: ["Foto panorámica de la fachada con linderos."],
+            stock: "NO dejar materiales provisionados.",
+            notes: "Asentar 'Cliente ausente'."
+        },
+         {
+            id: 23,
+            title: "Sin energía eléctrica",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 24,
+            title: "Sin Potencia / Mala Potencia",
+            type: "no-realizada",
+            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
+            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
+            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
+            stock: "NO dejar materiales provisionados ni descargar materiales.",
+            notes: "Descripción detallada del problema y acrónimo del splitter."
+        },
+        {
+            id: 25,
             title: "Instalada Exitosamente",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 26,
+            title: "A la espera de Rta. Sistemas",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 27,
+            title: "A la espera de Rta. Sistemas TV",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        }
+        ,
+        {
+            id: 28,
+            title: "Cl Inst Sin Equipos de TV físico",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 29,
+            title: "Cl Instalado No Operativo",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        }
+        ,
+        {
+            id: 30,
+            title: "Posible Fraude Instalado",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 31,
+            title: "Problema Provisión",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 32,
+            title: "Problema Telefonía",
+            type: "realizada",
+            desc: "Servicio probado y funcionando con conformidad del cliente].",
+            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
+            photos: ["Carga de las 8 imágenes correspondientes."],
+            stock: "Descargar materiales seriados y no seriados utilizados.",
+            notes: "No aplica."
+        },
+        {
+            id: 33,
+            title: "TV No Compatible",
             type: "realizada",
             desc: "Servicio probado y funcionando con conformidad del cliente].",
             steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
