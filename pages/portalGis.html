@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructivo PortalGis - Claro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --claro-red: #d93025; --claro-dark: #333; --bg-gray: #f4f6f9; }
+        body { background-color: var(--bg-gray); font-family: 'Roboto', sans-serif; height: 100vh; overflow: hidden; }
+        
+        /* Layout */
+        .main-wrapper { display: flex; height: calc(100vh - 70px); }
+        .sidebar { width: 320px; background: white; border-right: 1px solid #dee2e6; overflow-y: auto; padding: 15px; }
+        .content-area { flex: 1; overflow-y: auto; padding: 40px; background: white; }
+        
+        /* Sidebar Items */
+        .step-link { cursor: pointer; border: none; border-radius: 10px !important; margin-bottom: 8px; transition: 0.2s; font-size: 0.95rem; border-left: 5px solid transparent; padding: 15px; text-align: left; background: #f8f9fa; width: 100%; display: flex; align-items: center; }
+        .step-link:hover { background-color: #eef0f2; }
+        .step-link.active { background-color: #fff1f0; color: var(--claro-red); font-weight: bold; border-left-color: var(--claro-red); }
+        .step-number { background: #ddd; color: #666; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.75rem; font-weight: bold; }
+        .active .step-number { background: var(--claro-red); color: white; }
+
+        /* Contenido */
+        .section-header { font-weight: bold; text-decoration: underline; text-transform: uppercase; margin-top: 25px; display: block; color: var(--claro-dark); margin-bottom: 10px; }
+        .literal-text { white-space: pre-line; line-height: 1.7; font-size: 1.05rem; color: #333; }
+        .img-placeholder { background: #f8f9fa; border: 2px dashed #cbd5e0; border-radius: 12px; min-height: 300px; display: flex; align-items: center; justify-content: center; color: #a0aec0; margin-top: 20px; flex-direction: column; }
+        
+        .direct-link { background: var(--claro-red); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; transition: 0.3s; }
+        .direct-link:hover { background: #b2261e; color: white; transform: translateY(-2px); }
+
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .main-wrapper { flex-direction: column; height: auto; overflow: visible; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; }
+            body { overflow: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-4 shadow-sm" style="height: 70px;">
+    <div class="container-fluid">
+        <a href="../index.html" class="btn btn-outline-light btn-sm me-3"><i class="fas fa-arrow-left"></i> Volver</a>
+        <span class="navbar-brand mb-0 h1 mx-auto">INSTRUCTIVO PORTALGIS</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" height="30" alt="Claro">
+    </div>
+</nav>
+
+<div class="main-wrapper">
+    <div class="sidebar shadow-sm">
+        <div class="list-group" id="stepList">
+            <button onclick="showStep(1, this)" class="step-link active"><span class="step-number">1</span> Acceso y Login</button>
+            <button onclick="showStep(2, this)" class="step-link"><span class="step-number">2</span> Módulo Bandeja</button>
+            <button onclick="showStep(3, this)" class="step-link"><span class="step-number">3</span> Búsqueda de Dirección</button>
+            <button onclick="showStep(4, this)" class="step-link"><span class="step-number">4</span> Configuración de Capas</button>
+            <button onclick="showStep(5, this)" class="step-link"><span class="step-number">5</span> Anexo: Polígonos</button>
+        </div>
+    </div>
+
+    <div class="content-area" id="detailPanel">
+        </div>
+</div>
+
+<script>
+    const steps = {
+        1: {
+            title: "ACCESO Y LOGIN",
+            content: `
+                <span class="section-header">PLATAFORMA:</span>
+                Para ingresar a la plataforma debe realizarse por el siguiente Link:
+                <div class="my-3 text-center">
+                    <a href="https://portalgis.claro.com.ar" target="_blank" class="direct-link">
+                        <i class="fas fa-external-link-alt me-2"></i> PORTALGIS.CLARO.COM.AR
+                    </a>
+                </div>
+                
+                <span class="section-header">CREDENCIALES:</span>
+                Para logearse debe hacerse con el usuario de red y la contraseña correspondiente.
+                
+                <div class="img-placeholder">
+                    <i class="fas fa-sign-in-alt fa-4x mb-3"></i>
+                    <p>Captura: Pantalla de Bienvenida y Login</p>
+                </div>`
+        },
+        2: {
+            title: "SELECCIÓN DE MÓDULO",
+            content: `
+                <span class="section-header">PASO SIGUIENTE:</span>
+                Una vez dentro del sistema, se debe seleccionar el modulo <strong>“BANDEJA DE ELEMENTOS”</strong>.
+                
+                <div class="img-placeholder">
+                    <i class="fas fa-th-large fa-4x mb-3"></i>
+                    <p>Captura: Menú de Módulos (Login Exitoso)</p>
+                </div>`
+        },
+        3: {
+            title: "BÚSQUEDA DE DIRECCIÓN",
+            content: `
+                <span class="section-header">INTERFAZ DE MAPA:</span>
+                En el siguiente paso se visualiza las opciones de las cobertura y la búsqueda para colocar la dirección a revisar.
+                
+                <div class="img-placeholder">
+                    <i class="fas fa-search-location fa-4x mb-3"></i>
+                    <p>Captura: Barra de búsqueda superior derecha</p>
+                </div>`
+        },
+        4: {
+            title: "CONFIGURACIÓN DE CAPAS",
+            content: `
+                <span class="section-header">COBERTURAS TEMATIZADAS:</span>
+                Se deben tildas las siguientes casillas: 
+                • FRAUDES : Zonas no aptas para la ventas debido a deteccion de fraudes.
+                • ZONA PELIGROSA: Zonas no aptas para la ventas para resguardar la integridad fisica del tecnico.
+                • EDIFICIO DISPONIBLE: Cobertura apta para la venta poligono circular verde
+                • EDIFICIO SATURADO: Cobertura apta para la venta pero los splitters se encuentran sin capacidad.
+                • GPON: Cobertura apta para la venta con capacidad disponible.
+                • GPON PLANIFICADO: Cobertura no apta para la venta, el poligono se encuentra planificado para su instalacion de splitters.
+                • GPON SATURADO: Cobertura apta para la venta pero los splitters se encuentran sin capacidad.
+                • ZONA DESHABILITADA: Zonas no aptas para la ventas para resguardar la integridad fisica del tecnico.
+
+                <span class="section-header">SPLITTERS:</span>
+                En el item desplegable de SPLITTERS se deben seleccionar todas las casillas.
+                
+                <div class="img-placeholder">
+                    <i class="fas fa-layer-group fa-4x mb-3"></i>
+                    <p>Captura: Panel lateral de Capas Habilitadas</p>
+                </div>`
+        },
+        5: {
+            title: "ANEXO: POLÍGONOS",
+            content: `
+                <span class="section-header">DEFINICIÓN:</span>
+                Los polígonos determinan la capacidad y disponibilidad de la cuadra, así como también delimitan desde donde hasta donde puede tomarse el servicio de la misma.
+                
+                <span class="section-header">RESTRICCIONES:</span>
+                Si el polígono se encuentra delineado con <strong>rojo</strong> se refiere a que el polígono no es ampliable, (No se puede escalar para agregar otra caja en la cuadra).
+                
+                <div class="img-placeholder" style="border-color: var(--claro-red);">
+                    <i class="fas fa-exclamation-triangle fa-4x mb-3 text-danger"></i>
+                    <p>Captura: Ejemplo de polígono rojo no ampliable</p>
+                </div>`
+        }
+    };
+
+    function showStep(id, element) {
+        // Actualizar sidebar
+        document.querySelectorAll('.step-link').forEach(el => el.classList.remove('active'));
+        element.classList.add('active');
+
+        // Actualizar contenido
+        const step = steps[id];
+        const panel = document.getElementById('detailPanel');
+        panel.innerHTML = `
+            <div class="fade-in">
+                <h2 class="fw-bold mb-4">${step.title}</h2>
+                <hr class="mb-4">
+                <div class="literal-text">${step.content}</div>
+            </div>
+        `;
+    }
+
+    // Cargar paso inicial
+    document.addEventListener('DOMContentLoaded', () => {
+        showStep(1, document.querySelector('.step-link'));
+    });
+</script>
+
+</body>
+</html>
