@@ -12,6 +12,7 @@
         :root {
             --claro-red: #d93025;
             --light-bg: #f8f9fa;
+            --claro-blue: #192487;
         }
 
         body {
@@ -58,12 +59,13 @@
             background: #f1f1f1;
             border: 2px dashed #ccc;
             border-radius: 10px;
-            height: 250px;
+            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #999;
             margin-top: 20px;
+            flex-direction: column;
         }
 
         .important-note {
@@ -73,6 +75,24 @@
             border-radius: 5px;
             margin-top: 15px;
             font-weight: 500;
+        }
+
+        /* Ajustes para el Video */
+        .video-card {
+            border-left: 5px solid var(--claro-blue);
+        }
+        
+        .video-container {
+            width: 100%;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        video {
+            width: 100%;
+            display: block;
         }
     </style>
 </head>
@@ -94,7 +114,7 @@
         <div class="step-number">PASO 1: ACCESO</div>
         <div class="step-body">
             <p class="instruction-text">
-                Recibirán un correo eléctrico para generar la contraseña para el ingreso al portal Sytex, una vez generada la contraseña, avanzarán al próximo paso que es loguearse con el correo electrónico donde les llegó el email y la contraseña generada.
+                Recibirán un correo eléctrico para generar la contraseña para el ingreso al portal Sytex. Una vez generada la contraseña, avanzarán al próximo paso que es loguearse con el correo electrónico y la contraseña generada.
             </p>
             <div class="img-placeholder"><i class="fas fa-sign-in-alt fa-3x mb-2"></i><small>Captura de Pantalla de Inicio de Sesión</small></div>
         </div>
@@ -104,17 +124,17 @@
         <div class="step-number">PASO 2: BÚSQUEDA</div>
         <div class="step-body">
             <p class="instruction-text">
-                Una vez que ingresamos a la página, vamos a la búsqueda del formulario del splitter desde el icono de la lupa (1), al dejar el puntero del mouse sobre dicha opción se va a extender para poder pegar el acrónimo del splitter (2).
+                Una vez dentro, buscaremos el formulario del splitter desde el icono de la lupa (1). Al dejar el puntero sobre dicha opción, se extenderá para pegar el acrónimo del splitter (2).
             </p>
             <div class="img-placeholder"><i class="fas fa-search fa-3x mb-2"></i><small>Captura de Lupa y Barra de Búsqueda</small></div>
         </div>
     </div>
 
     <div class="step-card">
-        <div class="step-number">PASO 3: SELECCIÓN DE ELEMENTO</div>
+        <div class="step-number">PASO 3: SELECCIÓN</div>
         <div class="step-body">
             <p class="instruction-text">
-                Buscaremos el acrónimo de ejemplo: <strong>CHR02-R0055-013</strong> y podremos seleccionar el resultado de “Elemento de red” o directamente los “Formularios” del splitter (3). Una vez que carga la búsqueda que realizamos, seleccionamos “Formularios”.
+                Al buscar el acrónimo, podremos seleccionar el "Elemento de red" o directamente los "Formularios" (3). Seleccionamos la opción "Formularios".
             </p>
             <div class="img-placeholder"><i class="fas fa-list-ul fa-3x mb-2"></i><small>Captura de Resultados de Búsqueda</small></div>
         </div>
@@ -124,11 +144,11 @@
         <div class="step-number">PASO 4: VALIDACIÓN</div>
         <div class="step-body">
             <p class="instruction-text">
-                De los formularios que encontraremos seleccionaremos la que se encuentre aprobada.
+                De los formularios disponibles, seleccionaremos aquel que figure como aprobado.
             </p>
             <div class="important-note">
                 <i class="fas fa-exclamation-circle me-2"></i>
-                Importante: siempre se deben ver los formularios aprobados, ya que esto identifica que el splitter fue aprobado en campo.
+                Importante: Siempre se deben ver los formularios aprobados, ya que esto identifica que el splitter fue validado en campo.
             </div>
             <div class="img-placeholder"><i class="fas fa-check-circle fa-3x mb-2"></i><small>Captura de Formulario con Estado Aprobado</small></div>
         </div>
@@ -138,21 +158,36 @@
         <div class="step-number">PASO 5: VISUALIZACIÓN</div>
         <div class="step-body">
             <p class="instruction-text">
-                Luego que carga el formulario a revisar, tenemos que presionar sobre los 3 puntos para que se abra el desplegable y elegir la opción de “Ver documento”.
+                Presione sobre los 3 puntos para abrir el desplegable y elija la opción "Ver documento".
             </p>
             <div class="img-placeholder"><i class="fas fa-ellipsis-v fa-3x mb-2"></i><small>Captura de Menú de Opciones (3 puntos)</small></div>
         </div>
     </div>
 
-    <div class="step-card border-success" style="border-left: 5px solid #198754;">
+    <div class="step-card border-success">
         <div class="step-number" style="background-color: #198754;">FINALIZACIÓN</div>
         <div class="step-body">
             <p class="instruction-text fw-bold">
-                Se abrirá una nueva página, con el formulario final donde encontrarán fotos y descripción del splitter donde se encuentra ubicado y el estado del mismo.
+                Se abrirá una nueva página con el formulario final, donde encontrarán fotos, descripción de ubicación y el estado del splitter.
             </p>
             <div class="img-placeholder"><i class="fas fa-file-alt fa-3x mb-2"></i><small>Vista del Documento Final</small></div>
         </div>
     </div>
+
+    <div class="step-card video-card">
+        <div class="step-number" style="background-color: var(--claro-blue);">VIDEO DEL INSTRUCTIVO</div>
+        <div class="step-body text-center">
+            <p class="instruction-text fw-bold">
+                En el siguiente video podrán observar el paso a paso mencionado anteriormente.
+            </p>
+            <div class="video-container shadow-sm">
+                <video controls>
+                    <source src="../assets/video/sytexFilms.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
+        </div>
+    </div> 
 
 </div>
 

@@ -3,95 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo *6565 - Contacto MDD</title>
+    <title>Nuevo *6565 - Guía Técnica</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --claro-red: #d93025;
-            --light-bg: #f8f9fa;
-        }
+        :root { --claro-red: #d93025; --light-bg: #f2f2f2; }
+        body { background-color: var(--light-bg); font-family: 'Roboto', sans-serif; }
 
-        body {
-            background-color: var(--light-bg);
-            font-family: 'Roboto', sans-serif;
-        }
+        /* Ajuste de Encabezado */
+        .header-title { background: white; border-bottom: 3px solid var(--claro-red); padding: 15px 0; margin-bottom: 20px; }
+        h2 { font-size: 1.5rem; font-weight: 800; }
 
-        .header-title {
-            background: white;
-            border-bottom: 4px solid var(--claro-red);
-            padding: 25px 0;
-            margin-bottom: 30px;
-        }
+        /* Alerta Compacta */
+        .alert-exclusive { background-color: #fff3f3; border-left: 5px solid var(--claro-red); color: var(--claro-red); font-weight: bold; padding: 10px 15px; border-radius: 6px; margin-bottom: 20px; font-size: 0.95rem; }
 
-        .alert-exclusive {
-            background-color: #fff3f3;
-            border-left: 5px solid var(--claro-red);
-            color: #d93025;
-            font-weight: bold;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .ivr-option-card {
-            background: white;
-            border: none;
-            border-radius: 15px;
-            height: 100%;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .option-header {
-            padding: 20px;
-            color: white;
-            text-align: center;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-        .option-1 { background-color: #333; }
+        /* Tarjetas de Opciones */
+        .ivr-option-card { border: none; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+        .option-header { padding: 12px; color: white; text-align: center; border-radius: 12px 12px 0 0; }
+        .option-1 { background-color: #222; }
         .option-2 { background-color: var(--claro-red); }
 
-        .category-title {
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
+        .number-badge { font-size: 2rem; font-weight: 900; display: block; line-height: 1; margin-bottom: 4px; }
+        .option-title { font-size: 1.1rem; font-family: 'Montserrat'; text-transform: uppercase; }
 
-        .motive-list {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 0;
-        }
+        /* Contenido y Listas */
+        .card-body { padding: 15px 20px !important; }
+        .category-title { font-weight: 800; text-transform: uppercase; font-size: 1rem; color: #444; margin-top: 15px; margin-bottom: 8px; border-bottom: 2px solid #ddd; padding-bottom: 3px; }
+        
+        .motive-list { list-style: none; padding-left: 0; margin-bottom: 0; }
+        .motive-list li { padding: 5px 0; font-size: 1.05rem; /* Letra más grande */ color: #333; display: flex; align-items: baseline; }
+        .motive-list li i { color: var(--claro-red); margin-right: 12px; font-size: 0.9rem; }
+        .option-1 .motive-list li i { color: #555; }
 
-        .motive-list li {
-            padding: 6px 0;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #f9f9f9;
-            color: #444;
-        }
-
-        .motive-list li i {
-            color: var(--claro-red);
-            margin-right: 10px;
-            font-size: 0.8rem;
-        }
-
-        .number-badge {
-            font-size: 2.5rem;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 5px;
-        }
+        /* Footer */
+        .footer-note { font-size: 0.85rem; color: #777; margin-top: 30px; text-align: center; padding-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -100,112 +47,85 @@
     <div class="container d-flex align-items-center">
         <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
         <div>
-            <h2 class="mb-0 fw-bold">Contacto con Mesa de Despacho</h2>
-            <p class="text-muted small mb-0">Vigente a partir del lunes 3 de julio de 2023</p>
+            <h2 class="mb-0">Contacto con Mesa de Despacho Residencial</h2>
+            <p class="text-muted small mb-0">Contacto | Personal Técnico</p>
         </div>
     </div>
 </div>
 
-<div class="container pb-5">
+<div class="container">
     
-    <div class="alert-exclusive shadow-sm">
-        <i class="fas fa-exclamation-triangle me-2"></i>
-        IMPORTANTE: El *6565 es de uso EXCLUSIVO para técnicos. NO se le debe brindar el mismo a los clientes.
+    <div class="alert-exclusive">
+        <i class="fas fa-user-shield me-2"></i>
+        Uso EXCLUSIVO para técnicos. NO brindar el *6565 a clientes.
     </div>
 
-    <div class="row g-4">
+    <div class="row g-3">
         <div class="col-md-6">
-            <div class="card ivr-option-card shadow-sm">
+            <div class="card ivr-option-card">
                 <div class="option-header option-1">
                     <span class="number-badge">MARCA 1</span>
-                    <h5 class="mb-0">PROBLEMAS LÓGICOS O FÍSICOS </h5>
+                    <span class="option-title">Problemas Lógicos / Físicos</span>
                 </div>
-                <div class="card-body p-4">
-                    
-                    <div class="category-title">Por problemas Lógicos </div>
+                <div class="card-body">
+                    <div class="category-title">Lógicos</div>
                     <ul class="motive-list">
-                        <li><i class="fas fa-check"></i>Problema de Sistemas</li>
-                        <li><i class="fas fa-check"></i>Problema de Sistemas TV</li>
-                        <li><i class="fas fa-check"></i>Problema Telefonía</li>
-                        <li><i class="fas fa-check"></i>Error en Provisión</li>
-                        <li><i class="fas fa-check"></i>No Filtra</li>
+                        <li><i class="fas fa-chevron-right"></i> Problema de Sistemas / TV</li>
+                        <li><i class="fas fa-chevron-right"></i> Problema Telefonía</li>
+                        <li><i class="fas fa-chevron-right"></i> Error en Provisión</li>
+                        <li><i class="fas fa-chevron-right"></i> No Filtra</li>
                     </ul>
 
-                    <div class="category-title">Por Problemas Físicos </div>
+                    <div class="category-title">Físicos</div>
                     <ul class="motive-list">
-                        <li><i class="fas fa-check"></i>Falta caja en cuadra</li>
-                        <li><i class="fas fa-check"></i>Fuera de Cobertura</li>
-                        <li><i class="fas fa-check"></i>Fuera de Norma</li>
-                        <li><i class="fas fa-check"></i>Sin capacidad</li>
-                        <li><i class="fas fa-check"></i>Sin potencia</li>
-                        <li><i class="fas fa-check"></i>Mala potencia</li>
-                        <li><i class="fas fa-check"></i>Ramas cruzadas</li>
-                        <li><i class="fas fa-check"></i>Pasiva rota</li>
-                        <li><i class="fas fa-check"></i>CTO mal asignado</li>
-                        <li><i class="fas fa-check"></i>CTO no asignado</li>
-                        <li><i class="fas fa-check"></i>Adecuación</li>
-                        <li><i class="fas fa-check"></i>Poste de CAJA en mal estado</li>
-                        <li><i class="fas fa-check"></i>Cliente desconectado</li>
+                        <li><i class="fas fa-chevron-right"></i> Falta caja en cuadra / CTO mal asignada</li>
+                        <li><i class="fas fa-chevron-right"></i> Fuera de Cobertura / Norma</li>
+                        <li><i class="fas fa-chevron-right"></i> Sin capacidad / Potencia (Mala)</li>
+                        <li><i class="fas fa-chevron-right"></i> Ramas cruzadas / Pasiva rota</li>
+                        <li><i class="fas fa-chevron-right"></i> Adecuación / Poste en mal estado</li>
+                        <li><i class="fas fa-chevron-right"></i> Cliente desconectado</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6">
-            <div class="card ivr-option-card shadow-sm">
+            <div class="card ivr-option-card">
                 <div class="option-header option-2">
                     <span class="number-badge">MARCA 2</span>
-                    <h5 class="mb-0">OTROS PROBLEMAS </h5>
+                    <span class="option-title">Otros Problemas</span>
                 </div>
-                <div class="card-body p-4">
-                    
-                    <div class="category-title">Por Contacto Con cliente </div>
+                <div class="card-body">
+                    <div class="category-title">Contacto / Comercial</div>
                     <ul class="motive-list">
-                        <li><i class="fas fa-check"></i>Cliente Ausente</li>
-                        <li><i class="fas fa-check"></i>Adelanto de OT</li>
-                        <li><i class="fas fa-check"></i>Referencias de domicilio</li>
+                        <li><i class="fas fa-check"></i> Cliente Ausente / Adelanto de OT</li>
+                        <li><i class="fas fa-check"></i> Mejor Oferta / Plan Erróneo</li>
+                        <li><i class="fas fa-check"></i> Error en componentes (Nombre/DNI)</li>
+                        <li><i class="fas fa-check"></i> Diferencia STB / Servicio Caído</li>
                     </ul>
 
-                    <div class="category-title">Por oferta comercial </div>
+                    <div class="category-title">Responsabilidad Cliente</div>
                     <ul class="motive-list">
-                        <li><i class="fas fa-check"></i>Carga errónea de componentes (Nombre/apellido/Dni)</li>
-                        <li><i class="fas fa-check"></i>Diferencia de STB</li>
-                        <li><i class="fas fa-check"></i>Duplicidad de Carga</li>
-                        <li><i class="fas fa-check"></i>Mejor Oferta Comercial</li>
-                        <li><i class="fas fa-check"></i>Plan Comercial Erróneo</li>
-                        <li><i class="fas fa-check"></i>Servicio Caído 2Play</li>
-                        <li><i class="fas fa-check"></i>Cambio de Servicio contratado</li>
-                        <li><i class="fas fa-check"></i>Falta de Grilla</li>
+                        <li><i class="fas fa-check"></i> Cañerías Obstruidas / Sin Energía</li>
+                        <li><i class="fas fa-check"></i> Sin Permisos (Cliente/Linderos)</li>
+                        <li><i class="fas fa-check"></i> Cliente Desiste / Posterga Fecha</li>
+                        <li><i class="fas fa-check"></i> Zona Peligrosa / Domicilio Erróneo</li>
                     </ul>
 
-                    <div class="category-title">Interrupción por Responsabilidad de cliente </div>
+                    <div class="category-title">Estructura y Otros</div>
                     <ul class="motive-list">
-                        <li><i class="fas fa-check"></i>Cañerías Obstruidas</li>
-                        <li><i class="fas fa-check"></i>Sin energía eléctrica</li>
-                        <li><i class="fas fa-check"></i>Sin permisos Cliente</li>
-                        <li><i class="fas fa-check"></i>Sin Permisos Linderos</li>
-                        <li><i class="fas fa-check"></i>Cliente desiste del servicio</li>
-                        <li><i class="fas fa-check"></i>Cliente posterga fecha</li>
-                        <li><i class="fas fa-check"></i>Zona peligrosa</li>
-                        <li><i class="fas fa-check"></i>Domicilio erróneo</li>
-                    </ul>
-
-                    <div class="category-title">Otros problemas </div>
-                    <ul class="motive-list">
-                        <li><i class="fas fa-check"></i>Edificio No Acometido</li>
-                        <li><i class="fas fa-check"></i>Falta de Equipos en Stock</li>
-                        <li><i class="fas fa-check"></i>Sin contacto con adecuaciones</li>
-                        <li><i class="fas fa-check"></i>Inconvenientes climáticos</li>
+                        <li><i class="fas fa-check"></i> Edificio No Acometido</li>
+                        <li><i class="fas fa-check"></i> Falta de Equipos en Stock</li>
+                        <li><i class="fas fa-check"></i> Inconvenientes Climáticos</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="text-center mt-5 text-muted small">
-        Guía de uso interno exclusiva para personal técnico.
+    <div class="footer-note">
+        Guía interna para uso exclusivo de cuadrillas de Claro Argentina.
     </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
