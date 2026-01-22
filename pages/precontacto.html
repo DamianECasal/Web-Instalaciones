@@ -11,6 +11,7 @@
         :root {
             --claro-red: #d93025;
             --dark-gray: #333;
+            --claro-gray: #f8f9fa;
         }
 
         body {
@@ -18,11 +19,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .header-brand {
-            background-color: var(--claro-red);
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
+        /* ESTILO DEL HEADER UNIFICADO */
+        .header-banner { 
+            background: white; 
+            border-bottom: 4px solid var(--claro-red); 
+            padding: 25px 0; 
+            margin-bottom: 40px; 
         }
 
         .step-card {
@@ -73,12 +75,16 @@
 </head>
 <body>
 
-<div class="header-brand shadow-sm">
-    <div class="container d-flex align-items-center">
-        <button onclick="window.history.back()" class="btn btn-link text-white p-0 me-3">
-            <i class="fas fa-arrow-left fa-lg"></i>
-        </button>
-        <h1 class="h3 mb-0">PROTOCOLO DE PRECONTACTO</h1>
+<div class="header-banner shadow-sm">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
+            <div>
+                <h2 class="mb-0 fw-bold">PROTOCOLO DE PRECONTACTO</h2>
+                <p class="text-muted small mb-0">Flujo obligatorio de comunicación con el cliente</p>
+            </div>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" height="35" alt="Claro">
     </div>
 </div>
 

@@ -9,102 +9,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --claro-red: #d93025;
-            --light-bg: #f8f9fa;
-        }
+        :root { --claro-red: #d93025; --claro-gray: #f8f9fa; }
+        body { background-color: var(--claro-gray); font-family: 'Roboto', sans-serif; }
+        
+        /* Encabezado Unificado */
+        .header-banner { background: white; border-bottom: 4px solid var(--claro-red); padding: 25px 0; margin-bottom: 40px; }
+        
+        /* Navegación Pestañas */
+        .nav-pills .nav-link.active { background-color: var(--claro-red); }
+        .nav-pills .nav-link { color: #555; font-weight: bold; margin: 0 5px; }
 
-        body {
-            background-color: var(--light-bg);
-            font-family: 'Roboto', sans-serif;
-        }
+        /* Contenedores de Pasos (Estética VPN/PortalGis) */
+        .step-container { background: white; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 30px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .step-header { background: #333; color: white; padding: 12px 25px; font-weight: bold; display: flex; align-items: center; justify-content: space-between; }
+        .step-title-wrapper { display: flex; align-items: center; }
+        .step-badge { background: var(--claro-red); color: white; border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.9rem; }
+        
+        .step-body { padding: 30px; }
+        .instruction-text { font-size: 1.05rem; line-height: 1.6; color: #333; }
 
-        .header-title {
-            background: white;
-            border-bottom: 4px solid var(--claro-red);
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
+        /* Introducción */
+        .intro-box { background-color: white; border-left: 5px solid var(--claro-red); padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
-        .nav-pills .nav-link.active {
-            background-color: var(--claro-red);
-        }
-
-        .nav-pills .nav-link {
-            color: #555;
-            font-weight: bold;
-            margin: 0 5px;
-        }
-
-        .step-card {
-            background: white;
-            border: none;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        .step-header {
-            background: #f1f1f1;
-            padding: 15px 25px;
-            font-weight: bold;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .step-body {
-            padding: 25px;
-        }
-
-        .instruction-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .img-placeholder {
-            background: #fafafa;
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #bbb;
-            margin-top: 15px;
-            flex-direction: column;
-        }
-
-        .intro-box {
-            background-color: white;
-            border-left: 5px solid var(--claro-red);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
+        /* Imagenes */
+        .img-placeholder { background: #f1f1f1; border: 2px dashed #ccc; border-radius: 10px; min-height: 250px; display: flex; align-items: center; justify-content: center; color: #999; margin-top: 20px; text-align: center; padding: 20px; flex-direction: column; }
     </style>
 </head>
 <body>
 
-<div class="header-title shadow-sm">
-    <div class="container d-flex align-items-center">
-        <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
-        <div>
-            <h2 class="mb-0 fw-bold">Manual de provision SGT</h2>
-            <p class="text-muted small mb-0">Instructivo</p>
+<div class="header-banner shadow-sm">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
+            <div>
+                <h2 class="mb-0 fw-bold">MANUAL DE PROVISIÓN SGT</h2>
+                <p class="text-muted small mb-0">SGT Mobile/Web – Splitters Cercanos [cite: 1]</p>
+            </div>
         </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" height="35" alt="Claro">
     </div>
 </div>
 
 <div class="container pb-5">
     
-    <div class="intro-box shadow-sm">
+    <div class="intro-box">
         <h5 class="fw-bold">Introducción</h5>
         <p class="mb-0">
-            El desarrollo consiste en utilizar las coordenadas del domicilio de instalación/mantenimiento con el objetivo de sugerir la utilización de aquellos splitters más cercanos a este. Se mostrarán hasta 3 opciones y se proporcionará información útil para facilitar la selección.
+            El desarrollo consiste en utilizar las coordenadas del domicilio para sugerir los splitters más cercanos. Se mostrarán hasta 3 opciones con información útil para facilitar la selección[cite: 1].
         </p>
     </div>
 
@@ -120,42 +71,57 @@
     <div class="tab-content">
         <div class="tab-pane fade show active" id="mobile-tab">
             
-            <div class="step-card">
-                <div class="step-header"><span>PASO 1</span><i class="fas fa-plus-circle text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">1</span> ASIGNACIÓN DE SPLITTER</div>
+                    <i class="fas fa-plus-circle opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Dentro de una orden, en la sección de Servicios Internet, al usar el botón “+”, se abrirán las opciones para la asignación del splitter.</p>
+                    <p class="instruction-text">Dentro de una orden, en la sección de Servicios Internet, al usar el botón “+”, se abrirán las opciones para la asignación del splitter[cite: 2].</p>
                     <div class="img-placeholder"><small>Captura: Botón + en Servicios Internet</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 2</span><i class="fas fa-map-marker-alt text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">2</span> BÚSQUEDA POR COORDENADAS</div>
+                    <i class="fas fa-map-marker-alt opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">En caso de encontrar las coordenadas del domicilio, aparecerá una ventana con el método de búsqueda <strong>Cercanos</strong> por defecto. De no encontrarse, se utilizarán las coordenadas de geolocalización del técnico.</p>
+                    <p class="instruction-text">En caso de encontrar las coordenadas del domicilio, aparecerá el método <strong>Cercanos</strong> por defecto. Si no, se usará la geolocalización del técnico[cite: 3].</p>
                     <div class="img-placeholder"><small>Captura: Ventana de Búsqueda Cercanos</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 3</span><i class="fas fa-search text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">3</span> BÚSQUEDA POR ACRÓNIMO</div>
+                    <i class="fas fa-search opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">De no encontrar ninguna coordenada, aparecerá por defecto el método de búsqueda por <strong>Acrónimo Equipo</strong>.</p>
+                    <p class="instruction-text">De no encontrar ninguna coordenada, aparecerá por defecto el método de búsqueda por <strong>Acrónimo Equipo</strong>[cite: 4].</p>
                     <div class="img-placeholder"><small>Captura: Búsqueda por Acrónimo</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 4</span><i class="fas fa-info-circle text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">4</span> FILTRAR SPLITTERS</div>
+                    <i class="fas fa-info-circle opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Al presionar el botón <strong>Filtrar</strong>, se visualizarán los splitters sugeridos indicando su dirección, OLT, puertos disponibles y si admite configuración.</p>
+                    <p class="instruction-text">Al presionar el botón <strong>Filtrar</strong>, se visualizarán los splitters sugeridos con dirección, OLT, puertos y configuración[cite: 5].</p>
                     <div class="img-placeholder"><small>Captura: Lista de Splitters Sugeridos</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 5</span><i class="fas fa-check-double text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">5</span> FINALIZAR ASIGNACIÓN</div>
+                    <i class="fas fa-check-double opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Al seleccionar un splitter y utilizar el botón <strong>Asignar</strong>, aparecerá una ventana para confirmar la selección y completar la operatoria.</p>
+                    <p class="instruction-text">Al seleccionar un splitter y utilizar el botón <strong>Asignar</strong>, aparecerá una ventana para confirmar la selección[cite: 6].</p>
                     <div class="img-placeholder"><small>Captura: Confirmación de Asignación</small></div>
                 </div>
             </div>
@@ -163,34 +129,46 @@
 
         <div class="tab-pane fade" id="web-tab">
             
-            <div class="step-card">
-                <div class="step-header"><span>PASO 1</span><i class="fas fa-external-link-alt text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">1</span> ASIGNAR CPE</div>
+                    <i class="fas fa-external-link-alt opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Dentro de una orden, al usar el botón <strong>Asignar Cpe</strong> en el cuadro de diálogo Cpe, se abrirá un modal para cargar la ONT y definir el splitter.</p>
+                    <p class="instruction-text">Al usar el botón <strong>Asignar Cpe</strong> en el cuadro de diálogo Cpe, se abrirá un modal para cargar la ONT y el splitter[cite: 7].</p>
                     <div class="img-placeholder"><small>Captura: Modal Asignar Cpe</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 2</span><i class="fas fa-location-arrow text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">2</span> SELECCIÓN DE MÉTODO</div>
+                    <i class="fas fa-location-arrow opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Si se hallan coordenadas, aparecerá la búsqueda <strong>Cercanos</strong> por defecto. De lo contrario, aparecerá <strong>Acrónimo Equipo</strong> (aunque serial o dirección siguen disponibles).</p>
+                    <p class="instruction-text">Si se hallan coordenadas, aparecerá la búsqueda <strong>Cercanos</strong>. De lo contrario, aparecerá <strong>Acrónimo Equipo</strong>[cite: 8, 9].</p>
                     <div class="img-placeholder"><small>Captura: Métodos de Búsqueda Web</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 3</span><i class="fas fa-filter text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">3</span> DETALLE DE PUERTOS</div>
+                    <i class="fas fa-filter opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Al presionar <strong>Filtrar</strong>, se mostrarán los splitters cercanos. Al seleccionar uno, se divisará la información de sus puertos y su estado.</p>
+                    <p class="instruction-text">Al presionar <strong>Filtrar</strong>, se mostrarán los splitters cercanos. Al seleccionar uno, verá el estado de sus puertos[cite: 10, 11].</p>
                     <div class="img-placeholder"><small>Captura: Listado y Estado de Puertos</small></div>
                 </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-header"><span>PASO 4</span><i class="fas fa-link text-muted"></i></div>
+            <div class="step-container shadow-sm">
+                <div class="step-header">
+                    <div class="step-title-wrapper"><span class="step-badge">4</span> ENLAZAR Y ASIGNAR</div>
+                    <i class="fas fa-link opacity-50"></i>
+                </div>
                 <div class="step-body">
-                    <p class="instruction-text">Una vez seleccionado el puerto, se debe presionar el botón <strong>Enlazar</strong> y, a continuación, <strong>Asignar</strong> para completar la operatoria.</p>
+                    <p class="instruction-text">Una vez seleccionado el puerto, se debe presionar el botón <strong>Enlazar</strong> y luego <strong>Asignar</strong> para completar la tarea.</p>
                     <div class="img-placeholder"><small>Captura: Botones Enlazar y Asignar</small></div>
                 </div>
             </div>
