@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --claro-red: #d93025; --claro-gray: #f8f9fa; --claro-blue: #192487; }
+        :root { --claro-red: #d93025; --claro-gray: #f8f9fa; --claro-blue: #192487; --dark-header: #333; }
         body { background-color: var(--claro-gray); font-family: 'Roboto', sans-serif; }
         
         /* Banner idéntico al de VPN */
@@ -15,9 +15,9 @@
         
         /* Contenedores de Pasos */
         .step-container { background: white; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 30px; overflow: hidden; }
-        .step-header { background: #333; color: white; padding: 12px 25px; font-weight: bold; display: flex; align-items: center; }
+        .step-header { background: var(--claro-red); color: white; padding: 12px 25px; font-weight: bold; display: flex; align-items: center; }
         .step-body { padding: 30px; }
-        .step-badge { background: var(--claro-red); color: white; border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.9rem; }
+        .step-badge { background: var(--dark-header); color: white; border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.9rem; }
         
         /* Textos y alertas */
         .literal-text { font-size: 1rem; color: #444; line-height: 1.7; }

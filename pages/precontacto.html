@@ -10,16 +10,16 @@
     <style>
         :root {
             --claro-red: #d93025;
-            --dark-gray: #333;
+            --dark-header: #333;
             --claro-gray: #f8f9fa;
         }
 
         body {
-            background-color: #f4f4f4;
+            background-color: var(--claro-gray);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* ESTILO DEL HEADER UNIFICADO */
+        /* HEADER UNIFICADO */
         .header-banner { 
             background: white; 
             border-bottom: 4px solid var(--claro-red); 
@@ -27,32 +27,48 @@
             margin-bottom: 40px; 
         }
 
-        .step-card {
-            background: white;
-            border: none;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--claro-red);
-            transition: transform 0.2s;
+        /* DISEÑO DE CUADRADITOS SIN SOMBRA */
+        .step-container { 
+            background: white; 
+            border-radius: 15px; 
+            border: 1px solid #dee2e6; 
+            margin-bottom: 30px; 
+            overflow: hidden; 
+            box-shadow: none !important; /* SIN SOMBRA */
+            transition: transform 0.3s ease-in-out;
         }
 
-        .step-card:hover {
-            transform: scale(1.01);
+        /* EFECTO DE ELEVACIÓN SIN CAMBIO DE COLOR DE BORDE */
+        .step-container:hover { 
+            transform: translateY(-8px); 
+            border-color: #dee2e6; /* MANTIENE EL COLOR ORIGINAL */
         }
 
-        .step-number {
-            background: var(--claro-red);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 10px;
+        .step-header { 
+            background: var(--claro-red); 
+            color: white; 
+            padding: 12px 25px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
         }
 
+        .step-badge { 
+            background: var(--dark-header); 
+            color: white; 
+            border-radius: 50%; 
+            width: 32px; 
+            height: 32px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-right: 15px; 
+            font-size: 0.95rem; 
+        }
+
+        .step-body { padding: 25px; }
+
+        /* GUIONES DE VOZ */
         .script-box {
             background-color: #fff3f2;
             border: 1px dashed var(--claro-red);
@@ -60,17 +76,21 @@
             border-radius: 8px;
             font-style: italic;
             color: #555;
+            margin-top: 10px;
         }
 
-        .badge-pyme { background-color: #0056b3; }
-        .badge-res { background-color: #d93025; }
-
+        /* BARRA LATERAL */
         .important-note {
             background-color: #fff9e6;
             border-left: 5px solid #ffc107;
             padding: 15px;
             border-radius: 5px;
+            margin-bottom: 20px;
         }
+
+        .badge-res { background-color: var(--claro-red); padding: 12px; font-weight: bold; border-radius: 8px; color: white; display: block; text-align: center; text-decoration: none; }
+        .badge-pyme { background-color: #0056b3; padding: 12px; font-weight: bold; border-radius: 8px; color: white; display: block; text-align: center; text-decoration: none; }
+
     </style>
 </head>
 <body>
@@ -81,93 +101,89 @@
             <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
             <div>
                 <h2 class="mb-0 fw-bold">PROTOCOLO DE PRECONTACTO</h2>
-                <p class="text-muted small mb-0">Flujo obligatorio de comunicación con el cliente</p>
+                <p class="text-muted small mb-0">Flujo de comunicación técnica</p>
             </div>
         </div>
         <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" height="35" alt="Claro">
     </div>
 </div>
 
-<div class="container">
+<div class="container pb-5">
     <div class="row">
         <div class="col-lg-8">
-            
             <div class="mb-4">
-                <h4 class="fw-bold">Flujo de Comunicación</h4>
-                <p class="text-muted">El objetivo es asegurar la visita y evitar motivos de cierre como "Cliente Ausente" o "Domicilio Erróneo".</p>
+                <h4 class="fw-bold">Flujo de Comunicación Obligatoria</h4>
+                <p class="text-muted">Evita cierres por "Cliente Ausente" mediante el contacto previo.</p>
             </div>
 
-            <div class="card step-card shadow-sm p-4">
-                <h5 class="fw-bold text-dark"><span class="step-number">1</span> Identificación y Saludo</h5>
-                <p>Presentarse de forma clara indicando nombre y empresa.</p>
-                <div class="script-box">
-                    "Hola, buen día. ¿Se encuentra [Nombre del Cliente]? Le habla [Tu Nombre] de Claro, el motivo de mi llamado es por la instalación de su servicio solicitado."
+            <div class="step-container">
+                <div class="step-header"><span class="step-badge">1</span> IDENTIFICACIÓN Y SALUDO</div>
+                <div class="step-body">
+                    <p class="mb-2">Presentación formal del técnico.</p>
+                    <div class="script-box">
+                        "Hola, buen día. ¿Se encuentra [Nombre del Cliente]? Le habla [Tu Nombre] de Claro, el motivo de mi llamado es por la instalación de su servicio solicitado."
+                    </div>
                 </div>
             </div>
 
-            <div class="card step-card shadow-sm p-4">
-                <h5 class="fw-bold text-dark"><span class="step-number">2</span> Validación de Domicilio</h5>
-                <p>Confirmar que los datos de la OT coincidan para evitar desplazamientos fallidos.</p>
-                <div class="script-box">
-                    "¿Me confirma si el domicilio es [Calle y Altura] entre [Calle 1] y [Calle 2]?"
-                </div>
-                <div class="mt-2 small text-danger fw-bold">
-                    <i class="fas fa-exclamation-triangle"></i> Si el domicilio es erróneo por más de 1km, se debe reportar a mesa de despacho.
-                </div>
-            </div>
-
-            <div class="card step-card shadow-sm p-4">
-                <h5 class="fw-bold text-dark"><span class="step-number">3</span> Validación del tipo de servicio</h5>
-                <p>Confirmar que los datos de la OT coincidan para evitar desplazamientos fallidos.</p>
-                <div class="script-box">
-                    "¿Usted solicito el servicio [Tipo de servicio]?"
-                </div>
-                <div class="mt-2 small text-danger fw-bold">
-                    <i class="fas fa-exclamation-triangle"></i> Si el servicio que figura no coincide con el solicitado, se debe reportar a mesa de despacho.
+            <div class="step-container">
+                <div class="step-header"><span class="step-badge">2</span> VALIDACIÓN DE DOMICILIO</div>
+                <div class="step-body">
+                    <p class="mb-2">Confirmar dirección exacta antes de desplazarse.</p>
+                    <div class="script-box">
+                        "¿Me confirma si el domicilio es [Calle y Altura] entre [Calle 1] y [Calle 2]?"
+                    </div>
+                    <p class="mt-3 small text-danger fw-bold">
+                        <i class="fas fa-exclamation-triangle"></i> Si el error es mayor a 1km, reportar a despacho inmediatamente.
+                    </p>
                 </div>
             </div>
 
-            <div class="card step-card shadow-sm p-4">
-                <h5 class="fw-bold text-dark"><span class="step-number">4</span> Requisitos de Instalación</h5>
-                <p>Verificar condiciones básicas para poder trabajar.</p>
-                <ul>
-                    <li>Presencia de un mayor de 18 años con DNI.</li>
-                    <li>Suministro de energía eléctrica activo.</li>
-                    <li>Acceso a terrazas o montantes (en caso de edificios).</li>
-                </ul>
-            </div>
-
-            <div class="card step-card shadow-sm p-4">
-                <h5 class="fw-bold text-dark"><span class="step-number">5</span> Estimación de Tiempo</h5>
-                <p>Informar el rango horario de llegada.</p>
-                <div class="script-box">
-                    "Estaré arribando a su domicilio en aproximadamente [Minutos] minutos."
+            <div class="step-container">
+                <div class="step-header"><span class="step-badge">3</span> SERVICIO</div>
+                <div class="step-body">
+                    <p class="mb-2">Asegurar que el producto (2Play/3Play) coincida con la solicitud.</p>
+                    <div class="script-box">
+                        "¿Usted solicitó el servicio de [Tipo de servicio]?"
+                    </div>
                 </div>
             </div>
 
+            <div class="step-container">
+                <div class="step-header"><span class="step-badge">4</span> REQUISITOS</div>
+                <div class="step-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fas fa-check text-danger me-2"></i> Mayor de 18 años con DNI.</li>
+                        <li class="list-group-item"><i class="fas fa-check text-danger me-2"></i> Energía eléctrica activa.</li>
+                        <li class="list-group-item"><i class="fas fa-check text-danger me-2"></i> Acceso a terrazas o montantes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-container">
+                <div class="step-header"><span class="step-badge">5</span> TIEMPO DE LLEGADA</div>
+                <div class="step-body">
+                    <p class="mb-2">Informar ETA (Estimated Time of Arrival).</p>
+                    <div class="script-box">
+                        "Estaré arribando a su domicilio en aproximadamente [Minutos] minutos."
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-4">
-            
-            <div class="important-note mb-4 shadow-sm">
-                <h6 class="fw-bold"><i class="fas fa-info-circle"></i> NOTA IMPORTANTE</h6>
+            <div class="important-note">
+                <h6 class="fw-bold"><i class="fas fa-info-circle"></i>  NOTA IMPORTANTE </h6>
                 <p class="small mb-0">Sin precontacto exitoso y confirmación de MDD, no se debe acudir al sitio para evitar cierres por Cliente Ausente.</p>
             </div>
-
-            <div class="card p-4 shadow-sm border-0">
-                <h6 class="fw-bold mb-3">Contactos de Mesa de Despacho</h6>
-                <hr>
-                <div class="mt-3">
-                    <span class="badge badge-res p-3">RESIDENCIAL: *6565</span>
-                    <span class="badge badge-pyme p-3 mt-3">PYMES: *617</span>
+            <div class="card p-4 border-0">
+                <h6 class="fw-bold mb-3 border-bottom pb-2">Central de Despacho</h6>
+                <div class="d-grid gap-2">
+                    <a class="badge-res text-decoration-none">Residencial: *6565</a>
+                    <a class="badge-pyme text-decoration-none">Pymes: *617</a>
                 </div>
             </div>
-
         </div>
-    </div>
-
-    <div class="text-center mt-5 mb-4 text-muted small">
-        &copy; 2026 Portal de Procesos Instalaciones | Área de Implantación
     </div>
 </div>
 
