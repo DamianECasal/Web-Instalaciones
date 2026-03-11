@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    
     <style>
         :root {
             --claro-red: #d93025;
@@ -20,8 +19,9 @@
             background: var(--light-bg);
             font-family: 'Roboto', sans-serif;
             min-height: 100vh;
+            margin: 0;
             display: flex;
-            align-items: center;
+            flex-direction: column;
         }
 
         h1, h2 {
@@ -29,18 +29,43 @@
             font-weight: 700;
         }
 
-        .main-container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
+        /* --- ENCABEZADO ROJO (Estilo solicitado) --- */
+        .header-section {
+            background-color: var(--claro-red);
+            color: white;
+            padding: 20px 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
         }
 
-        /* Estilo de la Botonera (Cards) */
+        .header-section h2 {
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .welcome-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* --- CONTENEDOR DE TARJETAS (Tu diseño original) --- */
+        .main-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
         .btn-card {
             background: white;
             border: none;
             border-radius: 15px;
-            padding: 40px 20px;
+            padding: 45px 20px;
             text-align: center;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -61,61 +86,51 @@
         }
 
         .btn-card i {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--claro-red);
             margin-bottom: 20px;
         }
 
         .btn-card span {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--dark-gray);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .header-section {
+        footer {
+            padding: 30px;
             text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .welcome-text {
-            color: #666;
-            font-size: 1.1rem;
         }
     </style>
 </head>
 <body>
 
-<div class="container main-container">
-    
-    <div class="header-section">
-        <h2 class="text-dark">PORTAL DE PROCESOS - INSTALACIONES</h2>
-        <p class="welcome-text">Selecciona el módulo al que deseas acceder</p>
-    </div>
+<div class="header-section">
+    <h2>PORTAL DE PROCESOS - INSTALACIONES</h2>
+    <p class="welcome-text">Selecciona el módulo al que deseas acceder</p>
+</div>
 
+<div class="container main-container">
     <div class="row g-4 justify-content-center">
         
         <div class="col-md-4">
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=d-q_BZzxHUevogyQk6-L21t82VfgGdlMn5zt3SGmW0tUOElOU0UyRUhUVUVPSVFDT1VFNjU0WDFWNC4u" class="btn-card">
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=d-q_BZzxHUevogyQk6-L21t82VfgGdlMn5zt3SGmW0tUOElOU0UyRUhUVUVPSVFDT1VFNjU0WDFWNC4u" target="_blank" class="btn-card">
                 <i class="fa-solid fa-file-lines"></i>
                 <span>FORMS</span>
             </a>
         </div>
 
         <div class="col-md-4">
-            <a href="https://app.powerbi.com/groups/me/reports/f3bfd376-e1c9-4a31-99d3-e3d8091f90a3/48ee80cf50c305d0b56a?ctid=05bfea77-f19c-471d-afa2-0c9093af8bdb&experience=power-bi" 
-               target="_blank" 
-               class="btn-card">
+            <a href="https://app.powerbi.com/groups/me/reports/f3bfd376-e1c9-4a31-99d3-e3d8091f90a3/48ee80cf50c305d0b56a?ctid=05bfea77-f19c-471d-afa2-0c9093af8bdb&experience=power-bi" target="_blank" class="btn-card">
                 <i class="fa-solid fa-chart-line"></i>
                 <span>FALLIDAS BI</span>
             </a>
         </div>
 
         <div class="col-md-4">
-            <a href="pages/instructivos.html"
-                target="_blank"
-                class="btn-card">
+            <a href="pages/instructivos.html" target="_blank" class="btn-card">
                 <i class="fa-solid fa-clipboard-list"></i>
                 <span>INSTRUCTIVOS Y PROCESOS</span>
             </a>
@@ -123,12 +138,11 @@
 
     </div>
 
-    <div class="mt-5 text-center text-muted small">
+    <footer class="text-muted small">
         &copy; 2026 Portal de procesos Instalaciones | Acceso Restringido
-    </div>
-
+    </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>

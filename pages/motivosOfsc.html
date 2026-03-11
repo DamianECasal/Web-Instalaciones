@@ -3,85 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Motivos OFSC - Claro</title>
+    <title>Consulta de Motivos OFSC - Portal Instalaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        :root { --claro-red: #d93025; --success-green: #28a745; --dark-header:#333; }
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .nav-pills .nav-link.active { background-color: var(--claro-red); }
-        .motive-card { 
-            cursor: pointer; 
-            transition: 0.3s; 
-            border-left: 5px solid var(--claro-red);
-            height: 100%;
-        }
-        .motive-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .realizada { border-left-color: var(--success-green); }
-        .modal-header { background-color: var(--claro-red); color: white; }
-        .badge-step { background-color: #eee; color: var(--dark-header); margin-right: 5px; }
-        .section-title { font-weight: bold; color: var(--claro-red); margin-top: 15px; text-transform: uppercase; font-size: 0.9rem; }
-    </style>
+<style>
+    :root { 
+        --claro-red: #d93025; 
+        --claro-gray: #f4f7f6;
+        --success-green: #28a745; 
+        --blue: #0015fe; 
+    }
+    
+    body { 
+        background-color: var(--claro-gray); 
+        font-family: 'Roboto', sans-serif; 
+        margin: 0; 
+    }
+
+    /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
+    .header-red {
+        background-color: var(--claro-red);
+        color: white;
+        padding: 25px 0;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        margin-bottom: 40px;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .btn-back {
+        position: absolute;
+        left: 20px;
+        color: white;
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        background: rgba(255,255,255,0.1);
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: none;
+    }
+
+    .btn-back:hover {
+        color: white;
+        background: rgba(255,255,255,0.2);
+        transform: translateX(-5px);
+    }
+
+    .header-title-container {
+        text-align: center;
+    }
+
+    .header-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+
+    .header-subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin: 5px 0 0 0;
+        font-weight: 300;
+    }
+
+    /* --- BOTONES DE FILTRO --- */
+    .btn-todos { background-color: var(--blue); color: white; border: none; font-weight: 500; }
+    .btn-todos:hover { background-color: #5463ec; color: white; }
+    
+    .btn-no-realizada { background-color: var(--claro-red); color: white; border: none; font-weight: 500; }
+    .btn-no-realizada:hover { background-color: #db6b65; color: white; }
+    
+    .btn-realizada { background-color: var(--success-green); color: white; border: none; font-weight: 500; }
+    .btn-realizada:hover { background-color: #56c36e; color: white; }
+
+    /* --- TARJETAS --- */
+    .motive-card { 
+        cursor: pointer; 
+        transition: 0.3s; 
+        border-left: 5px solid var(--claro-red);
+        height: 100%;
+        background: white;
+        border-radius: 8px;
+    }
+    .motive-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .realizada { border-left-color: var(--success-green); }
+
+    /* --- MODAL --- */
+    .modal-header { border-bottom: none; padding: 15px 20px; }
+    .section-title { 
+        font-weight: bold; color: #333; margin-top: 15px; text-transform: uppercase; 
+        font-size: 0.85rem; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-bottom: 8px;
+    }
+    .modal-body li, .modal-body p { margin-bottom: 3px; color: #444; font-size: 0.9rem; line-height: 1.4; }
+</style>
 </head>
 <body>
 
-<div class="container py-4">
-    <div class="d-flex align-items-center mb-4">
-        <a href="../index.html" class="btn btn-outline-secondary me-3"><i class="fas fa-arrow-left"></i> </a>
-        <h2 class="mb-0">MOTIVOS DE CIERRES</h2>
-</div>
-
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <input type="text" id="searchInput" class="form-control" placeholder="Buscar motivo (ej: Adecuación, Ausente...)">
+<header class="header-red">
+    <div class="container">
+        <div class="header-content">
+            <button onclick="window.history.back()" class="btn-back" title="Volver">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-title-container">
+                <h2 class="header-title">MOTIVOS DE CIERRES OFSC</h2>
+                <p class="header-subtitle">Guía de escenarios y procesos de finalización</p>
+            </div>
         </div>
+    </div>
+</header>
+
+<div class="container py-2">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <div class="input-group shadow-sm">
+                <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="Buscar motivo...">
+            </div>
+        </div>
+        
         <div class="col-md-6 text-end">
-            <ul class="nav nav-pills justify-content-end" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                    <button class="nav-link active" onclick="filterMotives('all')">Todos</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link text-danger" onclick="filterMotives('no-realizada')">No Realizadas</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link text-success" onclick="filterMotives('realizada')">Realizadas</button>
-                </li>
-            </ul>
+            <div class="btn-group shadow-sm" role="group">
+                <button class="btn btn-todos px-4" onclick="filterMotives('all')">Todos</button>
+                <button class="btn btn-no-realizada px-3" onclick="filterMotives('no-realizada')">No Realizadas</button>
+                <button class="btn btn-realizada px-4" onclick="filterMotives('realizada')">Realizadas</button>
+            </div>
         </div>
     </div>
 
-    <div class="row g-3" id="motivesGrid">
-        </div>
+    <div class="row g-3" id="motivesGrid"></div>
 </div>
 
 <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header" id="modalHeader">
-                <h5 class="modal-title" id="motiveTitle">Detalle del Motivo</h5>
+            <div class="modal-header text-white" id="modalHeader">
+                <h5 class="modal-title fw-bold" id="motiveTitle"></h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <div class="section-title">Descripción</div>
-                <p id="motiveDesc"></p>
+                <div class="section-title">1. DESCRIPCION:</div>
+                <ol id="motiveDesc" class="ps-4"></ol>
                 
-                <div class="section-title">Pasos a Seguir</div>
-                <ul id="motiveSteps" class="list-group list-group-flush mb-3"></ul>
+                <div class="section-title">2. PASOS A SEGUIR:</div>
+                <ul id="motiveSteps" class="ps-4"></ul>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="section-title">Fotos Requeridas</div>
-                        <ul id="motivePhotos" class="small"></ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="section-title">Provisión y Stock</div>
-                        <p id="motiveStock" class="small"></p>
-                    </div>
-                </div>
+                <div class="section-title">3. FOTOS:</div>
+                <ul id="motivePhotos" class="ps-4"></ul>
 
-                <div class="section-title">Notas</div>
-                <div class="p-2 bg-light border rounded small" id="motiveNotes"></div>
+                <div class="section-title">4. PROVISION Y STOCK:</div>
+                <p id="motiveStock" class="ps-4"></p>
+
+                <div class="section-title">5. NOTAS:</div>
+                <p id="motiveNotes" class="ps-4"></p>
             </div>
         </div>
     </div>
@@ -92,336 +183,506 @@
     const motives = [
         {
             id: 1,
-            title: "Actividad Iniciada por Error",
+            title: "Adecuación",
             type: "no-realizada",
-            desc: ["Caja en mal estado, mal ubicada o ramas cruzadas.", "Caja caida"],
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc:  ["Caja en mal estado.", "Mal ubicada (supera altura máxima).", 
+                    "Pasivas dañadas.", "Ramas cruzadas."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Panorámica de fachada con linderos.","Utilizar las 7 imágenes restantes que nos permite cargar la herramienta (TOA), donde se visualice la problemática",
+                    "Detalle de problemática (puerto roto, caja colgando, etc)."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema y acrónimo del splitter."]
         },
         {
             id: 2,
-            title: "Adecuación",
+            title: "Actividad Iniciada por Error",
             type: "no-realizada",
-            desc: ["En los escenarios donde nos encontremos con la caja:", "1. En mal estado.", "2. Mal ubicada (Supera el metraje máximo de altura-según la norma de la plaza).", "3. Pasivas dañadas que no nos permiten realizar la instalación.", "4. Ramas cruzadas."],            
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc: ["Cuando existe un error en el reordenamiento de la ruta y el tecnico inicia una actividad erronea."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],            
+            photos: ["Frente de domicilio con aviso pegado."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["No Aplica"]
         },
         {
             id: 3,
-            title: "Averia Masiva",
+            title: "Cañerías Obstruidas Cliente",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Las cañerías dentro del domicilio del cliente están obstruidas lo que no permite el pase de la fibra o el cableado de UTP."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos:["Foto donde se observe la cañería obstruida.",
+                    "Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Cañerías obstruidas cliente."]
         },
         {
             id: 4,
-            title: "Cañerías Obstruidas Cliente",
-            type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
-        },
-         {
-            id: 5,
             title: "Cliente Ausente",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc:  ["Cliente no se encuentra en el domicilio sin respuesta previa llamada del proceso precontacto y confirmación con MDD."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos."],
+            stock: "No se NO se debe dejar materiales provisionados ni descargar materiales.",
+            notes: ["Cliente ausente."]
+        },
+        {
+            id: 5,
+            title: "Cliente no cuenta con Permisos/Accesos",
+            type: "no-realizada",
+            desc:  ["Cliente no cuenta con permisos o acceso a un lugar especifico para instalar el servicio:",
+                    "Sin permisos de la administración/propietario.","Ausencia del encargado.","Sin permisos linderos.",
+                    "Sin acceso terraza/subsuelo.","Sitio en construcción/obra."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos.", 
+                    "Foto del sitio en obra/construcción (Si corresponde)."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema, si el problema surge a raíz de no tener acceso a la caja (motivos varios), falta de permisos de la administración, encargado ausente, entre otros."]
         },
         {
             id: 6,
-            title: "Cliente no cuenta con Permisos/Accesos",
+            title: "Domicilio Erróneo",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc:  ["En caso de que la orden pertenezca al segmento Pymes: Reportar con mesa de despacho correspondiente ya que por proceso no permite la modificación en linea.",
+                    "En caso de que la orden pertenezca al segmento Residencial: Reportar con mesa de despacho correspondiente ya que si el domicilio real se encuentra mayor a 1km no sepuede realizar la modificación de la misma en linea.",
+                    "En caso que se valide que el domicilio real se encuentre con cobertura y menor a 1km se deberá ir a sitio"],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos",
+                     "Utilizar las 7 imágenes restantes que nos permite cargar la herramienta (TOA), donde se visualice la problemática."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Detallar la ubicación real del domicilio del cliente y sus entre calles."]
         },
         {
             id: 7,
-            title: "Cliente Domicilio Erróneo",
+            title: "Domicilio reportado por fraude",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc:  ["Se utiliza cuando el cliente pertenece al segmento Residencial: Varios servicios solicitados que se encuentran activos", 
+                    "caídos y/o pendientes sobre la mismanumeración y/o titular.", 
+                    "Se valida varias fibras ingresando al domicilio.", 
+                    "Se visualiza varios equipos seriados (ONT/STB) de Claro sin utilización",
+                    "Se visualiza antena repetidora."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // / 0800-122-6565 opcion 2 en caso de detectarlo antes de avanzar con la instalación"],
+            photos: ["Captura de falta de señal en Link Home."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema, incluyendo todos los datos e información recaudada."]
         },
         {
             id: 8,
-            title: "Domicilio reportado por fraude",
+            title: "Edificio No Acometido",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Domicilio en complejo de viviendas/oficinas/locales/PH bajo la misma numeración de hasta 3 pisos (sin contar PB) y/o 8 o mas UF, que no cuente con splitter propio para continuar con la instalación. Ejemplos:",
+                    "Torre/Ala sin caja interna", 
+                    "Error cartográfico", 
+                    "Toma cobertura de edificio lindero o caja no habilitada."],
+            steps: ["Reportarlo con la mesa de despacho correspondiente según el segmento:",
+                    "Pymes: *617 // 0800-122-1617",
+                    "Residencial: *6565 // 0800-122-6565 opción 1"],
+            photos: ["Foto panorámica de la fachada del edificio/torre del cliente.",
+                    "Foto del portero eléctrico (si corresponde).",
+                    "Foto de medidor electricidad (si corresponde)."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Especificar la cantidad de unidades funcionales.",
+                    "Especificar torre o ala sin acometer (si corresponde).",
+                    "Aclarar en caso de tomar cobertura lindera (El domicilio correcto)."]
         },
         {
             id: 9,
-            title: "Edificio No Acometido",
+            title: "Estética en la instalación",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc: ["Cliente no acepta la instalación del servicio por cuestiones estéticas en su domicilio.",
+                    "No está de acuerdo con el color del cable.",
+                    "No desea nuevas perforaciones.",
+                    "No quiere el servicio cableado."],
+            steps: ["Reportarlo con la mesa de despacho correspondiente según el segmento de la actividad:",
+                    "Pymes: *617 // 0800-122-1617",
+                    "Residencial: *6565 // 0800-122-6565 opcion 2"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Dejar asentado el motivo estético por el cual rechaza el cliente la instalación."]
         },
         {
             id: 10,
-            title: "Estetica En la Instalacion",
-            type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
-        },
-         {
-            id: 11,
             title: "Falta caja en la cuadra",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Se requiere una caja mas cercana al domicilio para llegar con el metraje del cableado y donde falte el splitter físicamente siendo que el mismo figura en gestor Portalgis/Web cobertura:",
+                    " En caso robo.",
+                    "Ubicación errónea de la caja en Portalgis/Web de cobertura.",
+                    "Previa consulta en gestor Portalgis/Web de cobertura con despacho de la contratista."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617",
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos.",
+                    "Utilizar las 7 imágenes restantes que nos permite cargar la herramienta (TOA), donde se visualice la problemática."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema."]
+        },
+        {
+            id: 11,
+            title: "Falta Poste de Apoyo",
+            type: "no-realizada",
+            desc: ["Se utiliza solo cuando hay faltante de poste/s de apoyo/s disponible para picar el cable drop."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+           photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos.",
+                    "Utilizar las 7 imágenes restantes que nos permite cargar la herramienta (TOA), donde se visualice la problemática."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Informar ubicación/dirección donde se encontraría el faltante del poste."]
         },
         {
             id: 12,
-            title: "Falta Poste de Apoyo",
+            title: "Montante Obstruida",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Se deberá utilizar el motivo donde no se pueda realizar la instalación por encontrarnos con cañerías obstruidas/saturadas/rotas o con faltantes de las mismas que van desde el splitter hasta la puerta del departamento/domicilio del cliente."],
+            steps: ["Reportar a mesa de despacho según segmento.",
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 2"],
+            photos: ["Foto panorámica de la fachada del edificio/torre del cliente.",
+                     "Utilizar las 7 imágenes restantes que nos permite cargar la herramienta (TOA), donde se visualice la problemática"],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema, especificar en que parte del recorrido se encuentra la obstrucción."]
         },
         {
             id: 13,
-            title: "Inconvenientes Climáticos",
+            title: "No Filtra Orden en SGT",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Se utiliza cuando la orden a trabajar no filtra en sgt y soporte no puede solucionarlo en el momento (no se debe instalar).",
+                    "Utilizar únicamente para OTs que no filtran en SGT."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos:["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["No filtra la orden en SGT, por lo que no se puede avanzar con la misma."]
         },
         {
             id: 14,
-            title: "Montante Obstruida",
+            title: "Poste en mal estado",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc: ["El poste del splitter o poste de apoyo se encuentra en malas condiciones y no existe otra alternativa de cableado."],
+            steps:["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos:["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos.",
+                    "En la imagen debe identificarse splitter, tendido y fachada donde esta ubicado (según corresponda)",
+                    "Foto en diagonal para sumar referencia de ubicación."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Indicar la altura real o mas cercana del poste reclamado.",
+                    "Para los casos en donde estén varios postes juntos, resaltar el reportado.",
+                    "Especificar si el problema corresponde a poste del splitter o poste de apoyo.",
+                    "Detallar a que empresa corresponde el poste reportado."]
         },
         {
             id: 15,
-            title: "No Filtra Orden en SGT",
+            title: "Puerto de red mal asignado",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Se utiliza cuando la caja asignada en la orden de trabajo no se encuentra en el polígono del domicilio del cliente (Motivo utilizado únicamente en la red de UFINET)."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos.",
+                    "Foto de la CTO."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Indicar donde se ubica físicamente la CTO mal asignada (altura y entre calles).",
+                    "Indicar donde se ubica físicamente la CTO correspondiente al domicilio del cliente (altura y entre calles)."]
         },
         {
             id: 16,
-            title: "Poste en mal estado",
-            type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
-        },
-         {
-            id: 17,
-            title: "Puerto de red mal asignado",
-            type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
-        },
-        {
-            id: 18,
             title: "Rechaza Oferta Comercial",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["El cliente rechaza el plan comercial que figura en la orden:",
+                    "Sobreventa en un domicilio con servicio activo.",
+                    "Cliente desiste por desinterés.",
+                    "Cliente desiste por demora en la visita",
+                    "Nunca solicito servicio.",
+                    "Mejor oferta comercial de la competencia.",
+                    "Plan erróneo/error de carga en componente Ejemplo: (Solicito 2play y le cargaron 3play).",
+                    "Desiste por no estar conforme con las normas de instalación",
+                    "Falta de información (Ejemplo: precio/dia de visita).",
+                    "Sin portabilidad (Utilizar únicamente en segmento Pymes).",
+                    "No desea adquirir un AP."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Captura de falta de señal en Link Home."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema."]
+        },
+        {
+            id: 17,
+            title: "Recoordinar a Pedido de la Contratista",
+            type: "no-realizada",
+            desc: ["Se debe solicitar al Analista (Referente de la plaza) para su utilizacion:",
+                    "Se solicitara unicamente cuando la contratista, no pueda/logre asumir las tareas asignadas debido a las ausencias de los tecnios"],
+            steps: ["NO se debe llamar a Mesa de Despacho"],
+            photos: ["No Aplica"],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["No Aplica"]
+        },
+                {
+            id: 18,
+            title: "Referente Se Retira durante la Instalación",
+            type: "no-realizada",
+            desc: ["Cliente/Referente nos informa en sitio que se debe retirar y no puede esperar a que finalicemos la instalación.",
+                   "¡Este cierre se utiliza únicamente cuando eltécnico realizo alguna tarea en el domicilio!. Ej: ingreso de FO"],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Captura de falta de señal en Link Home."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["El cliente no puede aguardar a finalizar la tarea, se debe retirar."]
         },
         {
             id: 19,
-            title: "Recoordinar a Pedido de la Contratistas",
+            title: "Sin capacidad",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc: ["Previa verificación con las herramientas (ORION-SGT MOBILE) nos encontramos con los splitters de la cuadra llenos (sin pasivas disponibles)."],
+            steps:["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos.",
+                    "Utilizar las 7 imágenes restantes que nos permite cargar la herramienta (TOA), donde se visualice la problemática."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema."]
         },
         {
             id: 20,
-            title: "Recoordinar por falta de stock",
+            title: "Sin energía eléctrica",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc: ["No se puede realizar la instalación porque el cliente no cuenta con suministro eléctrico para iniciar la tarea o finalizar la misma."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción detallada del problema."]
         },
         {
             id: 21,
-            title: "Referente Se Retira durante la Instalación",
+            title: "Sin Potencia / Mala Potencia",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["El splitter no se encuentra dentro del rango de potencia establecidos para instalar (según la plaza) y el cliente no quiere que le instalemos el servicio.",
+                    "En caso de ser necesario, validar rango de potencia con el ing. de campo"],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["En la foto se debe visualizar la medición en la que sea vea la longitud de onda (1490 nm), el acrónimo de la caja y el patchcord conectado al puerto correspondiente.",
+                     "En caso de poseer mas de una pasiva disponible realizar la medición en las misma (Exceptuando red UFINET)."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["El cliente desiste de la instalación por no aceptar el servicio en dichas condiciones."]
         },
         {
             id: 22,
-            title: "Sin capacidad",
+            title: "Zona Peligrosa",
             type: "no-realizada",
-            desc: "Cliente no se encuentra sin respuesta previa llamada de precontacto.",
-            steps: ["Reportar a mesa de despacho correspondiente."],
-            photos: ["Foto panorámica de la fachada con linderos."],
-            stock: "NO dejar materiales provisionados.",
-            notes: "Asentar 'Cliente ausente'."
+            desc: ["Se utiliza cuando se ve involucrada la integridad física del técnico:",
+                    "Intento de robo",
+                    "Amenazas.",
+                    "Disturbios ajenos. Ejemplo: Manifestaciones."],
+            steps: ["Reportar a mesa de despacho según segmento:", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Foto panorámica de la fachada del domicilio del cliente, donde se observen sus linderos. (En caso de que sea factible)."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Descripción de la situación ocurrida."]
         },
-         {
+        {
             id: 23,
-            title: "Sin energía eléctrica",
+            title: "Averia Masiva",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Se utiliza este motivo cuando Claro valida que hay una averia masiva sobre alguna de sus herramientas que impida continuar con las actividades. (No se debe instalar, visualizacion solo dispatcher)"],
+            steps: ["Mediante el aviso del analista al disptacher de la contratista se deberá interrumpir estas tareas bajo este motivo."],
+            photos: ["No aplica."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Template de ejemplo: [Avería masiva - TOA MOBILE]"]
         },
         {
             id: 24,
-            title: "Sin Potencia / Mala Potencia",
+            title: "Recoordinar por Falta de Stock",
             type: "no-realizada",
-            desc: "Caja en mal estado, mal ubicada o ramas cruzadas.",
-            steps: ["Reportar a mesa de despacho: Pymes (*617) o Residencial (*6565 opc 1)."],
-            photos: ["Foto panorámica de fachada con linderos.", "Hasta 7 fotos de la problemática (puerto roto, caja colgando, etc.)."],
-            stock: "NO dejar materiales provisionados ni descargar materiales.",
-            notes: "Descripción detallada del problema y acrónimo del splitter."
+            desc: ["Cuando no cuentan con materiales para realizar la instalación."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["No aplica."],
+            stock: "NO se debe dejar materiales provisionados, NO se debe instalar NI descargar materiales.",
+            notes: ["Especificar el material faltante."]
         },
         {
             id: 25,
-            title: "Instalada Exitosamente",
+            title: "Instalación Exitosa",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            desc: ["Solo cuando el servicio se encuentra probado y funcionando correctamente luego de la conformidad del cliente."],
+            steps: ["Cerrar la orden sin la necesidad de llamar a la mesa."],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Instalación realizada con éxito."]
         },
         {
             id: 26,
-            title: "A la espera de Rta. Sistemas",
+            title: "A la espera de Rta. Sistemas TV",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            desc: ["El servicio se encuentra instalado pero presenta problemas en funcionamiento de STB",
+                    "Grilla de canal",
+                    "Pantalla en negro/logo de claro",
+                    "Control remoto"],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar el inconveniente que presenta el servicio."]
         },
         {
             id: 27,
-            title: "A la espera de Rta. Sistemas TV",
+            title: "A la espera de Rta. Sistemas",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
-        }
-        ,
+            desc: ["Problemas en algún gestor o servidor de Claro por el cual no quedaría funcionando los servicios correctamente."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar el inconveniente que presenta el servicio."]
+        },
         {
             id: 28,
-            title: "Cl Inst Sin Equipos de TV físico",
+            title: "Cl Instalado No Operativo",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            desc: ["Instalación realizada con potencia nula o degradada por parte de la CTO."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter: (En la foto se debe visualizar la medición en la que sea vea la longitud de onda (1490 nm), el acrónimo de la caja y el patchcord conectado al puerto correspondiente. En caso de poseer mas de una pasiva disponible realizar la medición en las misma (Exceptuando red UFINET)",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar el inconveniente que presenta el servicio."]
         },
         {
             id: 29,
-            title: "Cl Instalado No Operativo",
+            title: "Problema Provisión",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
-        }
-        ,
+            desc: ["Se realizo la provisión del servicio en SGT pero da error en alguno de los checks/flags, y el servicio no funciona correctamente."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar el inconveniente que presenta el servicio."]
+        },
         {
             id: 30,
-            title: "Posible Fraude Instalado",
+            title: "Problema Telefonía",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            desc: ["Se realizo la provisión del servicio en SGT pero se verifican problemas solo en la parte de telefonía del servicio:",
+                    "Sin tono de marcado",
+                    "No se puede realizar llamadas salientes/entrantes"],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar el inconveniente que presenta el servicio"]
         },
         {
             id: 31,
-            title: "Problema Provisión",
+            title: "Posible Fraude Instalado",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            desc: ["Proceso técnico completado sin anomalías."],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar la practica fraudulenta detectada."]
         },
         {
             id: 32,
-            title: "Problema Telefonía",
+            title: "Cl Inst Sin Equipos de TV físico",
             type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
-        },
-        {
-            id: 33,
-            title: "TV No Compatible",
-            type: "realizada",
-            desc: "Servicio probado y funcionando con conformidad del cliente].",
-            steps: ["Cerrar la orden sin necesidad de llamar a la mesa."],
-            photos: ["Carga de las 8 imágenes correspondientes."],
-            stock: "Descargar materiales seriados y no seriados utilizados.",
-            notes: "No aplica."
+            desc: ["Cuando al finalizar la instalación detectamos que el titular/referente realiza la practica fraudulenta sobre reventa de equipos de Claro"],
+            steps: ["Reportar a mesa de despacho según segmento.", 
+                    "Pymes: *617 // 0800-122-1617", 
+                    "Residencial: *6565 // Opción 1"],
+            photos: ["Realizar la carga de las 8 imágenes correspondientes.",
+                    "Niveles / Banda",
+                    "Frente Domicilio",
+                    "Medición Interna",
+                    "Foto Caja / Splitter",
+                    "Nomenclador",
+                    "Ingreso Domicilio",
+                    "Estado ONT",
+                    "Acta Aceptación"],
+            stock: "Descargar materiales utilizados en la actividad.",
+            notes: ["Detallar la practica fraudulenta detectada."]
         }
+
     ];
 
     function renderMotives(data) {
@@ -429,11 +690,13 @@
         grid.innerHTML = '';
         data.forEach(m => {
             const card = `
-                <div class="col-md-4 motive-item" data-type="${m.type}">
+                <div class="col-md-4">
                     <div class="card motive-card p-3 shadow-sm ${m.type === 'realizada' ? 'realizada' : ''}" onclick="showDetail(${m.id})">
-                        <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center">
                             <h6 class="mb-0 fw-bold">${m.title}</h6>
-                            <span class="badge ${m.type === 'realizada' ? 'bg-success' : 'bg-danger'}">${m.type === 'realizada' ? 'Realizada' : 'No Realizada'}</span>
+                            <span class="badge ${m.type === 'realizada' ? 'bg-success' : 'bg-danger'}">
+                                ${m.type === 'realizada' ? 'Realizada' : 'No Realizada'}
+                            </span>
                         </div>
                     </div>
                 </div>`;
@@ -443,20 +706,15 @@
 
     function showDetail(id) {
         const m = motives.find(item => item.id === id);
+        if(!m) return;
         document.getElementById('motiveTitle').innerText = m.title;
-        document.getElementById('motiveDesc').innerText = m.desc;
         document.getElementById('motiveStock').innerText = m.stock;
-        document.getElementById('motiveNotes').innerText = m.notes;
-        
-        const stepsList = document.getElementById('motiveSteps');
-        stepsList.innerHTML = m.steps.map(s => `<li class="list-group-item"><i class="fas fa-check-circle text-muted me-2"></i>${s}</li>`).join('');
-
-        const photoList = document.getElementById('motivePhotos');
-        photoList.innerHTML = m.photos.map(p => `<li>${p}</li>`).join('');
-
+        document.getElementById('motiveNotes').innerHTML = m.notes.map(li => `<li>${li}</li>`).join('');
+        document.getElementById('motiveDesc').innerHTML = m.desc.map(li => `<li>${li}</li>`).join('');
+        document.getElementById('motiveSteps').innerHTML = m.steps.map(li => `<li>${li}</li>`).join('');
+        document.getElementById('motivePhotos').innerHTML = m.photos.map(li => `<li>${li}</li>`).join('');
         const header = document.getElementById('modalHeader');
         header.style.backgroundColor = m.type === 'realizada' ? 'var(--success-green)' : 'var(--claro-red)';
-
         new bootstrap.Modal(document.getElementById('detailModal')).show();
     }
 

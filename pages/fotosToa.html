@@ -15,16 +15,70 @@
         body { 
             background-color: var(--claro-gray); 
             font-family: 'Roboto', sans-serif; 
+            margin: 0; /* Asegura que el header pegue a los bordes */
         }
         
-        /* Encabezado */
-        .header-banner { 
-            background: white; 
-            border-bottom: 4px solid var(--claro-red); 
-            padding: 25px 0; 
-            margin-bottom: 40px; 
+        /* --- SOLO ESTO SE MODIFICÓ: ENCABEZADO ROJO --- */
+        .header-red {
+            background-color: var(--claro-red);
+            color: white;
+            padding: 25px 0;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
         }
-        
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .btn-back {
+            position: absolute;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .btn-back:hover {
+            color: white;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-5px);
+        }
+
+        .header-title-container {
+            text-align: center;
+        }
+
+        .header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            font-size: 1.6rem;
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 5px 0 0 0;
+            font-weight: 300;
+        }
+        /* --- FIN DE LA MODIFICACIÓN --- */
+
         /* Navegación */
         .nav-pills .nav-link.active { background-color: var(--claro-red); }
         .nav-pills .nav-link { color: #555; font-weight: bold; margin: 0 5px; border: 1px solid #dee2e6; }
@@ -72,7 +126,6 @@
             line-height: 1.2;
         }
 
-        /* Estilos de Imagen y Zoom */
         .img-wrapper { 
             background: #fff; 
             cursor: zoom-in;
@@ -100,7 +153,6 @@
             padding-top: 10px;
         }
 
-        /* Modal casi pantalla completa */
         #imgModal .modal-dialog {
             max-width: 98vw;
             margin: 1vh auto;
@@ -115,18 +167,19 @@
 </head>
 <body>
 
-<div class="header-banner shadow-sm">
-    <div class="container d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-            <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
-            <div>
-                <h2 class="mb-0 fw-bold">EVIDENCIA FOTOGRÁFICA TOA</h2>
-                <p class="text-muted small mb-0">Guía de capturas obligatorias para Técnicos</p>
+<header class="header-red">
+    <div class="container">
+        <div class="header-content">
+            <a href="javascript:window.history.back()" class="btn-back" title="Volver">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="header-title-container">
+                <h2 class="header-title">EVIDENCIA FOTOGRÁFICA TOA</h2>
+                <p class="header-subtitle">Guía de capturas obligatorias para Técnicos</p>
             </div>
         </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" height="35" alt="Claro">
     </div>
-</div>
+</header>
 
 <div class="container pb-5">
     <ul class="nav nav-pills mb-5 justify-content-center" id="photoTabs" role="tablist">
@@ -151,7 +204,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/TOPOLOGIA.jpg">
                                 <img src="../assets/img/toa/TOPOLOGIA.jpg" class="img-step" alt="Link Home">
                             </div>
-                            <div class="description-box">Resultado de la app <strong>Link Home</strong>. Potencia conector ONT (visualización mobile).</div>
+                            <div class="description-box"> Se subirá la foto con el resultado de la app Link Home. Potencia conector ONT (visualización mobile).</div>
                         </div>
                     </div>
                 </div>
@@ -166,7 +219,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/CASA.jpg">
                                 <img src="../assets/img/toa/CASA.jpg" class="img-step" alt="Frente Domicilio">
                             </div>
-                            <div class="description-box">Frente del domicilio (casa, dpto, ph). Capturar desde la vereda opuesta de ser posible.</div>
+                            <div class="description-box">Se subirá la foto donde se pueda ver el frente del domicilio (casa, dpto, ph, etc.). Sacar desde la vereda.</div>
                         </div>
                     </div>
                 </div>
@@ -181,7 +234,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/MEDICION ONT.png">
                                 <img src="../assets/img/toa/MEDICION ONT.png" class="img-step" alt="Powermeter">
                             </div>
-                            <div class="description-box">Medición con <strong>powermeter</strong> dentro del domicilio para validar potencia de llegada.</div>
+                            <div class="description-box">Foto de la medición con el powermeter dentro del domicilio para saber potencia de llegada.</div>
                         </div>
                     </div>
                 </div>
@@ -196,7 +249,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/CAJA.jpg">
                                 <img src="../assets/img/toa/CAJA.jpg" class="img-step" alt="Caja Splitter">
                             </div>
-                            <div class="description-box">Potencia que sale de la pasiva junto con el <strong>acrónimo</strong> visible del splitter.</div>
+                            <div class="description-box">Foto donde se visualice la potencia que sale de la pasiva junto con el acrónimo del mismo..</div>
                         </div>
                     </div>
                 </div>
@@ -211,7 +264,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/NOMENCLADOR.png">
                                 <img src="../assets/img/toa/NOMENCLADOR.png" class="img-step" alt="Numeración">
                             </div>
-                            <div class="description-box">Numeración del domicilio o piso/dpto. Debe figurar el NIM sin ceros a la izquierda.</div>
+                            <div class="description-box">Foto de numeración del domicilio o piso/dpto. El otro lado tendrá el NIM sin ceros.</div>
                         </div>
                     </div>
                 </div>
@@ -226,7 +279,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/INGRESO.png">
                                 <img src="../assets/img/toa/INGRESO.png" class="img-step" alt="Curva goteo">
                             </div>
-                            <div class="description-box">Visualización de la <strong>curva de goteo</strong> y el pasante de ingreso de FO.</div>
+                            <div class="description-box">Foto donde se visualice la curva de goteo y el pasante para el ingreso de la FO al domicilio.</div>
                         </div>
                     </div>
                 </div>
@@ -256,7 +309,7 @@
                             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/ACTA DE ACEPTACION.jpg">
                                 <img src="../assets/img/toa/ACTA DE ACEPTACION.jpg" class="img-step" alt="Acta">
                             </div>
-                            <div class="description-box">Foto legible del acta de aceptación y T&C con firma visible del cliente.</div>
+                            <div class="description-box">Foto legible de planilla de acta de aceptación con firma visible.</div>
                         </div>
                     </div>
                 </div>
