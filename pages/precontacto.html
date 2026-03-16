@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo de Precontacto - Claro</title>
+    <title>Protocolo de Precontacto - Portal Instalaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -16,32 +17,85 @@
 
         body {
             background-color: var(--claro-gray);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
         }
 
-        /* HEADER UNIFICADO */
-        .header-banner { 
-            background: white; 
-            border-bottom: 4px solid var(--claro-red); 
-            padding: 25px 0; 
-            margin-bottom: 40px; 
+        /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
+        .header-red {
+            background-color: var(--claro-red);
+            color: white;
+            padding: 25px 0;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
         }
 
-        /* DISEÑO DE CUADRADITOS SIN SOMBRA */
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .btn-back {
+            position: absolute;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .btn-back:hover {
+            color: white;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-5px);
+        }
+
+        .header-title-container {
+            text-align: center;
+        }
+
+        .header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            font-size: 1.6rem;
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 5px 0 0 0;
+            font-weight: 300;
+        }
+
+        /* --- DISEÑO DE PASOS --- */
         .step-container { 
             background: white; 
             border-radius: 15px; 
             border: 1px solid #dee2e6; 
             margin-bottom: 30px; 
             overflow: hidden; 
-            box-shadow: none !important; /* SIN SOMBRA */
+            box-shadow: none !important; 
             transition: transform 0.3s ease-in-out;
         }
 
-        /* EFECTO DE ELEVACIÓN SIN CAMBIO DE COLOR DE BORDE */
         .step-container:hover { 
             transform: translateY(-8px); 
-            border-color: #dee2e6; /* MANTIENE EL COLOR ORIGINAL */
+            border-color: #dee2e6;
         }
 
         .step-header { 
@@ -68,7 +122,6 @@
 
         .step-body { padding: 25px; }
 
-        /* GUIONES DE VOZ */
         .script-box {
             background-color: #fff3f2;
             border: 1px dashed var(--claro-red);
@@ -79,7 +132,7 @@
             margin-top: 10px;
         }
 
-        /* BARRA LATERAL */
+        /* --- BARRA LATERAL --- */
         .important-note {
             background-color: #fff9e6;
             border-left: 5px solid #ffc107;
@@ -88,26 +141,25 @@
             margin-bottom: 20px;
         }
 
-        .badge-res { background-color: var(--claro-red); padding: 12px; font-weight: bold; border-radius: 8px; color: white; display: block; text-align: center; text-decoration: none; }
-        .badge-pyme { background-color: #0056b3; padding: 12px; font-weight: bold; border-radius: 8px; color: white; display: block; text-align: center; text-decoration: none; }
-
+        .badge-res { background-color: var(--claro-red); padding: 12px; font-weight: bold; border-radius: 8px; color: white; display: block; text-align: center; text-decoration: none; cursor: default; }
+        .badge-pyme { background-color: #0056b3; padding: 12px; font-weight: bold; border-radius: 8px; color: white; display: block; text-align: center; text-decoration: none; cursor: default; }
     </style>
 </head>
 <body>
 
-<div class="header-banner shadow-sm">
-    <div class="container d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-            <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
-            <div>
-                <h2 class="mb-0 fw-bold">PROTOCOLO DE PRECONTACTO</h2>
-                <p class="text-muted small mb-0">Flujo de comunicación técnica</p>
+<header class="header-red">
+    <div class="container">
+        <div class="header-content">
+            <button onclick="window.history.back()" class="btn-back" title="Volver">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-title-container">
+                <h2 class="header-title">PROTOCOLO DE PRECONTACTO</h2>
+                <p class="header-subtitle">Flujo de comunicación obligatoria con el cliente</p>
             </div>
         </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" height="35" alt="Claro">
     </div>
-</div>
-
+</header>
 <div class="container pb-5">
     <div class="row">
         <div class="col-lg-8">

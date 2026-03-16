@@ -3,28 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructivo de PortalGis - Claro</title>
+    <title>Instructivo de PortalGis - Portal Instalaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root { --claro-red: #d93025; --claro-gray: #f8f9fa; --dark-header: #333; --anexo-gold: #f1c40f; }
-        body { background-color: var(--claro-gray); font-family: 'Roboto', sans-serif; }
-        
-        /* Banner Principal */
-        .header-banner { background: white; border-bottom: 4px solid var(--claro-red); padding: 25px 0; margin-bottom: 40px; }
-        
-        /* Contenedores de Pasos */
-        .step-container { background: white; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 30px; overflow: hidden; }
-        .step-header { background: var(--claro-red); color: white; padding: 12px 25px; font-weight: bold; display: flex; align-items: center; }
-        .step-header.yellow { background: var(--dark-header); border-bottom: 3px solid var(--anexo-gold); }
+        :root { 
+            --claro-red: #d93025; 
+            --claro-gray: #f8f9fa; 
+            --dark-header: #333; 
+            --anexo-gold: #f1c40f; 
+        }
+
+        body { 
+            background-color: var(--claro-gray); 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+        }
+
+        /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
+        .header-red {
+            background-color: var(--claro-red);
+            color: white;
+            padding: 25px 0;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .btn-back {
+            position: absolute;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .btn-back:hover {
+            color: white;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-5px);
+        }
+
+        .header-title-container {
+            text-align: center;
+        }
+
+        .header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            font-size: 1.6rem;
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 5px 0 0 0;
+            font-weight: 300;
+        }
+
+        /* --- CONTENEDORES DE PASOS --- */
+        .step-container { 
+            background: white; 
+            border-radius: 15px; 
+            border: 1px solid #dee2e6; 
+            margin-bottom: 30px; 
+            overflow: hidden; 
+        }
+
+        .step-header { 
+            background: var(--claro-red); 
+            color: white; 
+            padding: 12px 25px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        .step-header.yellow { 
+            background: var(--dark-header); 
+            border-bottom: 3px solid var(--anexo-gold); 
+        }
+
         .step-body { padding: 30px; }
-        .step-badge { background: var(--dark-header); color: white; border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.9rem; }
+
+        .step-badge { 
+            background: var(--dark-header); 
+            color: white; 
+            border-radius: 50%; 
+            width: 30px; 
+            height: 30px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-right: 15px; 
+            font-size: 0.9rem; 
+        }
         
-        /* Textos */
         .literal-text { font-size: 1rem; color: #444; line-height: 1.7; }
         .important-callout { background: #fff3f3; border-left: 5px solid var(--claro-red); padding: 15px; border-radius: 5px; margin: 20px 0; font-style: italic; }
         
-        /* Botones y Cajas de Imagen */
         .btn-link-gis { background-color: var(--claro-red); color: white; border-radius: 25px; padding: 10px 30px; font-weight: 500; text-decoration: none; display: inline-block; transition: 0.3s; border: none; }
         .btn-link-gis:hover { background-color: #b2261e; color: white; transform: scale(1.05); }
 
@@ -42,34 +141,25 @@
         .img-step { width: 100%; height: auto; border-radius: 8px; max-height: 450px; object-fit: contain; }
         .img-caption { display: block; text-align: center; font-size: 0.85rem; color: #666; margin-top: 10px; }
 
-        /* Estilos para Imagen casi Pantalla Completa */
-        #imgModal .modal-dialog {
-            max-width: 98vw;
-            margin: 1vh auto;
-        }
-        #modalImage {
-            max-height: 96vh;
-            width: auto;
-            object-fit: contain;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
+        #imgModal .modal-dialog { max-width: 98vw; margin: 1vh auto; }
+        #modalImage { max-height: 96vh; width: auto; object-fit: contain; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-<div class="header-banner shadow-sm">
-    <div class="container d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-            <button onclick="window.history.back()" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-arrow-left"></i></button>
-            <div>
-                <h2 class="mb-0 fw-bold">PORTALGIS - CLARO</h2>
-                <p class="text-muted small mb-0">Instructivo de uso y visualización de coberturas</p>
+<header class="header-red">
+    <div class="container">
+        <div class="header-content">
+            <button onclick="window.history.back()" class="btn-back" title="Volver">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-title-container">
+                <h2 class="header-title">PORTALGIS - CLARO</h2>
+                <p class="header-subtitle">Instructivo de uso y visualización de coberturas</p>
             </div>
         </div>
-        <img src="../assets/img/logoclaro.jpg" height="35" alt="Claro">
     </div>
-</div>
-
+</header>
 <div class="container pb-5">
     
     <div class="row mb-5">

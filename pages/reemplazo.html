@@ -169,124 +169,46 @@
         </div>
     </div>
 </header>
+
 <div class="container pb-5">
     
     <div class="intro-box">
         <h5 class="fw-bold">Introducción</h5>
         <p class="mb-0">
-            El desarrollo consiste en utilizar las coordenadas del domicilio para sugerir los splitters más cercanos. Se mostrarán hasta 3 opciones con información útil para facilitar la selección.
+            El sistema utiliza las coordenadas del domicilio para sugerir los splitters más cercanos (hasta 3 opciones), facilitando la selección técnica y la precisión en la carga.
         </p>
     </div>
 
     <ul class="nav nav-pills mb-4 justify-content-center" id="sgtTabs" role="tablist">
         <li class="nav-item">
-            <button class="nav-link active px-4 py-2" data-bs-toggle="tab" data-bs-target="#mobile-tab"><i class="fas fa-mobile-alt me-2"></i>SGT MOBILE</button>
+            <button class="nav-link active px-4" data-bs-toggle="tab" data-bs-target="#mobile-tab"><i class="fas fa-mobile-alt me-2"></i>SGT MOBILE</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link px-4 py-2" data-bs-toggle="tab" data-bs-target="#web-tab"><i class="fas fa-desktop me-2"></i>SGT WEB</button>
+            <button class="nav-link px-4" data-bs-toggle="tab" data-bs-target="#web-tab"><i class="fas fa-desktop me-2"></i>SGT WEB</button>
         </li>
     </ul>
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="mobile-tab">
-            <div class="step-container shadow-sm">
+            <div class="step-container">
                 <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">1</span> ASIGNACIÓN DE SPLITTER</div>
-                    <i class="fas fa-plus-circle opacity-50"></i>
+                    <span class="step-badge">1</span> ASIGNACIÓN DE SPLITTER
                 </div>
                 <div class="step-body">
-                    <p class="instruction-text">Dentro de una orden, en la sección de Servicios Internet, al usar el botón “+”, se abrirán las opciones para la asignación del splitter.</p>
+                    <p class="instruction-text">Dentro de la sección de Servicios Internet, pulse el botón <strong>“+”</strong> para abrir las opciones de asignación.</p>
                     <div class="img-placeholder"><small>Captura: Botón + en Servicios Internet</small></div>
                 </div>
             </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">2</span> BÚSQUEDA POR COORDENADAS</div>
-                    <i class="fas fa-map-marker-alt opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">En caso de encontrar las coordenadas del domicilio, aparecerá el método <strong>Cercanos</strong> por defecto. Si no, se usará la geolocalización del técnico.</p>
-                    <div class="img-placeholder"><small>Captura: Ventana de Búsqueda Cercanos</small></div>
-                </div>
             </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">3</span> BÚSQUEDA POR ACRÓNIMO</div>
-                    <i class="fas fa-search opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">De no encontrar ninguna coordenada, aparecerá por defecto el método de búsqueda por <strong>Acrónimo Equipo</strong>.</p>
-                    <div class="img-placeholder"><small>Captura: Búsqueda por Acrónimo</small></div>
-                </div>
-            </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">4</span> FILTRAR SPLITTERS</div>
-                    <i class="fas fa-info-circle opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Al presionar el botón <strong>Filtrar</strong>, se visualizarán los splitters sugeridos con dirección, OLT, puertos y configuración.</p>
-                    <div class="img-placeholder"><small>Captura: Lista de Splitters Sugeridos</small></div>
-                </div>
-            </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">5</span> FINALIZAR ASIGNACIÓN</div>
-                    <i class="fas fa-check-double opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Al seleccionar un splitter y utilizar el botón <strong>Asignar</strong>, aparecerá una ventana para confirmar la selección.</p>
-                    <div class="img-placeholder"><small>Captura: Confirmación de Asignación</small></div>
-                </div>
-            </div>
-        </div>
 
         <div class="tab-pane fade" id="web-tab">
-            <div class="step-container shadow-sm">
+            <div class="step-container">
                 <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">1</span> ASIGNAR CPE</div>
-                    <i class="fas fa-external-link-alt opacity-50"></i>
+                    <span class="step-badge">1</span> ASIGNAR CPE
                 </div>
                 <div class="step-body">
-                    <p class="instruction-text">Al usar el botón <strong>Asignar Cpe</strong> en el cuadro de diálogo Cpe, se abrirá un modal para cargar la ONT y el splitter.</p>
+                    <p class="instruction-text">Utilice el botón <strong>Asignar Cpe</strong> para desplegar el modal de carga de ONT y splitter.</p>
                     <div class="img-placeholder"><small>Captura: Modal Asignar Cpe</small></div>
-                </div>
-            </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">2</span> SELECCIÓN DE MÉTODO</div>
-                    <i class="fas fa-location-arrow opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Si se hallan coordenadas, aparecerá la búsqueda <strong>Cercanos</strong>. De lo contrario, aparecerá <strong>Acrónimo Equipo</strong>.</p>
-                    <div class="img-placeholder"><small>Captura: Métodos de Búsqueda Web</small></div>
-                </div>
-            </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">3</span> DETALLE DE PUERTOS</div>
-                    <i class="fas fa-filter opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Al presionar <strong>Filtrar</strong>, se mostrarán los splitters cercanos. Al seleccionar uno, verá el estado de sus puertos.</p>
-                    <div class="img-placeholder"><small>Captura: Listado y Estado de Puertos</small></div>
-                </div>
-            </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">4</span> ENLAZAR Y ASIGNAR</div>
-                    <i class="fas fa-link opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Una vez seleccionado el puerto, se debe presionar el botón <strong>Enlazar</strong> y luego <strong>Asignar</strong> para completar la tarea.</p>
-                    <div class="img-placeholder"><small>Captura: Botones Enlazar y Asignar</small></div>
                 </div>
             </div>
         </div>
