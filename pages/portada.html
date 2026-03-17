@@ -174,7 +174,7 @@
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error || !session) {
             // Si no hay sesión, vuelve al login que está un nivel arriba
-            window.location.href = "../login.html";
+            window.location.href = "../index.html";
         }
     }
     validarAcceso();
@@ -183,7 +183,7 @@
     document.getElementById('logoutBtn').addEventListener('click', async () => {
         const { error } = await supabase.auth.signOut();
         if (!error) {
-            window.location.href = "../login.html";
+            window.location.href = "../index.html";
         } else {
             alert("Error al cerrar sesión");
         }
