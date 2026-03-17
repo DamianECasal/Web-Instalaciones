@@ -21,6 +21,25 @@
         .img-box { background: #f1f1f1; border: 2px dashed #ccc; border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; color: #999; margin-top: 20px; text-align: center; padding: 20px; }
     </style>
 </head>
+
+<script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs' // La misma que usaste en index.html
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    // 1. Portero: Validar acceso apenas carga la página
+    async function validarAcceso() {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error || !session) {
+            // Si no hay sesión, vuelve al login que está un nivel arriba
+            window.location.href = "../index.html";
+        }
+    }
+    validarAcceso();
+    </script>
+
 <body>
 
 <div class="header-banner shadow-sm">
