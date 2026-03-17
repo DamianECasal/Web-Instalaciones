@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Instalaciones - Panel Principal</title>
+    <title>Acceso - Portal de Instalaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,131 +18,140 @@
         body {
             background: var(--light-bg);
             font-family: 'Roboto', sans-serif;
-            min-height: 100vh;
-            margin: 0;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-        }
-
-        h1, h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        /* --- ENCABEZADO ROJO (Estilo solicitado) --- */
-        .header-section {
-            background-color: var(--claro-red);
-            color: white;
-            padding: 20px 20px;
-            text-align: center;
-            width: 100%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 50px;
-        }
-
-        .header-section h2 {
-            margin: 0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .welcome-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-top: 10px;
-            font-weight: 300;
-        }
-
-        /* --- CONTENEDOR DE TARJETAS (Tu diseño original) --- */
-        .main-container {
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 20px;
-            flex-grow: 1;
-        }
-
-        .btn-card {
-            background: white;
-            border: none;
-            border-radius: 15px;
-            padding: 45px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            height: 100%;
-            border-bottom: 5px solid transparent;
+            margin: 0;
         }
 
-        .btn-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-bottom: 5px solid var(--claro-red);
-            color: var(--claro-red);
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
         }
 
-        .btn-card i {
-            font-size: 3.5rem;
-            color: var(--claro-red);
+        .login-header {
+            background-color: var(--claro-red);
+            margin: -40px -40px 30px -40px;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            color: white;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .login-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #ddd;
             margin-bottom: 20px;
         }
 
-        .btn-card span {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--dark-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .form-control:focus {
+            border-color: var(--claro-red);
+            box-shadow: 0 0 0 0.25 red;
         }
 
-        footer {
-            padding: 30px;
-            text-align: center;
+        .btn-login {
+            background-color: var(--claro-red);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #b2251b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(217, 48, 37, 0.3);
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
-<div class="header-section">
-    <h2>PORTAL DE PROCESOS - INSTALACIONES</h2>
-    <p class="welcome-text">Selecciona el módulo al que deseas acceder</p>
-</div>
-
-<div class="container main-container">
-    <div class="row g-4 justify-content-center">
-        
-        <div class="col-md-4">
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=d-q_BZzxHUevogyQk6-L21t82VfgGdlMn5zt3SGmW0tUOElOU0UyRUhUVUVPSVFDT1VFNjU0WDFWNC4u" target="_blank" class="btn-card">
-                <i class="fa-solid fa-file-lines"></i>
-                <span>FORMS</span>
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a href="https://app.powerbi.com/groups/me/reports/f3bfd376-e1c9-4a31-99d3-e3d8091f90a3/48ee80cf50c305d0b56a?ctid=05bfea77-f19c-471d-afa2-0c9093af8bdb&experience=power-bi" target="_blank" class="btn-card">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>FALLIDAS BI</span>
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a href="pages/instructivos.html" target="_blank" class="btn-card">
-                <i class="fa-solid fa-clipboard-list"></i>
-                <span>INSTRUCTIVOS Y PROCESOS</span>
-            </a>
-        </div>
-
+<div class="login-card">
+    <div class="login-header">
+        <i class="fa-solid fa-lock"></i>
+        <h2>Portal de Procesos</h2>
     </div>
 
-    <footer class="text-muted small">
-        &copy; 2026 Portal de procesos Instalaciones | Acceso Restringido
-    </footer>
+    <form action="pages/portada.html"> <div class="text-start mb-3">
+            <label class="form-label fw-bold small text-muted">USUARIO CORREO</label>
+            <input type="email" class="form-control" placeholder="nombre@empresa.com" required>
+        </div>
+        
+        <div class="text-start mb-4">
+            <label class="form-label fw-bold small text-muted">CONTRASEÑA</label>
+            <input type="password" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-login">Ingresar</button>
+    </form>
+
+    <p class="footer-text">
+        &copy; 2026 Instalaciones | Acceso Restringido
+    </p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module">
+    // Importamos la librería de Supabase
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    // REEMPLAZA CON TUS DATOS DE "PROJECT SETTINGS > API"
+    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    const loginForm = document.querySelector('form');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Obtenemos los datos de los inputs que ya tenés en tu diseño
+        const email = loginForm.querySelector('input[type="email"]').value;
+        const password = loginForm.querySelector('input[type="password"]').value;
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) {
+            alert("Acceso denegado: " + error.message);
+        } else {
+            // Si el login es exitoso, nos vamos al index.html
+            window.location.href = "pages/portada.html";
+        }
+    });
+</script>
+</script>
+
 </body>
 </html>
