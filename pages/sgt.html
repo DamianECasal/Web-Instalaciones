@@ -3,314 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual SGT - Portal Instalaciones</title>
+    <title>Manual SGT - Claro</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs' // La misma que usaste en index.html
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // 1. Portero: Validar acceso apenas carga la página
-    async function validarAcceso() {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            // Si no hay sesión, vuelve al login que está un nivel arriba
-            window.location.href = "../index.html";
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
         }
-    }
-    validarAcceso();
+        validarAcceso();
     </script>
     
     <style>
-        :root { 
-            --claro-red: #d93025; 
-            --claro-gray: #f8f9fa; 
-            --dark-header: #333;
+        :root {
+            --claro-red: #ee122c;
+            --claro-dark: #333333;
+            --claro-gray: #f2f2f2;
         }
 
-        body { 
-            background-color: var(--claro-gray); 
-            font-family: 'Roboto', sans-serif; 
-            margin: 0; /* Asegura que el header pegue a los bordes */
+        body {
+            background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
         }
 
-        /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
-        .header-red {
-            background-color: var(--claro-red);
+        /* --- NAVBAR CON SEPARACIÓN --- */
+        .navbar-claro {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px; 
+        }
+        .claro-logo { height: 35px; }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
             color: white;
-            padding: 25px 0;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 40px;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 40px 0 100px 0;
+            text-align: center;
             position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
         }
 
         .btn-back {
-            position: absolute;
-            left: 20px;
+            position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+        }
+        .btn-back:hover { background: white; color: var(--claro-red); }
+
+        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-content {
+            max-width: 1000px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- TARJETA DE INTRO (CON SEPARACIÓN ABAJO) --- */
+        .intro-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--claro-red);
+        }
+
+        /* --- TABS --- */
+        .nav-pills .nav-link {
+            color: #666;
+            font-weight: 700;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            border-radius: 25px;
+            padding: 10px 25px;
+            background: white;
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--claro-red) !important;
             color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            background: rgba(255,255,255,0.1);
-            width: 45px;
-            height: 45px;
+            border-color: var(--claro-red);
+        }
+
+        /* --- TARJETAS DE PASOS --- */
+        .step-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .step-header {
+            padding: 14px 25px;
+            color: white;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: none;
-        }
-
-        .btn-back:hover {
-            color: white;
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-5px);
-        }
-
-        .header-title-container {
-            text-align: center;
-        }
-
-        .header-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            font-size: 1.6rem;
-            line-height: 1.2;
         }
 
-        .header-subtitle {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin: 5px 0 0 0;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .logo-right {
-            position: absolute;
-            right: 20px;
-            height: 35px;
-            filter: brightness(0) invert(1);
-        }
-
-        /* --- CONTENEDORES Y TABS --- */
-        .intro-box { 
-            background-color: white; 
-            border-left: 5px solid var(--claro-red); 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
-        }
-
-        .nav-pills .nav-link.active { background-color: var(--claro-red); }
-        .nav-pills .nav-link { color: #555; font-weight: bold; margin: 0 5px; border-radius: 20px; }
-
-        .step-container { 
-            background: white; 
-            border-radius: 15px; 
-            border: 1px solid #dee2e6; 
-            margin-bottom: 30px; 
-            overflow: hidden; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-        }
-
-        .step-header { 
-            background: var(--claro-red); 
+        /* --- CÍRCULOS NEGROS CON NÚMEROS BLANCOS --- */
+        .step-badge {
+            background: black; 
             color: white; 
-            padding: 12px 25px; 
-            font-weight: bold; 
-            display: flex; 
-            align-items: center; 
-        }
-
-        .step-badge { 
-            background: var(--dark-header); 
-            color: white; 
-            border-radius: 50%; 
             width: 30px; 
-            height: 30px; 
+            height: 30px;
+            border-radius: 50%;
             display: inline-flex; 
             align-items: center; 
-            justify-content: center; 
+            justify-content: center;
             margin-right: 15px; 
-            font-size: 0.9rem; 
+            font-size: 0.9rem;
+            font-weight: bold;
         }
-        
-        .step-body { padding: 30px; }
-        .instruction-text { font-size: 1.05rem; line-height: 1.6; color: #333; }
 
-        .img-placeholder { 
-            background: #f1f1f1; 
-            border: 2px dashed #ccc; 
-            border-radius: 10px; 
-            min-height: 200px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #999; 
-            margin-top: 20px; 
-            text-align: center; 
-            padding: 20px; 
+        .step-body { padding: 30px; }
+
+        /* --- BOTÓN SGT --- */
+        .btn-link-red {
+            background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
         }
+        .btn-link-red:hover { background-color: #d10f26; color: white; transform: translateY(-2px); }
+
+        /* --- IMÁGENES --- */
+        .img-wrapper {
+            position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .img-wrapper:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .img-step { width: 100%; height: auto; border-radius: 6px; }
+        .img-caption { display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500; }
+
+        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
+
+        /* MODAL */
+        #imgModal .modal-dialog { max-width: 95vw; }
+        #modalImage { max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; }
     </style>
 </head>
 <body>
 
-<header class="header-red">
+<nav class="navbar-claro">
+    <div class="container d-flex justify-content-between">
+        <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
+        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual Provisión SGT</span>
+    </div>
+</nav>
+
+<header class="hero-section">
     <div class="container">
-        <div class="header-content">
-            <button onclick="window.history.back()" class="btn-back" title="Volver">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <div class="header-title-container">
-                <h2 class="header-title">MANUAL DE PROVISIÓN SGT</h2>
-                <p class="header-subtitle">SGT Mobile/Web – Splitters Cercanos</p>
-            </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_claro_amp.svg" class="logo-right d-none d-md-block" alt="Claro">
-        </div>
+        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="header-title">MANUAL DE PROVISIÓN SGT</h2>
+        <p class="opacity-75 small mt-2">Gestión de CPE Mobile y Web</p>
     </div>
 </header>
-<div class="container pb-5">
+
+<main class="main-content">
     
-    <div class="intro-box">
-        <h5 class="fw-bold">Introducción</h5>
-        <p class="mb-0">
-            El desarrollo consiste en utilizar las coordenadas del domicilio para sugerir los splitters más cercanos. Se mostrarán hasta 3 opciones con información útil para facilitar la selección.
-        </p>
+    <div class="intro-card">
+        <h5 class="fw-bold mb-2"><i class="fas fa-info-circle me-2"></i>Introducción</h5>
+        <p class="mb-0 text-muted">El sistema sugiere hasta 3 splitters cercanos basados en las coordenadas del domicilio. <strong>Validar siempre contra el splitter físico antes de finalizar.</strong></p>
     </div>
 
-    <ul class="nav nav-pills mb-4 justify-content-center" id="sgtTabs" role="tablist">
+    <ul class="nav nav-pills mb-5 justify-content-center" id="sgtTabs" role="tablist">
         <li class="nav-item">
-            <button class="nav-link active px-4 py-2" data-bs-toggle="tab" data-bs-target="#mobile-tab"><i class="fas fa-mobile-alt me-2"></i>SGT MOBILE</button>
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#mobile-tab"><i class="fas fa-mobile-alt me-2"></i>SGT MOBILE</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link px-4 py-2" data-bs-toggle="tab" data-bs-target="#web-tab"><i class="fas fa-desktop me-2"></i>SGT WEB</button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#web-tab"><i class="fas fa-desktop me-2"></i>SGT WEB</button>
         </li>
     </ul>
 
     <div class="tab-content">
+        
         <div class="tab-pane fade show active" id="mobile-tab">
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">1</span> ASIGNACIÓN DE SPLITTER</div>
-                    <i class="fas fa-plus-circle opacity-50"></i>
-                </div>
+            
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">1</span> ACCESO Y LOGIN</div>
                 <div class="step-body">
-                    <p class="instruction-text">Dentro de una orden, en la sección de Servicios Internet, al usar el botón “+”, se abrirán las opciones para la asignación del splitter.</p>
-                    <div class="img-placeholder"><small>Captura: Botón + en Servicios Internet</small></div>
+                    <p class="text-muted mb-4">Para acceder a la plataforma de gestión externa, podés usar este link directo:</p>
+                    <div class="text-center mb-4">
+                        <a href="https://sgtmobile.claro.com.ar/login" target="_blank" class="btn-link-red">
+                            <i class="fas fa-external-link-alt me-2"></i> IR A SGT MOBILE
+                        </a>
+                    </div>
+                    <p class="text-muted">Debe acceder utilizando su <strong>usuario de red</strong> y la contraseña correspondiente.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/SGT MOBILE1.png">
+                        <img src="../assets/img/sgt/SGT MOBILE1.png" class="img-step" alt="Login">
+                        <span class="img-caption">PANTALLA DE INICIO DE SESIÓN</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">2</span> BÚSQUEDA POR COORDENADAS</div>
-                    <i class="fas fa-map-marker-alt opacity-50"></i>
-                </div>
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">2</span> FILTRAR ORDEN DE TRABAJO</div>
                 <div class="step-body">
-                    <p class="instruction-text">En caso de encontrar las coordenadas del domicilio, aparecerá el método <strong>Cercanos</strong> por defecto. Si no, se usará la geolocalización del técnico.</p>
-                    <div class="img-placeholder"><small>Captura: Ventana de Búsqueda Cercanos</small></div>
+                    <p class="text-muted">Seleccionamos tipo <strong>Masivo</strong> y colocamos el número de OT para realizar la búsqueda.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/SGT MOBILE2.png">
+                        <img src="../assets/img/sgt/SGT MOBILE2.png" class="img-step" alt="Paso 2">
+                        <span class="img-caption">BÚSQUEDA POR OT</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">3</span> BÚSQUEDA POR ACRÓNIMO</div>
-                    <i class="fas fa-search opacity-50"></i>
-                </div>
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">3</span> RESULTADO DE LA BÚSQUEDA</div>
                 <div class="step-body">
-                    <p class="instruction-text">De no encontrar ninguna coordenada, aparecerá por defecto el método de búsqueda por <strong>Acrónimo Equipo</strong>.</p>
-                    <div class="img-placeholder"><small>Captura: Búsqueda por Acrónimo</small></div>
+                    <p class="text-muted">En este campo arroja la información relacionada al tipo de servicio contratado por el <strong>cliente</strong>.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/SGT MOBILE3.png">
+                        <img src="../assets/img/sgt/SGT MOBILE3.png" class="img-step" alt="Paso 3">
+                        <span class="img-caption">DATOS DEL CLIENTE</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">4</span> FILTRAR SPLITTERS</div>
-                    <i class="fas fa-info-circle opacity-50"></i>
-                </div>
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">4</span> BÚSQUEDA CERCANOS</div>
                 <div class="step-body">
-                    <p class="instruction-text">Al presionar el botón <strong>Filtrar</strong>, se visualizarán los splitters sugeridos con dirección, OLT, puertos y configuración.</p>
-                    <div class="img-placeholder"><small>Captura: Lista de Splitters Sugeridos</small></div>
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/SGT MOBILE4.png">
+                        <img src="../assets/img/sgt/SGT MOBILE4.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">OPCIÓN DE CERCANOS</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">5</span> FINALIZAR ASIGNACIÓN</div>
-                    <i class="fas fa-check-double opacity-50"></i>
-                </div>
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">5</span> VALIDACIÓN GEOLOCALIZADA</div>
                 <div class="step-body">
-                    <p class="instruction-text">Al seleccionar un splitter y utilizar el botón <strong>Asignar</strong>, aparecerá una ventana para confirmar la selección.</p>
-                    <div class="img-placeholder"><small>Captura: Confirmación de Asignación</small></div>
+                    <p class="text-muted">En caso de no haber coordenadas grabadas, el sistema usará tu geolocalización actual.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/SGT MOBILE5.png">
+                        <img src="../assets/img/sgt/SGT MOBILE5.png" class="img-step" alt="Paso 5">
+                        <span class="img-caption">GEOLOCALIZACIÓN DE SPLITTERS</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="web-tab">
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">1</span> ASIGNAR CPE</div>
+                <div class="step-body">
+                    <p class="text-muted">En el portal web, seleccioná <strong>Asignar Cpe</strong> para abrir el modal de carga de ONT y Splitter.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/web1.png">
+                        <img src="../assets/img/sgt/web1.png" class="img-step" alt="SGT Web">
+                        <span class="img-caption">CARGA DE CPE VÍA WEB</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="tab-pane fade" id="web-tab">
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">1</span> ASIGNAR CPE</div>
-                    <i class="fas fa-external-link-alt opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Al usar el botón <strong>Asignar Cpe</strong> en el cuadro de diálogo Cpe, se abrirá un modal para cargar la ONT y el splitter.</p>
-                    <div class="img-placeholder"><small>Captura: Modal Asignar Cpe</small></div>
-                </div>
-            </div>
+    </div>
+</main>
 
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">2</span> SELECCIÓN DE MÉTODO</div>
-                    <i class="fas fa-location-arrow opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Si se hallan coordenadas, aparecerá la búsqueda <strong>Cercanos</strong>. De lo contrario, aparecerá <strong>Acrónimo Equipo</strong>.</p>
-                    <div class="img-placeholder"><small>Captura: Métodos de Búsqueda Web</small></div>
-                </div>
-            </div>
+<footer>
+    &copy; 2026 Claro Argentina | Instalaciones
+</footer>
 
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">3</span> DETALLE DE PUERTOS</div>
-                    <i class="fas fa-filter opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Al presionar <strong>Filtrar</strong>, se mostrarán los splitters cercanos. Al seleccionar uno, verá el estado de sus puertos.</p>
-                    <div class="img-placeholder"><small>Captura: Listado y Estado de Puertos</small></div>
-                </div>
-            </div>
-
-            <div class="step-container shadow-sm">
-                <div class="step-header">
-                    <div class="step-title-wrapper"><span class="step-badge">4</span> ENLAZAR Y ASIGNAR</div>
-                    <i class="fas fa-link opacity-50"></i>
-                </div>
-                <div class="step-body">
-                    <p class="instruction-text">Una vez seleccionado el puerto, se debe presionar el botón <strong>Enlazar</strong> y luego <strong>Asignar</strong> para completar la tarea.</p>
-                    <div class="img-placeholder"><small>Captura: Botones Enlazar y Asignar</small></div>
-                </div>
+<div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-body p-0 text-center position-relative">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 1055;"></button>
+                <img src="" id="modalImage" class="img-fluid shadow-lg">
             </div>
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const imgModal = document.getElementById('imgModal');
+    imgModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const src = button.getAttribute('data-img-src');
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = src;
+    });
+</script>
+
 </body>
 </html>

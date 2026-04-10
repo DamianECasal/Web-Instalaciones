@@ -4,418 +4,316 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía de Fotos TOA - Claro</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs' // La misma que usaste en index.html
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // 1. Portero: Validar acceso apenas carga la página
-    async function validarAcceso() {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            // Si no hay sesión, vuelve al login que está un nivel arriba
-            window.location.href = "../index.html";
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
         }
-    }
-    validarAcceso();
+        validarAcceso();
     </script>
+
     <style>
-        :root { 
-            --claro-red: #d93025; 
-            --claro-gray: #f8f9fa; 
-            --dark-header: #333;
-        }
-        body { 
-            background-color: var(--claro-gray); 
-            font-family: 'Roboto', sans-serif; 
-            margin: 0; /* Asegura que el header pegue a los bordes */
-        }
-        
-        /* --- SOLO ESTO SE MODIFICÓ: ENCABEZADO ROJO --- */
-        .header-red {
-            background-color: var(--claro-red);
-            color: white;
-            padding: 25px 0;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 40px;
+        :root {
+            --claro-red: #ee122c;
+            --claro-dark: #333333;
+            --claro-gray: #f2f2f2;
         }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        body {
+            background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+        }
+
+        /* --- NAVBAR CON SEPARACIÓN --- */
+        .navbar-claro {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px; /* Separación solicitada */
+        }
+        .claro-logo { height: 35px; }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 100px 0;
+            text-align: center;
             position: relative;
         }
 
         .btn-back {
-            position: absolute;
-            left: 20px;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            background: rgba(255,255,255,0.1);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+            position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+        }
+        .btn-back:hover { background: white; color: var(--claro-red); }
+
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-content {
+            max-width: 1200px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
         }
 
-        .btn-back:hover {
-            color: white;
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-5px);
-        }
-
-        .header-title-container {
+        /* --- TARJETA DE INTRO (CON SEPARACIÓN) --- */
+        .intro-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 50px; /* Separación marcada */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             text-align: center;
         }
 
-        .header-title {
-            font-family: 'Montserrat', sans-serif;
+        /* --- TABS ESTILIZADAS --- */
+        .nav-pills .nav-link {
+            color: #666;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            font-size: 1.6rem;
-            line-height: 1.2;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            border-radius: 25px;
+            padding: 10px 25px;
+            transition: 0.3s;
+            background: white;
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--claro-red) !important;
+            border-color: var(--claro-red);
+            color: white;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.3);
         }
 
-        .header-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 5px 0 0 0;
-            font-weight: 300;
-        }
-        /* --- FIN DE LA MODIFICACIÓN --- */
-
-        /* Navegación */
-        .nav-pills .nav-link.active { background-color: var(--claro-red); }
-        .nav-pills .nav-link { color: #555; font-weight: bold; margin: 0 5px; border: 1px solid #dee2e6; }
-
-        /* Tarjetas de Fotos */
-        .photo-card { 
-            background: white; 
-            border-radius: 15px; 
-            border: 1px solid #dee2e6; 
-            transition: 0.3s; 
-            height: 100%; 
+        /* --- TARJETAS DE FOTOS --- */
+        .photo-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            height: 100%;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .photo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: var(--claro-red);
+        }
+
         .card-header-custom {
             background-color: var(--claro-red);
             padding: 12px 15px;
             display: flex;
             align-items: center;
+            color: white;
         }
 
-        .photo-number { 
-            background: var(--dark-header); 
-            color: white; 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: bold; 
-            margin-right: 12px;
-            font-size: 0.9rem;
-            flex-shrink: 0;
+        .photo-number {
+            background: var(--claro-dark);
+            color: white;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.8rem; margin-right: 12px;
         }
 
-        .section-tag { 
-            font-size: 0.85rem; 
-            font-weight: bold; 
-            color: white; 
-            text-transform: uppercase; 
-            margin-bottom: 0; 
-            line-height: 1.2;
-        }
+        .section-tag { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
 
-        .img-wrapper { 
-            background: #fff; 
+        .img-wrapper {
             cursor: zoom-in;
-            position: relative;
             overflow: hidden;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #eee;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
         }
-        
-        .img-step { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover; 
-            transition: 0.3s;
-        }
-        
-        .img-wrapper:hover .img-step { opacity: 0.9; }
+        .img-step { width: 100%; height: 220px; object-fit: cover; transition: 0.4s; }
+        .photo-card:hover .img-step { transform: scale(1.05); }
 
-        .description-box { 
-            font-size: 0.85rem; 
-            color: #444; 
-            line-height: 1.4;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
+        .description-box {
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            min-height: 80px;
         }
 
-        #imgModal .modal-dialog {
-            max-width: 98vw;
-            margin: 1vh auto;
-        }
-        #modalImage {
-            max-height: 96vh;
-            width: auto;
-            object-fit: contain;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
+        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
+
+        /* MODAL */
+        #imgModal .modal-dialog { max-width: 95vw; }
+        #modalImage { max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; }
     </style>
 </head>
 <body>
 
-<header class="header-red">
+<nav class="navbar-claro">
+    <div class="container d-flex justify-content-between">
+        <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
+        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Guía Técnica TOA</span>
+    </div>
+</nav>
+
+<header class="hero-section">
     <div class="container">
-        <div class="header-content">
-            <a href="javascript:window.history.back()" class="btn-back" title="Volver">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <div class="header-title-container">
-                <h2 class="header-title">EVIDENCIA FOTOGRÁFICA TOA</h2>
-                <p class="header-subtitle">Guía de capturas obligatorias para Técnicos</p>
-            </div>
-        </div>
+        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="header-title">EVIDENCIA FOTOGRÁFICA TOA</h2>
+        <p class="opacity-75 small mt-2">Guía de capturas obligatorias para Técnicos</p>
     </div>
 </header>
 
-<div class="container pb-5">
+<main class="main-content">
+    
+    <div class="intro-card">
+        <p class="mb-0 text-muted">A continuación se detallan las capturas requeridas para el correcto cierre de actividades en la plataforma <strong>Oracle Field Service (TOA)</strong>.</p>
+    </div>
+
     <ul class="nav nav-pills mb-5 justify-content-center" id="photoTabs" role="tablist">
         <li class="nav-item">
-            <button class="nav-link active px-4 py-2" data-bs-toggle="tab" data-bs-target="#inst-tab">ACTIVIDADES INST</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link px-4 py-2" data-bs-toggle="tab" data-bs-target="#vimud-tab">ACTIVIDADES VIMUD</button>
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#inst-tab">ACTIVIDADES INST/VIMUD</button>
         </li>
     </ul>
 
     <div class="tab-content" id="photoTabsContent">
+        
         <div class="tab-pane fade show active" id="inst-tab">
             <div class="row g-4">
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">1</div>
                             <span class="section-tag">Niveles / Banda</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/TOPOLOGIA.jpg">
-                                <img src="../assets/img/toa/TOPOLOGIA.jpg" class="img-step" alt="Link Home">
-                            </div>
-                            <div class="description-box"> Se subirá la foto con el resultado de la app Link Home. Potencia conector ONT (visualización mobile).</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/TOPOLOGIA.jpg">
+                            <img src="../assets/img/toa/TOPOLOGIA.jpg" class="img-step" alt="Link Home">
                         </div>
+                        <div class="description-box">Resultado de la app Link Home. Potencia conector ONT (visualización mobile).</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">2</div>
                             <span class="section-tag">Frente Domicilio</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/CASA.jpg">
-                                <img src="../assets/img/toa/CASA.jpg" class="img-step" alt="Frente Domicilio">
-                            </div>
-                            <div class="description-box">Se subirá la foto donde se pueda ver el frente del domicilio (casa, dpto, ph, etc.). Sacar desde la vereda.</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/CASA.jpg">
+                            <img src="../assets/img/toa/CASA.jpg" class="img-step" alt="Frente">
                         </div>
+                        <div class="description-box">Vista del frente del domicilio sacada desde la vereda (Casa, Dpto, PH).</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">3</div>
                             <span class="section-tag">Medición Interna</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/MEDICION ONT.png">
-                                <img src="../assets/img/toa/MEDICION ONT.png" class="img-step" alt="Powermeter">
-                            </div>
-                            <div class="description-box">Foto de la medición con el powermeter dentro del domicilio para saber potencia de llegada.</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/MEDICION ONT.png">
+                            <img src="../assets/img/toa/MEDICION ONT.png" class="img-step" alt="Powermeter">
                         </div>
+                        <div class="description-box">Medición con el powermeter dentro del domicilio para validar potencia de llegada.</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">4</div>
-                            <span class="section-tag">Foto Caja / Splitter</span>
+                            <span class="section-tag">Caja / Splitter</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/CAJA.jpg">
-                                <img src="../assets/img/toa/CAJA.jpg" class="img-step" alt="Caja Splitter">
-                            </div>
-                            <div class="description-box">Foto donde se visualice la potencia que sale de la pasiva junto con el acrónimo del mismo..</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/CAJA.jpg">
+                            <img src="../assets/img/toa/CAJA.jpg" class="img-step" alt="Caja">
                         </div>
+                        <div class="description-box">Potencia de salida de la pasiva junto con el acrónimo identificador.</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">5</div>
                             <span class="section-tag">Nomenclador</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/NOMENCLADOR.png">
-                                <img src="../assets/img/toa/NOMENCLADOR.png" class="img-step" alt="Numeración">
-                            </div>
-                            <div class="description-box">Foto de numeración del domicilio o piso/dpto. El otro lado tendrá el NIM sin ceros.</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/NOMENCLADOR.png">
+                            <img src="../assets/img/toa/NOMENCLADOR.png" class="img-step" alt="Numeración">
                         </div>
+                        <div class="description-box">Numeración del domicilio o piso/dpto. El otro lado debe mostrar el NIM sin ceros.</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">6</div>
                             <span class="section-tag">Ingreso Domicilio</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/INGRESO.png">
-                                <img src="../assets/img/toa/INGRESO.png" class="img-step" alt="Curva goteo">
-                            </div>
-                            <div class="description-box">Foto donde se visualice la curva de goteo y el pasante para el ingreso de la FO al domicilio.</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/INGRESO.png">
+                            <img src="../assets/img/toa/INGRESO.png" class="img-step" alt="Goteo">
                         </div>
+                        <div class="description-box">Curva de goteo y pasante para el ingreso de la FO al interior del domicilio.</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">7</div>
                             <span class="section-tag">Estado ONT</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/ESTADO ONT.png">
-                                <img src="../assets/img/toa/ESTADO ONT.png" class="img-step" alt="ONT amurada">
-                            </div>
-                            <div class="description-box">ONT amurada correctamente y puertos de red (verificación de STB cableados).</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/ESTADO ONT.png">
+                            <img src="../assets/img/toa/ESTADO ONT.png" class="img-step" alt="Amurada">
                         </div>
+                        <div class="description-box">ONT amurada correctamente y verificación de puertos (STB cableados).</div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3">
-                    <div class="card photo-card shadow-sm">
+                <div class="col-md-6 col-lg-3">
+                    <div class="photo-card">
                         <div class="card-header-custom">
                             <div class="photo-number">8</div>
                             <span class="section-tag">Acta Aceptación</span>
                         </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/ACTA DE ACEPTACION.jpg">
-                                <img src="../assets/img/toa/ACTA DE ACEPTACION.jpg" class="img-step" alt="Acta">
-                            </div>
-                            <div class="description-box">Foto legible de planilla de acta de aceptación con firma visible.</div>
+                        <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/ACTA DE ACEPTACION.jpg">
+                            <img src="../assets/img/toa/ACTA DE ACEPTACION.jpg" class="img-step" alt="Acta">
                         </div>
+                        <div class="description-box">Foto legible de planilla de acta de aceptación con firma del cliente visible.</div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="tab-pane fade" id="vimud-tab">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card photo-card shadow-sm">
-                        <div class="card-header-custom">
-                            <div class="photo-number">1</div>
-                            <span class="section-tag">Topología Red</span>
-                        </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/VIMUD1.png">
-                                <img src="../assets/img/toa/VIMUD1.png" class="img-step" alt="Home Link">
-                            </div>
-                            <div class="description-box">Vista de red y nivel de señal del AP capturado desde la app <strong>Home Link</strong>.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card photo-card shadow-sm">
-                        <div class="card-header-custom">
-                            <div class="photo-number">2</div>
-                            <span class="section-tag">Frente Domicilio</span>
-                        </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/VIMUD2.png">
-                                <img src="../assets/img/toa/VIMUD2.png" class="img-step" alt="Frente VIMUD">
-                            </div>
-                            <div class="description-box">Captura del frente del domicilio desde la vereda.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card photo-card shadow-sm">
-                        <div class="card-header-custom">
-                            <div class="photo-number">3</div>
-                            <span class="section-tag">Instalación AP</span>
-                        </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/VIMUD3.png">
-                                <img src="../assets/img/toa/VIMUD3.png" class="img-step" alt="Ubicación AP">
-                            </div>
-                            <div class="description-box">Foto del lugar exacto y prolijidad del AP instalado.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card photo-card shadow-sm">
-                        <div class="card-header-custom">
-                            <div class="photo-number">4</div>
-                            <span class="section-tag">Mediciones AP</span>
-                        </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/VIMUD4.png">
-                                <img src="../assets/img/toa/VIMUD4.png" class="img-step" alt="Etiqueta AP">
-                            </div>
-                            <div class="description-box">Captura legible de la etiqueta técnica del equipo AP.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card photo-card shadow-sm">
-                        <div class="card-header-custom">
-                            <div class="photo-number">5</div>
-                            <span class="section-tag">Acta Aceptación</span>
-                        </div>
-                        <div class="p-3">
-                            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/toa/VIMUD5.png">
-                                <img src="../assets/img/toa/VIMUD5.png" class="img-step" alt="Planilla VIMUD">
-                            </div>
-                            <div class="description-box">Planilla de aceptación firmada y completada para VIMUD.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
+</main>
+
+<footer>
+    &copy; 2026 Claro Argentina | Instalaciones
+</footer>
 
 <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-transparent border-0">
             <div class="modal-body p-0 text-center position-relative">
-                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" style="z-index: 1055;"></button>
-                <img src="" id="modalImage" class="img-fluid rounded shadow-lg">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1055;"></button>
+                <img src="" id="modalImage" class="img-fluid shadow-lg">
             </div>
         </div>
     </div>

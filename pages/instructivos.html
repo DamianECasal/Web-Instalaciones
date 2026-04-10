@@ -3,382 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructivos y Procesos - Portal Instalaciones</title>
+    <title>Instructivos y Procesos - Claro</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs' // La misma que usaste en index.html
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // 1. Portero: Validar acceso apenas carga la página
-    async function validarAcceso() {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            // Si no hay sesión, vuelve al login que está un nivel arriba
-            window.location.href = "../index.html";
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
         }
-    }
-    validarAcceso();
+        validarAcceso();
     </script>
     
     <style>
         :root {
-            --claro-red: #d93025;
-            --light-bg: #f8f9fa;
+            --claro-red: #ee122c;
+            --claro-dark: #333333;
+            --claro-gray: #f2f2f2;
         }
 
         body {
-            background-color: var(--light-bg);
+            background-color: white;
             font-family: 'Roboto', sans-serif;
             margin: 0;
+            color: var(--claro-dark);
         }
 
-        /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
-        .header-red {
-            background-color: var(--claro-red);
+        /* --- NAVBAR --- */
+        .navbar-claro {
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+            background: white;
+        }
+        .claro-logo { height: 40px; }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
             color: white;
-            padding: 25px 0;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 40px;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative; /* Para posicionar la flecha */
+            padding: 50px 0 80px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
         }
 
         .btn-back {
             position: absolute;
             left: 20px;
+            top: 20px;
             color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            background: rgba(255,255,255,0.1);
-            width: 45px;
-            height: 45px;
+            background: rgba(255,255,255,0.15);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            text-decoration: none;
+            transition: 0.3s;
         }
-
-        .btn-back:hover {
-            color: white;
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-5px);
-        }
-
-        .header-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            font-size: 1.6rem;
-        }
+        .btn-back:hover { background: white; color: var(--claro-red); transform: translateX(-3px); }
 
         /* --- BUSCADOR Y FILTROS --- */
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
+        .search-wrapper {
+            max-width: 700px;
+            margin: -40px auto 30px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
+        .search-box {
+            background: white;
+            border-radius: 30px;
+            padding: 10px 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 1rem;
+        }
+
+        .filter-container { margin-bottom: 40px; }
+        .filter-btn {
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 500;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-check:checked + .filter-btn {
+            background-color: var(--claro-red) !important;
+            border-color: var(--claro-red) !important;
+            color: white !important;
+        }
+
+        /* --- TARJETAS --- */
         .instruction-card {
             background: white;
-            border: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 30px 20px;
             height: 100%;
-            border-left: 5px solid var(--claro-red);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .instruction-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: var(--claro-red);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background-color: var(--claro-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
             color: var(--claro-red);
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            transition: 0.3s;
+        }
+
+        .instruction-card:hover .icon-circle {
+            background-color: #ffeaea;
         }
 
         .btn-view {
             background-color: var(--claro-red);
             color: white;
-            border-radius: 20px;
-            padding: 5px 20px;
-            font-weight: 500;
+            border-radius: 25px;
+            padding: 8px 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
             border: none;
+            margin-top: auto;
+            width: 100%;
+            transition: 0.3s;
         }
 
-        .btn-view:hover {
-            background-color: #b2261e;
-            color: white;
-        }
+        .btn-view:hover { background-color: #b2261e; color: white; }
 
-        .filter-btn {
-            border-radius: 20px;
-            margin: 0 5px;
-            padding: 5px 20px;
-        }
-
-        .btn-check:checked + .btn-outline-danger {
-            background-color: var(--claro-red);
-            color: white;
-        }
+        footer { background: var(--claro-gray); padding: 30px 0; margin-top: 60px; }
     </style>
 </head>
 <body>
 
-    <header class="header-red">
-    <div class="container">
-        <div class="header-content">
-            <a href="./portada.html" class="btn-back" title="Volver al inicio">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <h2 class="header-title">Instructivos y Procesos</h2>
+    <nav class="navbar-claro">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
         </div>
-    </div>
-</header>
+    </nav>
 
-<div class="container py-2">
-
-    <div class="search-container">
-        <div class="input-group shadow-sm">
-            <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
-            <input type="text" id="manualSearch" class="form-control border-start-0" placeholder="Buscar instructivo, manual o proceso...">
+    <header class="hero-section">
+        <div class="container">
+            <a href="./portada.html" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+            <h2 class="fw-bold">Instructivos y Procesos</h2>
+            <p class="opacity-75">Encontrá guías técnicas y manuales de operación</p>
         </div>
-    </div>
+    </header>
 
-    <div class="text-center mb-5">
-        <div class="btn-group" role="group">
+    <div class="search-wrapper">
+        <div class="search-box d-flex align-items-center">
+            <i class="fas fa-search text-muted me-2"></i>
+            <input type="text" id="manualSearch" placeholder="¿Qué estás buscando hoy?">
+        </div>
+
+        <div class="text-center filter-container mt-4">
             <input type="radio" class="btn-check" name="filter" id="all" checked onclick="filterItems('all')">
-            <label class="btn btn-outline-danger filter-btn" for="all">Todos</label>
+            <label class="filter-btn" for="all">Todos</label>
 
             <input type="radio" class="btn-check" name="filter" id="tecnico" onclick="filterItems('tecnico')">
-            <label class="btn btn-outline-danger filter-btn" for="tecnico">Técnico</label>
+            <label class="filter-btn" for="tecnico">Técnico</label>
 
             <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('procesos')">
-            <label class="btn btn-outline-danger filter-btn" for="procesos">Procesos</label>
+            <label class="filter-btn" for="procesos">Procesos</label>
 
             <input type="radio" class="btn-check" name="filter" id="herramientas" onclick="filterItems('herramientas')">
-            <label class="btn btn-outline-danger filter-btn" for="herramientas">Herramientas</label>
+            <label class="filter-btn" for="herramientas">Herramientas</label>
         </div>
     </div>
 
-    <div class="row g-4" id="manualsGrid">
+    <div class="container mb-5">
+        <div class="row g-4" id="manualsGrid">
 
-        <div class="col-md-4 manual-item" data-category="tecnico">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-user"></i></div>
-                <h5 class="fw-bold">Alta de Usuario</h5>
-                <p class="text-muted small">El usuario de red es lo primero que se debe solicitar para acceder a las diferentes herramientas.</p>
-                <div class="mt-auto">
-                    <a href="usuario.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="tecnico">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-user-plus"></i></div>
+                    <h5 class="fw-bold">Alta de Usuario</h5>
+                    <p class="text-muted small">Gestión del usuario de red para acceso a herramientas institucionales.</p>
+                    <a href="usuario.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
-        
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h5 class="fw-bold">Oracle Field Service Cloud (TOA)</h5>
-                <p class="text-muted small">Instructivo para el cierre de actividades y carga de fotos en la herramienta TOA.</p>
-                <div class="mt-auto">
-                    <a href="ofsc.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-mobile-screen-button"></i></div>
+                    <h5 class="fw-bold">Oracle Field Service (TOA)</h5>
+                    <p class="text-muted small">Cierre de actividades y carga de fotografías en la herramienta TOA.</p>
+                    <a href="ofsc.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
-                        <div class="col-md-4 manual-item" data-category="procesos">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-id-card"></i></div>
-                <h5 class="fw-bold">Motivos de interrupcion OFSC (TOA)</h5>
-                <p class="text-muted small">Procesos de cierre de tareas segun su escenario.</p>
-                <div class="mt-auto">
-                    <a href="motivosOfsc.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="procesos">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-clipboard-question"></i></div>
+                    <h5 class="fw-bold">Motivos Interrupción TOA</h5>
+                    <p class="text-muted small">Procesos de cierre de tareas según el escenario técnico encontrado.</p>
+                    <a href="motivosOfsc.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-md-4 manual-item" data-category="tecnico">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-tools"></i></div>
-                <h5 class="fw-bold">Manual de Instalación</h5>
-                <p class="text-muted small">Guía paso a paso para la configuración de equipos STB y ONT en domicilio.</p>
-                <div class="mt-auto">
-                    <a href="../assets/pdf/Manual Instalaciones.pdf" t class="btn btn-view w-100">Descargar PDF</a>
-                </div>
-            </div>
-        </div>
 
-                <div class="col-md-4 manual-item" data-category="procesos">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-camera"></i></div>
-                <h5 class="fw-bold">Guia Fotos TOA</h5>
-                <p class="text-muted small">Guía de las fotos que se deben subir a TOA.</p>
-                <div class="mt-auto">
-                    <a href="fotosToa.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="tecnico">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-screwdriver-wrench"></i></div>
+                    <h5 class="fw-bold">Manual de Instalación</h5>
+                    <p class="text-muted small">Guía paso a paso para configuración de equipos STB y ONT en domicilio.</p>
+                    <a href="../assets/pdf/Manual Instalaciones.pdf" target="_blank" class="btn btn-view">Descargar PDF</a>
                 </div>
             </div>
-        </div>
 
+            <div class="col-md-6 col-lg-4 manual-item" data-category="procesos">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-camera-retro"></i></div>
+                    <h5 class="fw-bold">Guía Fotos TOA</h5>
+                    <p class="text-muted small">Requerimientos fotográficos obligatorios para el cierre de tareas.</p>
+                    <a href="fotosToa.html" class="btn btn-view">Ver Guía</a>
+                </div>
+            </div>
 
-                <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-map-marked"></i></div>
-                <h5 class="fw-bold">PortalGis</h5>
-                <p class="text-muted small">Instructivo para el uso de mapa de cobertura.</p>
-                <div class="mt-auto">
-                    <a href="portalgis.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-map-location-dot"></i></div>
+                    <h5 class="fw-bold">PortalGis</h5>
+                    <p class="text-muted small">Uso y navegación del mapa de cobertura de red y facilidades.</p>
+                    <a href="portalgis.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4 manual-item" data-category="procesos">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-headset"></i></div>
-                <h5 class="fw-bold">Protocolo de Precontacto</h5>
-                <p class="text-muted small">Normas de comunicación con el cliente previo a la visita técnica.</p>
-                <div class="mt-auto">
-                    <a href="precontacto.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="procesos">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-headset"></i></div>
+                    <h5 class="fw-bold">Protocolo Precontacto</h5>
+                    <p class="text-muted small">Normas de comunicación con el cliente previo a la visita técnica.</p>
+                    <a href="precontacto.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-network-wired"></i></div>
+                    <h5 class="fw-bold">SYTEX</h5>
+                    <p class="text-muted small">Identificación de cables y acometidas bajo normativa vigente.</p>
+                    <a href="sytex.html" class="btn btn-view">Ver Guía</a>
+                </div>
+            </div>
 
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
-                <h5 class="fw-bold">SYTEX</h5>
-                <p class="text-muted small">Correcta identificación de cables y acometidas según normativa vigente.</p>
-                <div class="mt-auto">
-                    <a href="sytex.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-calendar-check"></i></div>
+                    <h5 class="fw-bold">WFM (Agenda)</h5>
+                    <p class="text-muted small">Manual operativo para la gestión de turnos y agenda técnica.</p>
+                    <a href="wfm.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-address-book"></i></div>
-                <h5 class="fw-bold">WFM (Agenda)</h5>
-                <p class="text-muted small">Manual de uso agenda.</p>
-                <div class="mt-auto">
-                    <a href="wfm.html" class="btn btn-view w-100">Ver Guía</a>
-                </div>
-            </div>
-             </div>
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-                <h5 class="fw-bold">WTM (Inventario)</h5>
-                <p class="text-muted small">Manual de uso agenda.</p>
-                <div class="mt-auto">
-                    <a href="wtm.html" class="btn btn-view w-100">Ver Guía</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-phone-alt"></i></div>
-                <h5 class="fw-bold">AVAYA</h5>
-                <p class="text-muted small">Conexion, llamadas y transferencias a mesa.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-globe"></i></div>
-                <h5 class="fw-bold">ORION</h5>
-                <p class="text-muted small">Herramienta que se utiliza para revisar el estado de los clientes de la rama.</p>
-                <div class="mt-auto">
-                    <a href="orion.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-boxes-stacked"></i></div>
+                    <h5 class="fw-bold">WTM (Inventario)</h5>
+                    <p class="text-muted small">Gestión de materiales y stock de equipos desde el móvil.</p>
+                    <a href="wtm.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
-         <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-server"></i></div>
-                <h5 class="fw-bold">SGT</h5>
-                <p class="text-muted small">Herramienta que se utiliza para la provision de equipos desde el despacho.</p>
-                <div class="mt-auto">
-                    <a href="sgt.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-phone-volume"></i></div>
+                    <h5 class="fw-bold">AVAYA</h5>
+                    <p class="text-muted small">Conexión, llamadas y transferencias a mesa de soporte.</p>
+                    <a href="avaya.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-lock"></i></div>
-                <h5 class="fw-bold">VPN</h5>
-                <p class="text-muted small">Instructivo sobre la utilizacion de VPN (Red Privada Virtual).</p>
-                <div class="mt-auto">
-                    <a href="../assets/pdf/Instructivo VPN Proveedores .pdf" target="_blank" class="btn btn-view w-100">Descargar PDF</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-globe"></i></div>
+                    <h5 class="fw-bold">ORION</h5>
+                    <p class="text-muted small">Monitoreo de estado de clientes y niveles de la rama.</p>
+                    <a href="orion.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4 manual-item" data-category="procesos">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-comments"></i></div>
-                <h5 class="fw-bold">Contacto con Mesa de Despacho</h5>
-                <p class="text-muted small">Que opcion se debe elegir de la mesa de despacho segun el escenario a reportar.</p>
-                <div class="mt-auto">
-                    <a href="contactoMesa.html" class="btn btn-view w-100">Ver Guía</a>
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-server"></i></div>
+                    <h5 class="fw-bold">SGT</h5>
+                    <p class="text-muted small">Aprovisionamiento de equipos desde el despacho técnico.</p>
+                    <a href="sgt.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
-        </div>
 
+            <div class="col-md-6 col-lg-4 manual-item" data-category="herramientas">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-shield-halved"></i></div>
+                    <h5 class="fw-bold">VPN</h5>
+                    <p class="text-muted small">Conexión segura a la red privada para proveedores externos.</p>
+                    <a href="../assets/pdf/Instructivo VPN Proveedores .pdf" target="_blank" class="btn btn-view">Descargar PDF</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 manual-item" data-category="procesos">
+                <div class="instruction-card">
+                    <div class="icon-circle"><i class="fas fa-comments"></i></div>
+                    <h5 class="fw-bold">Mesa de Despacho</h5>
+                    <p class="text-muted small">Guía de opciones de escalamiento según el escenario a reportar.</p>
+                    <a href="contactoMesa.html" class="btn btn-view">Ver Guía</a>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<script>
-    // Buscador interactivo
-    document.getElementById('manualSearch').addEventListener('input', function(e) {
-        const text = e.target.value.toLowerCase();
-        const items = document.querySelectorAll('.manual-item');
-        
-        items.forEach(item => {
-            const title = item.querySelector('h5').innerText.toLowerCase();
-            const desc = item.querySelector('p').innerText.toLowerCase();
-            if (title.includes(text) || desc.includes(text)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
+    <footer class="text-center">
+        <div class="container text-muted">
+            <p class="small mb-0">© 2026 Claro Argentina | Instalaciones</p>
+            <p class="small">Uso exclusivo para personal técnico autorizado.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Buscador interactivo (Tu lógica original mejorada)
+        document.getElementById('manualSearch').addEventListener('input', function(e) {
+            const text = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.manual-item');
+            
+            items.forEach(item => {
+                const title = item.querySelector('h5').innerText.toLowerCase();
+                const desc = item.querySelector('p').innerText.toLowerCase();
+                if (title.includes(text) || desc.includes(text)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
-    });
 
-    // Filtros por categoría
-    function filterItems(category) {
-        const items = document.querySelectorAll('.manual-item');
-        items.forEach(item => {
-            if (category === 'all' || item.getAttribute('data-category') === category) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
-</script>
+        // Filtros por categoría (Tu lógica original)
+        function filterItems(category) {
+            const items = document.querySelectorAll('.manual-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
