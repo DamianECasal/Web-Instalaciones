@@ -3,278 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uso de la herramienta OFSC TOA - Portal Instalaciones</title>
+    <title>Uso de la herramienta OFSC TOA - Claro</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-     <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs' // La misma que usaste en index.html
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // 1. Portero: Validar acceso apenas carga la página
-    async function validarAcceso() {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            // Si no hay sesión, vuelve al login que está un nivel arriba
-            window.location.href = "../index.html";
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
         }
-    }
-    validarAcceso();
+        validarAcceso();
     </script>
+    
     <style>
         :root {
-            --claro-red: #d93025;
-            --light-bg: #f8f9fa;
-            --dark-header: #333;
+            --claro-red: #ee122c;
+            --claro-dark: #333333;
+            --claro-gray: #f2f2f2;
         }
 
         body {
-            background-color: var(--light-bg);
+            background-color: #fcfcfc;
             font-family: 'Roboto', sans-serif;
             margin: 0;
+            color: var(--claro-dark);
         }
 
-        /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
-        .header-red {
-            background-color: var(--claro-red);
+        /* --- NAVBAR CON SEPARACIÓN --- */
+        .navbar-claro {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px; 
+        }
+        .claro-logo { height: 35px; }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
             color: white;
-            padding: 25px 0;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 40px;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 50px 0 100px 0;
+            text-align: center;
             position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
         }
 
         .btn-back {
-            position: absolute;
-            left: 20px;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            background: rgba(255,255,255,0.1);
-            width: 45px;
-            height: 45px;
+            position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+        }
+        .btn-back:hover { background: white; color: var(--claro-red); }
+
+        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0; }
+
+        /* --- CONTENEDOR Y BUSCADOR --- */
+        .main-content {
+            max-width: 1200px;
+            margin: -45px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 30px;
+            padding: 10px 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+        }
+
+        .search-box input {
             border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 1rem;
         }
 
-        .btn-back:hover {
-            color: white;
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-5px);
-        }
-
-        .header-title-container {
-            text-align: center;
-        }
-
-        .header-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            font-size: 1.6rem;
-            line-height: 1.2;
-        }
-
-        .header-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 5px 0 0 0;
-            font-weight: 300;
-        }
-
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-        }
-
+        /* --- TARJETAS --- */
         .instruction-card {
             background: white;
-            border: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 30px 20px;
             height: 100%;
-            border-left: 5px solid var(--claro-red);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .instruction-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--claro-red);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
+        .icon-circle {
+            width: 75px;
+            height: 75px;
+            background-color: var(--claro-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
             color: var(--claro-red);
-            margin-bottom: 15px;
+            font-size: 2rem;
+            transition: 0.3s;
+        }
+
+        .instruction-card:hover .icon-circle {
+            background-color: var(--claro-red);
+            color: white;
+        }
+
+        .instruction-card h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--claro-dark);
+        }
+
+        .instruction-card p {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .btn-view {
             background-color: var(--claro-red);
             color: white;
-            border-radius: 20px;
-            padding: 5px 20px;
-            font-weight: 500;
+            border-radius: 25px;
+            padding: 8px 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
             border: none;
+            margin-top: auto;
+            width: 100%;
+            transition: 0.3s;
         }
 
         .btn-view:hover {
-            background-color: #b2261e;
+            background-color: #d10f26;
             color: white;
+            box-shadow: 0 4px 10px rgba(238, 18, 44, 0.2);
         }
+
+        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<header class="header-red">
+<nav class="navbar-claro">
+    <div class="container d-flex justify-content-between">
+        <img src="../assets/img/claro-logo.svg">
+        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual de Herramientas</span>
+    </div>
+</nav>
+
+<header class="hero-section">
     <div class="container">
-        <div class="header-content">
-            <a href="instructivos.html" class="btn-back" title="Volver">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <div class="header-title-container">
-                <h2 class="header-title">USO DE LA HERRAMIENTA OFSC</h2>
-                <p class="header-subtitle">Guía de procedimientos en plataforma TOA</p>
-            </div>
-        </div>
+        <a href="instructivos.html" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="header-title">USO DE LA HERRAMIENTA OFSC</h2>
+        <p class="opacity-75 small mt-2 uppercase tracking-widest">Guía de procedimientos en plataforma TOA</p>
     </div>
 </header>
 
-<div class="container py-2">
-    <div class="search-container">
-        <div class="input-group shadow-sm">
-            <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
-            <input type="text" id="manualSearch" class="form-control border-start-0" placeholder="">
+<main class="main-content">
+
+    <div class="search-wrapper">
+        <div class="search-box">
+            <i class="fas fa-search text-muted"></i>
+            <input type="text" id="manualSearch" placeholder="Buscar un procedimiento específico...">
         </div>
     </div>
 
     <div class="row g-4" id="manualsGrid">
         
-        <div class="col-md-4 manual-item" data-category="tecnico">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                <h5 class="fw-bold">Primeros Pasos</h5>
-                <p class="text-muted small">Guía de bienvenida y configuración inicial de herramientas para el personal de nuevo ingreso.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-rocket"></i></div>
+                <h5>Primeros Pasos</h5>
+                <p>Configuración inicial y bienvenida para personal de nuevo ingreso a la plataforma TOA.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-plus-square"></i></div>
-                <h5 class="fw-bold">Actividades no programadas</h5>
-                <p class="text-muted small">Creación de tareas fuera del flujo de agenda habitual.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-calendar-plus"></i></div>
+                <h5>Actividades no programadas</h5>
+                <p>Procedimiento para la creación manual de tareas fuera del flujo de agenda estándar.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h5 class="fw-bold">Movimiento de tareas</h5>
-                <p class="text-muted small">Procedimiento para el reordenamiento y traslado de actividades dentro de la ruta.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-arrows-alt"></i></div>
+                <h5>Movimiento de tareas</h5>
+                <p>Cómo reordenar y trasladar actividades dentro de la ruta diaria del técnico.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-columns"></i></div>
-                <h5 class="fw-bold">Dividir pantalla</h5>
-                <p class="text-muted small">Configuración de vista compartida para gestión simultánea de mapa y lista de tareas.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-desktop"></i></div>
+                <h5>Dividir pantalla</h5>
+                <p>Configuración de la vista compartida para gestionar mapa y lista simultáneamente.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-map"></i></div>
-                <h5 class="fw-bold">Visualización de Mapa</h5>
-                <p class="text-muted small">Uso del mapa interactivo para localización de OTs, clientes y optimización de rutas.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-map-marked-alt"></i></div>
+                <h5>Visualización de Mapa</h5>
+                <p>Uso avanzado del mapa interactivo para optimización de traslados y ubicación de OTs.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item" data-category="procesos">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-list-check"></i></div>
-                <h5 class="fw-bold">Gestión Sobre Actividades</h5>
-                <p class="text-muted small">Manual completo sobre estados de tareas: inicio, traslados, suspensiones y flujo de acciones en sitio.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-clipboard-list"></i></div>
+                <h5>Gestión sobre Actividades</h5>
+                <p>Estados de tareas, suspensiones y flujo de acciones obligatorias en sitio.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-users"></i></div>
-                <h5 class="fw-bold">Trabajo en equipo</h5>
-                <p class="text-muted small">Instructivo para la colaboración y gestión de grupos de técnicos en la herramienta TOA.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-users-gear"></i></div>
+                <h5>Trabajo en equipo</h5>
+                <p>Colaboración entre técnicos y gestión de grupos de trabajo dentro de TOA.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-box-open"></i></div>
-                <h5 class="fw-bold">Descarga de materiales</h5>
-                <p class="text-muted small">Registro y conciliación de stock utilizado durante la ejecución de la actividad técnica.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-box-archive"></i></div>
+                <h5>Descarga de materiales</h5>
+                <p>Registro y conciliación del stock de materiales utilizados en cada intervención.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
-        <div class="col-md-4 manual-item" data-category="herramientas">
-            <div class="card instruction-card shadow-sm p-4">
-                <div class="card-icon"><i class="fas fa-file-excel"></i></div>
-                <h5 class="fw-bold">Reportes Excel</h5>
-                <p class="text-muted small">Guía técnica para la exportación y filtrado de bases de datos de actividades en formato .xlsx.</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-view w-100">Ver Guía</a>
-                </div>
+        <div class="col-md-6 col-lg-4 manual-item">
+            <div class="instruction-card">
+                <div class="icon-circle"><i class="fas fa-file-invoice"></i></div>
+                <h5>Reportes Excel</h5>
+                <p>Exportación de bases de datos y filtrado de actividades para auditoría técnica.</p>
+                <a href="#" class="btn btn-view">Ver Guía</a>
             </div>
         </div>
 
     </div>
-</div>
+</main>
+
+<footer>
+    &copy; 2026 Claro Argentina | Instalaciones <br>
+    Uso exclusivo para personal técnico autorizado.
+</footer>
 
 <script>
+    // Buscador en tiempo real
     document.getElementById('manualSearch').addEventListener('input', function(e) {
         const text = e.target.value.toLowerCase();
         const items = document.querySelectorAll('.manual-item');
         items.forEach(item => {
             const title = item.querySelector('h5').innerText.toLowerCase();
             const desc = item.querySelector('p').innerText.toLowerCase();
-            item.style.display = (title.includes(text) || desc.includes(text)) ? 'block' : 'none';
+            if (title.includes(text) || desc.includes(text)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
         });
     });
 </script>

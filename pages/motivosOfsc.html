@@ -3,198 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Motivos OFSC - Portal Instalaciones</title>
+    <title>Consulta de Motivos OFSC - Claro</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs' // La misma que usaste en index.html
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // 1. Portero: Validar acceso apenas carga la página
-    async function validarAcceso() {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            // Si no hay sesión, vuelve al login que está un nivel arriba
-            window.location.href = "../index.html";
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
         }
-    }
-    validarAcceso();
+        validarAcceso();
     </script>
 
-<style>
-    :root { 
-        --claro-red: #d93025; 
-        --claro-gray: #f4f7f6;
-        --success-green: #28a745; 
-        --blue: #0015fe; 
-    }
-    
-    body { 
-        background-color: var(--claro-gray); 
-        font-family: 'Roboto', sans-serif; 
-        margin: 0; 
-    }
+    <style>
+        :root { 
+            --claro-red: #ee122c; 
+            --claro-dark: #333333;
+            --claro-gray: #f2f2f2;
+            --success-green: #28a745; 
+            --claro-blue: #0082c9; 
+        }
+        
+        body { 
+            background-color: #fcfcfc; 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            color: var(--claro-dark);
+        }
 
-    /* --- ENCABEZADO ROJO INSTITUCIONAL --- */
-    .header-red {
-        background-color: var(--claro-red);
-        color: white;
-        padding: 25px 0;
-        width: 100%;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        margin-bottom: 40px;
-    }
+        /* --- NAVBAR CON SEPARACIÓN --- */
+        .navbar-claro {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px; 
+        }
+        .claro-logo { height: 35px; }
 
-    .header-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 100px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
 
-    .btn-back {
-        position: absolute;
-        left: 20px;
-        color: white;
-        font-size: 1.5rem;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-        background: rgba(255,255,255,0.1);
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        border: none;
-    }
+        .btn-back {
+            position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+        }
+        .btn-back:hover { background: white; color: var(--claro-red); }
 
-    .btn-back:hover {
-        color: white;
-        background: rgba(255,255,255,0.2);
-        transform: translateX(-5px);
-    }
+        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0; }
 
-    .header-title-container {
-        text-align: center;
-    }
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-content {
+            max-width: 1200px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
 
-    .header-title {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin: 0;
-        font-size: 1.6rem;
-        line-height: 1.2;
-    }
+        /* --- FILTROS Y BÚSQUEDA --- */
+        .controls-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 45px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
 
-    .header-subtitle {
-        font-size: 0.9rem;
-        opacity: 0.9;
-        margin: 5px 0 0 0;
-        font-weight: 300;
-    }
+        .nav-pills .nav-link {
+            color: #666; font-weight: 700; border: 1px solid #ddd;
+            margin: 0 5px; border-radius: 25px; padding: 8px 20px;
+            font-size: 0.85rem; transition: 0.3s; background: white;
+        }
+        .btn-todos.active { background-color: var(--claro-blue) !important; border-color: var(--claro-blue); color: white; }
+        .btn-no-realizada.active { background-color: var(--claro-red) !important; border-color: var(--claro-red); color: white; }
+        .btn-realizada.active { background-color: var(--success-green) !important; border-color: var(--success-green); color: white; }
 
-    /* --- BOTONES DE FILTRO --- */
-    .btn-todos { background-color: var(--blue); color: white; border: none; font-weight: 500; }
-    .btn-todos:hover { background-color: #5463ec; color: white; }
-    
-    .btn-no-realizada { background-color: var(--claro-red); color: white; border: none; font-weight: 500; }
-    .btn-no-realizada:hover { background-color: #db6b65; color: white; }
-    
-    .btn-realizada { background-color: var(--success-green); color: white; border: none; font-weight: 500; }
-    .btn-realizada:hover { background-color: #56c36e; color: white; }
+        /* --- TARJETAS DE MOTIVOS --- */
+        .motive-card { 
+            cursor: pointer; 
+            transition: 0.3s; 
+            border: 1px solid #eee;
+            border-left: 6px solid var(--claro-red);
+            height: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .motive-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
+        .motive-card.realizada { border-left-color: var(--success-green); }
 
-    /* --- TARJETAS --- */
-    .motive-card { 
-        cursor: pointer; 
-        transition: 0.3s; 
-        border-left: 5px solid var(--claro-red);
-        height: 100%;
-        background: white;
-        border-radius: 8px;
-    }
-    .motive-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    .realizada { border-left-color: var(--success-green); }
+        .motive-card h6 { font-weight: 700; font-size: 0.9rem; color: var(--claro-dark); }
+        .badge-type { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 10px; border-radius: 15px; }
 
-    /* --- MODAL --- */
-    .modal-header { border-bottom: none; padding: 15px 20px; }
-    .section-title { 
-        font-weight: bold; color: #333; margin-top: 15px; text-transform: uppercase; 
-        font-size: 0.85rem; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-bottom: 8px;
-    }
-    .modal-body li, .modal-body p { margin-bottom: 3px; color: #444; font-size: 0.9rem; line-height: 1.4; }
-</style>
+        /* --- MODAL ESTILIZADO --- */
+        .modal-content { border-radius: 16px; border: none; overflow: hidden; }
+        .modal-header { padding: 20px 25px; }
+        .modal-body { padding: 30px; }
+        
+        .section-title { 
+            font-weight: 800; color: #888; margin-top: 25px; text-transform: uppercase; 
+            font-size: 0.75rem; border-bottom: 2px solid #f2f2f2; padding-bottom: 5px; margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .modal-list { list-style: none; padding-left: 0; }
+        .modal-list li { 
+            margin-bottom: 10px; color: #444; font-size: 0.95rem; line-height: 1.5; 
+            display: flex; align-items: flex-start;
+        }
+
+        /* --- CÍRCULOS NEGROS CON NÚMERO BLANCO --- */
+        .num-badge {
+            background: black; color: white; width: 22px; height: 22px;
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; font-weight: 700; margin-right: 12px; flex-shrink: 0; margin-top: 2px;
+        }
+
+        .stock-box { background: #fff3f3; padding: 15px; border-radius: 8px; border-left: 4px solid var(--claro-red); font-size: 0.9rem; color: #a50d1f; font-weight: 500; }
+
+        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
+    </style>
 </head>
 <body>
 
-<header class="header-red">
+<nav class="navbar-claro">
+    <div class="container d-flex justify-content-between">
+        <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
+        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual de Cierres</span>
+    </div>
+</nav>
+
+<header class="hero-section">
     <div class="container">
-        <div class="header-content">
-            <button onclick="window.history.back()" class="btn-back" title="Volver">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <div class="header-title-container">
-                <h2 class="header-title">MOTIVOS DE CIERRES OFSC</h2>
-                <p class="header-subtitle">Guía de escenarios y procesos de finalización</p>
-            </div>
-        </div>
+        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="header-title">MOTIVOS DE CIERRES OFSC</h2>
+        <p class="opacity-75 small mt-2 uppercase tracking-widest">Guía de escenarios y procesos de finalización</p>
     </div>
 </header>
 
-<div class="container py-2">
-    <div class="row mb-4 align-items-center">
-        <div class="col-md-6">
-            <div class="input-group shadow-sm">
-                <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
-                <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="Buscar motivo...">
+<main class="main-content">
+    
+    <div class="controls-card shadow-sm">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+                <div class="input-group border rounded-pill px-3 py-1">
+                    <span class="input-group-text bg-transparent border-0"><i class="fas fa-search text-muted"></i></span>
+                    <input type="text" id="searchInput" class="form-control border-0 bg-transparent" placeholder="Buscar motivo por nombre...">
+                </div>
             </div>
-        </div>
-        
-        <div class="col-md-6 text-end">
-            <div class="btn-group shadow-sm" role="group">
-                <button class="btn btn-todos px-4" onclick="filterMotives('all')">Todos</button>
-                <button class="btn btn-no-realizada px-3" onclick="filterMotives('no-realizada')">No Realizadas</button>
-                <button class="btn btn-realizada px-4" onclick="filterMotives('realizada')">Realizadas</button>
+            <div class="col-md-6 text-md-end text-center">
+                <div class="nav nav-pills justify-content-md-end justify-content-center" role="tablist">
+                    <button class="nav-link active btn-todos" onclick="filterMotives('all', this)">Todos</button>
+                    <button class="nav-link btn-no-realizada" onclick="filterMotives('no-realizada', this)">No Realizadas</button>
+                    <button class="nav-link btn-realizada" onclick="filterMotives('realizada', this)">Realizadas</button>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row g-3" id="motivesGrid"></div>
-</div>
+</main>
 
 <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content shadow-lg">
             <div class="modal-header text-white" id="modalHeader">
                 <h5 class="modal-title fw-bold" id="motiveTitle"></h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <div class="section-title">1. DESCRIPCION:</div>
-                <ol id="motiveDesc" class="ps-4"></ol>
+                <div class="section-title">1. Descripción del Escenario</div>
+                <ul id="motiveDesc" class="modal-list"></ul>
                 
-                <div class="section-title">2. PASOS A SEGUIR:</div>
-                <ul id="motiveSteps" class="ps-4"></ul>
+                <div class="section-title">2. Pasos Obligatorios</div>
+                <ul id="motiveSteps" class="modal-list"></ul>
 
-                <div class="section-title">3. FOTOS:</div>
-                <ul id="motivePhotos" class="ps-4"></ul>
+                <div class="section-title">3. Evidencia Fotográfica (TOA)</div>
+                <ul id="motivePhotos" class="modal-list"></ul>
 
-                <div class="section-title">4. PROVISION Y STOCK:</div>
-                <p id="motiveStock" class="ps-4"></p>
+                <div class="section-title">4. Provisión y Gestión de Stock</div>
+                <div id="motiveStock" class="stock-box mb-3"></div>
 
-                <div class="section-title">5. NOTAS:</div>
-                <p id="motiveNotes" class="ps-4"></p>
+                <div class="section-title">5. Notas Adicionales</div>
+                <ul id="motiveNotes" class="modal-list"></ul>
             </div>
         </div>
     </div>
 </div>
+
+<footer>
+    &copy; 2026 Claro Argentina | Instalaciones <br>
+    Guía técnica para el uso correcto de motivos de cierre en TOA.
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -708,13 +728,15 @@
         grid.innerHTML = '';
         data.forEach(m => {
             const card = `
-                <div class="col-md-4">
-                    <div class="card motive-card p-3 shadow-sm ${m.type === 'realizada' ? 'realizada' : ''}" onclick="showDetail(${m.id})">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 fw-bold">${m.title}</h6>
-                            <span class="badge ${m.type === 'realizada' ? 'bg-success' : 'bg-danger'}">
-                                ${m.type === 'realizada' ? 'Realizada' : 'No Realizada'}
-                            </span>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card motive-card p-3 ${m.type === 'realizada' ? 'realizada' : ''}" onclick="showDetail(${m.id})">
+                        <div class="d-flex flex-column h-100">
+                            <h6 class="mb-2 text-truncate-2">${m.title}</h6>
+                            <div class="mt-auto">
+                                <span class="badge badge-type ${m.type === 'realizada' ? 'bg-success' : 'bg-danger'}">
+                                    ${m.type === 'realizada' ? 'Realizada' : 'No Realizada'}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>`;
@@ -736,7 +758,9 @@
         new bootstrap.Modal(document.getElementById('detailModal')).show();
     }
 
-    function filterMotives(type) {
+    function filterMotives(type, btn) {
+        document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         if (type === 'all') renderMotives(motives);
         else renderMotives(motives.filter(m => m.type === type));
     }
@@ -748,5 +772,6 @@
 
     renderMotives(motives);
 </script>
+
 </body>
 </html>
