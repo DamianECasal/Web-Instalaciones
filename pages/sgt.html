@@ -203,7 +203,7 @@
     
     <div class="intro-card">
         <h5 class="fw-bold mb-2"><i class="fas fa-info-circle me-2"></i>Introducción</h5>
-        <p class="mb-0 text-muted">El sistema sugiere hasta 3 splitters cercanos basados en las coordenadas del domicilio. <strong>Validar siempre contra el splitter físico antes de finalizar.</strong></p>
+        <p class="mb-0 text-muted">El sistema sugiere splitters cercanos basados en las coordenadas del domicilio.<strong>Se debe validar siempre el splitter virtual contra el splitter físico antes de finalizar.</strong></p>
     </div>
 
     <ul class="nav nav-pills mb-5 justify-content-center" id="sgtTabs" role="tablist">
@@ -283,15 +283,147 @@
         </div>
 
         <div class="tab-pane fade" id="web-tab">
+
             <div class="step-card">
-                <div class="step-header"><span class="step-badge">1</span> ASIGNAR CPE</div>
+                <div class="step-header"><span class="step-badge">1</span> ACCESO Y LOGIN</div>
                 <div class="step-body">
-                    <p class="text-muted">En el portal web, seleccioná <strong>Asignar Cpe</strong> para abrir el modal de carga de ONT y Splitter.</p>
-                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgt/web1.png">
-                        <img src="../assets/img/sgt/web1.png" class="img-step" alt="SGT Web">
-                        <span class="img-caption">CARGA DE CPE VÍA WEB</span>
+                    <p class="text-muted mb-4">Para acceder a la plataforma de gestión externa, podés usar este link directo:</p>
+                    <div class="text-center mb-4">
+                        <a href="http://sgt.claro.amx/SGT/pages/index.xhtml" target="_blank" class="btn-link-red">
+                            <i class="fas fa-external-link-alt me-2"></i> IR A SGT WEB
+                        </a>
+                    </div>
+                    <p class="text-muted">Debe acceder utilizando su <strong>usuario de red</strong> y la contraseña correspondiente.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 1.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 1.png" class="img-step" alt="Login">
+                        <span class="img-caption">PANTALLA DE INICIO DE SESIÓN</span>
                     </div>
                 </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">2</span> PANEL PRINCIPAL</div>
+                <div class="step-body">
+                    <p class="text-muted">Posterior al logueo en el panel principal deberemos seleccionar <strong>"Buscardor Orden".</strong></p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 2.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 2.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">ELEMENTOS DE LA PANTALLA PRINCIPAL</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">3</span> BÚSQUEDA ORDEN DE TRABAJO</div>
+                <div class="step-body">
+                    <p class="text-muted">Se desplegara un metodo de busqueda para poder cargar la  <strong>Orden de trabajo</strong>, una vez colocada la misma seleccionamos el boton <strong>"Buscar Orden"</strong>.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 3.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 3.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">BUSQUEDA Y UBICACION DE LA OT</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">4</span> FILTRAR LA ORDEN DE TRABAJO</div>
+                <div class="step-body">
+                    <p class="text-muted">Al filtrar la orden de trabajo nos arrojara una breve descripcion de la misma seleccionamos el boton <strong>"Ver Orden".</strong></p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 4.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 4.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">RESULTADO DE LA OT</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">5</span> VISUALIZACION GENERAL DE LA ORDEN DE TRABAJO</div>
+                <div class="step-body">
+                    <p class="text-muted">Podemos visualizar en la imagen, en la parte superior la informacion general de la orden de trabajo, 
+                        en panel de la derecha podremos encontrar informacion general del <strong>WIFI</strong> e informacion sobre la <strong>Provision</strong>. 
+                        Y en la parte inferior desde el <strong>CPE</strong> hacia abajo es el area donde trabajaremos para provisionar los equipos tales como <strong>ONT/DECO/AP</strong>en la orden.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 5.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 5.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">INFORMACION COMPLETA DE LA OT</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">6</span> ASIGNAR CPE</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 6.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 6.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">FILTRACION DE MATERIALES PARA LA PROVISION</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">7</span> FILTRAR LA MAC DEL EQUIPO</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 7.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 7.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">SELECCION DE EQUIPO</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">8</span> SELECCION DE LA CTO Y PUERTO</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 8.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 8.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">BUSQUEDA Y SELECCION DE PUERTO</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">9</span> ASIGNAR Y ENLAZAR LOS EQUIPOS</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 9.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 9.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">RESULTADOS DEL ENLACE</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">10</span> PROVISIONAR ALTA DE SERVICIO</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 10.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 10.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">ALTA DEL SERVICIO</span>
+                    </div>
+                </div>
+            </div>
+
+              <div class="step-card">
+                <div class="step-header"><span class="step-badge">11</span> RESULTADO DEL ALTA DE LA PROVISION</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 11.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 11.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">RESULTADOS </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header"><span class="step-badge">12</span> GUARDAR AVANCES DE LA PROVISION DE EQUIPO</div>
+                <div class="step-body">
+                    <p class="text-muted">Si hay coordenadas, el método <strong>Cercanos</strong> aparecerá por defecto para sugerir splitters.</p>
+                    <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sgtWeb/SGT WEB 12.png">
+                        <img src="../assets/img/sgtWeb/SGT WEB 12.png" class="img-step" alt="Paso 4">
+                        <span class="img-caption">OPCIÓN DE CERCANOS</span>
+                    </div>
+                </div>
+            </div>         
+            </div>
             </div>
         </div>
 
