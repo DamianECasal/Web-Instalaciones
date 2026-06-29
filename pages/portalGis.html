@@ -99,7 +99,8 @@
         .step-header.anexo { background-color: var(--claro-dark); border-bottom: 4px solid var(--anexo-gold); }
 
         .step-badge {
-            background: rgba(0,0,0,0.2);
+            background: #000000; /* <--- Círculo negro sólido */
+            color: #ffffff; /* <--- Número en color blanco */
             width: 28px; height: 28px;
             border-radius: 50%;
             display: inline-flex; align-items: center; justify-content: center;
@@ -178,7 +179,7 @@
 <main class="main-content">
     
     <div class="step-card mb-4">
-        <div class="step-body py-3 text-center">
+        <div class="step-body py-4 text-center">
             <p class="mb-0 text-muted small"><strong>Este documento detalla el procedimiento para ingresar a la plataforma PortalGis y configurar correctamente las capas de cobertura.</strong></p>
         </div>
     </div>
@@ -186,13 +187,12 @@
     <div class="step-card">
         <div class="step-header"><span class="step-badge">1</span> Acceso a la Plataforma</div>
         <div class="step-body">
-            <p class="literal-text">Para ingresar a la plataforma debe realizarse por el siguiente Link:</p>
+            <p class="literal-text text-center">Para ingresar a la plataforma debe realizarse por el siguiente Link:</p>
             <div class="text-center my-4">
                 <a href="https://portalgis.claro.com.ar" target="_blank" class="btn-link-gis">
-                    <i class="fas fa-external-link-alt me-2"></i> IR A PORTALGIS
-                </a>
+                    <i class="fas fa-external-link-alt me-2"></i> IR A PORTALGIS</a>
             </div>
-            <p class="literal-text">Para logearse debe hacerse con el <strong>usuario de red</strong> y la contraseña correspondiente.</p>
+            <p class="literal-text text-center">Para logearse debe hacerse con el <strong>usuario de red</strong> y la contraseña correspondiente.</p>
             
             <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/portalgis/PORTALGIS1.png">
                 <img src="../assets/img/portalgis/PORTALGIS1.png" class="img-step" alt="Login PortalGis">
@@ -230,9 +230,9 @@
         <div class="step-body">
             <p class="literal-text">En las <strong>COBERTURAS TEMATIZADAS</strong> se deben tildar las siguientes casillas:</p>
             <ul class="list-group list-group-flush mb-4 literal-text border rounded-3">
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>EDIFICIO DISPONIBLE / EDIFICIO SATURADO </li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>GPON / GPON SATURADO / GPON PLANIFICADO</li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>FRAUDE / ZONA PELIGROSA / ZONA DESHABILITADA</li>
+                <li class="list-group-item"><i class="fas fa-city text-danger me-2"></i>EDIFICIO DISPONIBLE / EDIFICIO SATURADO </li>
+                <li class="list-group-item"><i class="fas fa-road text-danger me-2"></i>GPON / GPON SATURADO / GPON PLANIFICADO</li>
+                <li class="list-group-item"><i class="fas fa-triangle-exclamation text-danger me-2"></i>FRAUDE / ZONA PELIGROSA / ZONA DESHABILITADA</li>
             </ul>
             <p class="literal-text">En el item desplegable de <strong>SPLITTERS</strong> se deben seleccionar todas las casillas.</p>
             

@@ -1,136 +1,321 @@
-HTML_Lineas_V2 = 
-VAR _periodos = 
-    CONCATENATEX(
-        ALLSELECTED('TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION]),
-        "'" & 'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION] & "'",
-        ",",
-        'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION], ASC
-    )
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Portal Sytex - Claro</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-VAR _exitosa = 
-    CONCATENATEX(
-        ALLSELECTED('TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION]),
-        CALCULATE(COUNT('TOA Y INFO VTAS'[ORDER_ID]), 'AGRUPADOR TOA CLIENTE AUSENTE'[AGU GESTION] = "Inst. Exitosa"),
-        ",",
-        'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION], ASC
-    )
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
+        }
+        validarAcceso();
+    </script>
 
-VAR _fallido = 
-    CONCATENATEX(
-        ALLSELECTED('TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION]),
-        CALCULATE(COUNT('TOA Y INFO VTAS'[ORDER_ID]), 'AGRUPADOR TOA CLIENTE AUSENTE'[AGU GESTION] = "Fallido"),
-        ",",
-        'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION], ASC
-    )
+    <style>
+        :root {
+            --claro-red: #ee122c;
+            --claro-dark: #333333;
+            --claro-gray: #f2f2f2;
+        }
 
-VAR _clima = 
-    CONCATENATEX(
-        ALLSELECTED('TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION]),
-        CALCULATE(COUNT('TOA Y INFO VTAS'[ORDER_ID]), 'AGRUPADOR TOA CLIENTE AUSENTE'[AGU GESTION] = "Clima"),
-        ",",
-        'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION], ASC
-    )
+        body {
+            background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+        }
 
-VAR _contrat = 
-    CONCATENATEX(
-        ALLSELECTED('TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION]),
-        CALCULATE(COUNT('TOA Y INFO VTAS'[ORDER_ID]), 'AGRUPADOR TOA CLIENTE AUSENTE'[AGU GESTION] = "Falla Contratista"),
-        ",",
-        'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION], ASC
-    )
+        /* --- NAVBAR CON SEPARACIÓN (ESPACIO SUPERIOR) --- */
+        .navbar-claro {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+        }
+        .claro-logo { height: 35px; }
 
-VAR _stock = 
-    CONCATENATEX(
-        ALLSELECTED('TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION]),
-        CALCULATE(COUNT('TOA Y INFO VTAS'[ORDER_ID]), 'AGRUPADOR TOA CLIENTE AUSENTE'[AGU GESTION] = "Stock"),
-        ",",
-        'TOA Y INFO VTAS'[PERIODO_FECHA_ASIGNACION], ASC
-    )
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+        }
 
-VAR _html = 
-"<!DOCTYPE html><html><head><style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif;}
-body{background:transparent;padding:6px;}
-h3{font-size:12px;font-weight:600;color:#333;text-align:center;margin-bottom:6px;}
-.legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:6px;}
-.legend span{display:flex;align-items:center;gap:4px;font-size:10px;color:#555;}
-.dot{width:12px;height:3px;border-radius:2px;display:inline-block;}
-svg{display:block;width:100%;overflow:visible;}
-</style></head><body>
-<h3>Gestión de Asignación Mensual</h3>
-<div class='legend'>
-  <span><span class='dot' style='background:#7B2FBE'></span>Inst. Exitosa</span>
-  <span><span class='dot' style='background:#E24B4A'></span>Fallido</span>
-  <span><span class='dot' style='background:#378ADD'></span>Clima</span>
-  <span><span class='dot' style='background:#EF9F27'></span>Falla Contratista</span>
-  <span><span class='dot' style='background:#1D9E75'></span>Stock</span>
+        .btn-back {
+            position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+        }
+        .btn-back:hover { background: white; color: var(--claro-red); }
+
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-content {
+            max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- TARJETA DE INTRO --- */
+        .intro-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        /* --- TARJETAS DE PASOS --- */
+        .step-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .step-header {
+            padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* --- CÍRCULOS DE NÚMEROS EN NEGRO SÓLIDO --- */
+        .step-badge {
+            background: #000000;
+            color: #ffffff;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-right: 15px; font-size: 0.8rem;
+        }
+
+        .step-body { padding: 30px; }
+        .literal-text { font-size: 0.95rem; color: #444; line-height: 1.6; }
+
+        /* --- BOTÓN SYTEX (Faltaba en tu código) --- */
+        .btn-link-sytex {
+            background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+        }
+        .btn-link-sytex:hover { background-color: #d10f26; color: white; transform: translateY(-2px); }
+
+        /* --- IMÁGENES Y VIDEO --- */
+        .img-wrapper {
+            position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .img-wrapper:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .img-step { width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain; }
+        .img-caption { display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500; }
+
+        .important-callout {
+            background: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .video-wrapper {
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+        video { width: 100%; display: block; }
+
+        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
+
+        /* MODAL */
+        #imgModal .modal-dialog { max-width: 95vw; }
+        #modalImage { max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar-claro">
+    <div class="container d-flex justify-content-between">
+        <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
+        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual Sytex</span>
+    </div>
+</nav>
+
+<header class="hero-section">
+    <div class="container">
+        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="header-title">PORTAL SYTEX</h2>
+        <p class="opacity-75 small mt-2">Manual de búsqueda: Formularios de splitter</p>
+    </div>
+</header>
+
+<main class="main-content">
+    
+    <div class="intro-card">
+        <p class="mb-0 text-muted">Este documento detalla el procedimiento para ingresar a la plataforma <strong>Sytex</strong> y gestionar correctamente la visualización técnica de splitters.</p>
+    </div>
+
+    
+    <div class="step-card">
+      <div class="step-header"><span class="step-badge">1</span> Acceso y Login</div>
+        <div class="step-body">
+            <p class="literal-text text-center">Para ingresar a la plataforma, utilice el siguiente enlace:</p>
+            <div class="text-center my-4">
+                <a href="http://auth.sytex.io/" target="_blank" class="btn-link-sytex">
+                    <i class="fas fa-external-link-alt me-2"></i> IR A SYTEX
+                </a>
+            </div>
+            <p class="literal-text text-center">Debe acceder utilizando su <strong>correo electronico</strong> y la contraseña correspondiente.</p>
+            
+            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX1.png">
+                <img src="../assets/img/sytex/SYTEX1.png" class="img-step" alt="Login Orion">
+                <span class="img-caption">PANTALLA DE INICIO DE SESIÓN</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="step-card">
+        <div class="step-header"><span class="step-badge">2</span> Búsqueda de Formulario</div>
+        <div class="step-body">
+            <p class="literal-text">Vamos a la búsqueda del formulario del splitter desde el icono de la lupa. Al dejar el puntero se extenderá para pegar el acrónimo.</p>
+            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX2.png">
+                <img src="../assets/img/sytex/SYTEX2.png" class="img-step" alt="Búsqueda Sytex">
+                <span class="img-caption">HERRAMIENTA DE BÚSQUEDA</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-header"><span class="step-badge">3</span> Selección de Elemento</div>
+        <div class="step-body">
+            <p class="literal-text">Buscaremos el acrónimo de ejemplo y seleccionamos la pestaña <strong>“Formularios”</strong> una vez que cargue la búsqueda.</p>
+            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX3.png">
+                <img src="../assets/img/sytex/SYTEX3.png" class="img-step" alt="Selección Sytex">
+                <span class="img-caption">FILTROS DE BÚSQUEDA</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-header"><span class="step-badge">4</span> Validación y Estado</div>
+        <div class="step-body">
+            <p class="literal-text">De los formularios que encontraremos seleccionaremos la que se encuentre aprobada.</p>
+            <div class="important-callout">
+                <h6 class="fw-bold mb-2 text-danger"><i class="fas fa-exclamation-circle me-2"></i>IMPORTANTE</h6>
+                <p class="mb-0">Siempre se deben ver los formularios aprobados.</p>
+            </div>
+            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX4.png">
+                <img src="../assets/img/sytex/SYTEX4.png" class="img-step" alt="Estado Aprobado">
+                <span class="img-caption">VALIDACIÓN DE ESTADO</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-header"><span class="step-badge">5</span> Visualización del Documento</div>
+        <div class="step-body">
+            <p class="literal-text">Presione sobre los 3 puntos para que se abra el desplegable y elegir la opción de <strong>“Ver documento”</strong>.</p>
+            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX5.png">
+                <img src="../assets/img/sytex/SYTEX5.png" class="img-step" alt="Opciones">
+                <span class="img-caption">MENÚ DE OPCIONES</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-header"><span class="step-badge">6</span> Resultado Final</div>
+        <div class="step-body">
+            <p class="literal-text">Se abrirá una nueva página con fotos y descripción del splitter donde se encuentra ubicado.</p>
+            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX6.png">
+                <img src="../assets/img/sytex/SYTEX6.png" class="img-step" alt="Formulario Final">
+                <span class="img-caption">VISTA TÉCNICA FINAL</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-header" style="background-color: var(--claro-dark);"><span class="step-badge"><i class="fas fa-play"></i></span> Video del Instructivo</div>
+        <div class="step-body text-center">
+            <p class="literal-text mb-4">En el siguiente video podrán observar el paso a paso mencionado anteriormente.</p>
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="../assets/video/sytexFilms.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    &copy; 2026 Claro Argentina | Instalaciones
+</footer>
+
+<div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-body p-0 text-center position-relative">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1055;"></button>
+                <img src="" id="modalImage" class="img-fluid">
+            </div>
+        </div>
+    </div>
 </div>
-<svg id='chart' viewBox='0 0 820 300'></svg>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-(function(){
-const periodos=[" & _periodos & "];
-const series=[
-  {name:'Inst. Exitosa',data:[" & _exitosa & "],color:'#7B2FBE'},
-  {name:'Fallido',      data:[" & _fallido & "],color:'#E24B4A'},
-  {name:'Clima',        data:[" & _clima   & "],color:'#378ADD'},
-  {name:'Contratista',  data:[" & _contrat & "],color:'#EF9F27'},
-  {name:'Stock',        data:[" & _stock   & "],color:'#1D9E75'}
-];
-const W=820,H=300,pL=48,pR=16,pT=20,pB=48;
-const cW=W-pL-pR,cH=H-pT-pB,n=periodos.length;
-const allV=series.flatMap(s=>s.data).filter(v=>v>0);
-const maxV=Math.max(...allV);
-const svg=document.getElementById('chart');
-const ns='http://www.w3.org/2000/svg';
-const el=(t,a={})=>{const e=document.createElementNS(ns,t);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));return e;};
-const xP=i=>pL+(n<2?cW/2:i/(n-1)*cW);
-const yP=v=>pT+cH-(v/maxV)*cH;
+    const imgModal = document.getElementById('imgModal');
+    imgModal.addEventListener('show.bs.modal', function (event) {
+        const trigger = event.relatedTarget;
+        const src = trigger.getAttribute('data-img-src');
+        document.getElementById('modalImage').src = src;
+    });
+</script>
 
-// Grid
-[0,25,50,75,100].forEach(p=>{
-  const y=pT+cH-(p/100)*cH;
-  const v=Math.round(maxV*p/100);
-  svg.appendChild(el('line',{x1:pL,x2:W-pR,y1:y,y2:y,stroke:'#eee','stroke-width':'1'}));
-  const t=el('text',{x:pL-4,y:y+3,'text-anchor':'end','font-size':'9',fill:'#bbb'});
-  t.textContent=v>=1000?(v/1000).toFixed(0)+'k':v;
-  svg.appendChild(t);
-});
-
-// Ejes
-svg.appendChild(el('line',{x1:pL,x2:W-pR,y1:pT+cH,y2:pT+cH,stroke:'#ddd','stroke-width':'1'}));
-svg.appendChild(el('line',{x1:pL,x2:pL,y1:pT,y2:pT+cH,stroke:'#ddd','stroke-width':'1'}));
-
-// Labels X
-periodos.forEach((p,i)=>{
-  const t=el('text',{x:xP(i),y:H-6,'text-anchor':'middle','font-size':'9',fill:'#aaa'});
-  t.textContent=p.replace(/'/g,'');
-  svg.appendChild(t);
-});
-
-// Series
-series.forEach(s=>{
-  // Area
-  let a='M'+xP(0)+','+(pT+cH);
-  s.data.forEach((_,i)=>a+='L'+xP(i)+','+yP(s.data[i]));
-  a+='L'+xP(n-1)+','+(pT+cH)+'Z';
-  svg.appendChild(el('path',{d:a,fill:s.color,opacity:'0.06'}));
-
-  // Linea
-  let d='';
-  s.data.forEach((v,i)=>d+=(i===0?'M':'L')+xP(i)+','+yP(v));
-  svg.appendChild(el('path',{d,fill:'none',stroke:s.color,'stroke-width':'2','stroke-linejoin':'round'}));
-
-  // Puntos y labels
-  s.data.forEach((v,i)=>{
-    svg.appendChild(el('circle',{cx:xP(i),cy:yP(v),r:'3',fill:s.color}));
-    if(v>0){
-      const t=el('text',{x:xP(i),y:yP(v)-7,'text-anchor':'middle','font-size':'8','font-weight':'600',fill:s.color});
-      t.textContent=v>=1000?(v/1000).toFixed(1)+'k':v;
-      svg.appendChild(t);
-    }
-  });
-});
-})();
-</" & "script></body></html>"
-
-RETURN _html
+</body>
+</html>
