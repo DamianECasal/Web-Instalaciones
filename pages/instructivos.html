@@ -201,8 +201,9 @@
             <input type="radio" class="btn-check" name="filter" id="all" checked onclick="filterItems('all')">
             <label class="filter-btn" for="all">Todos</label>
 
-            <input type="radio" class="btn-check" name="filter" id="tecnico" onclick="filterItems('tecnico')">
-            <label class="filter-btn" for="tecnico">Técnico</label>
+            
+            <!--<input type="radio" class="btn-check" name="filter" id="tecnico" onclick="filterItems('tecnico')">
+            <label class="filter-btn" for="tecnico">Técnico</label>-->
 
             <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('procesos')">
             <label class="filter-btn" for="procesos">Procesos</label>
@@ -215,10 +216,10 @@
     <div class="container mb-5">
         <div class="row g-4" id="manualsGrid">
 
-            <div class="col-md-6 col-lg-4 manual-item" data-category="tecnico">
+            <div class="col-md-6 col-lg-4 manual-item" data-category="procesos">
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-user-plus"></i></div>
-                    <h5 class="fw-bold">Alta de Usuario</h5>
+                    <h5 class="fw-bold">Alta de Usuario Administrativo</h5>
                     <p class="text-muted small">Gestión del usuario de red para acceso a herramientas institucionales.</p>
                     <a href="usuario.html" class="btn btn-view">Ver Guía</a>
                 </div>
@@ -242,11 +243,11 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4 manual-item" data-category="tecnico">
+            <div class="col-md-6 col-lg-4 manual-item" data-category="procesos">
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-screwdriver-wrench"></i></div>
                     <h5 class="fw-bold">Manual de Instalación</h5>
-                    <p class="text-muted small">Guía paso a paso para configuración de equipos STB y ONT en domicilio.</p>
+                    <p class="text-muted small">Guia de instalaciones fisicas y configuración de equipos STB y ONT en domicilio.</p>
                     <a href="../assets/pdf/Manual Instalaciones.pdf" target="_blank" class="btn btn-view">Descargar PDF</a>
                 </div>
             </div>
@@ -282,7 +283,7 @@
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-network-wired"></i></div>
                     <h5 class="fw-bold">SYTEX</h5>
-                    <p class="text-muted small">Identificación de cables y acometidas bajo normativa vigente.</p>
+                    <p class="text-muted small">Identificación de la ubicación de las cajas y sus acrónimos mediante el formulario.</p>
                     <a href="sytex.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
@@ -300,7 +301,7 @@
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-boxes-stacked"></i></div>
                     <h5 class="fw-bold">WTM (Inventario)</h5>
-                    <p class="text-muted small">Gestión de materiales y stock de equipos desde el móvil.</p>
+                    <p class="text-muted small">Gestión de materiales y stock de equipos almacen/tecnico.</p>
                     <a href="wtm.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
@@ -309,7 +310,7 @@
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-phone-volume"></i></div>
                     <h5 class="fw-bold">AVAYA</h5>
-                    <p class="text-muted small">Conexión, llamadas y transferencias a mesa de soporte.</p>
+                    <p class="text-muted small">Instalacion, Configuracion, Conexión, llamadas y transferencias a mesa de soporte.</p>
                     <a href="avaya.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
@@ -318,7 +319,7 @@
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-globe"></i></div>
                     <h5 class="fw-bold">ORION</h5>
-                    <p class="text-muted small">Monitoreo de estado de clientes y niveles de la rama.</p>
+                    <p class="text-muted small">Monitoreo de estado de clientes y niveles de la rama (OLT).</p>
                     <a href="orion.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
@@ -327,7 +328,7 @@
                 <div class="instruction-card">
                     <div class="icon-circle"><i class="fas fa-server"></i></div>
                     <h5 class="fw-bold">SGT</h5>
-                    <p class="text-muted small">Aprovisionamiento de equipos desde el despacho técnico.</p>
+                    <p class="text-muted small">Proceso de aprovisionamiento de equipos desde Despacho y los técnico.</p>
                     <a href="sgt.html" class="btn btn-view">Ver Guía</a>
                 </div>
             </div>
