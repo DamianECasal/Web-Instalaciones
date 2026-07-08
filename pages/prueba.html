@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Portal Sytex - Claro</title>
+    <title>Proceso VIMUD - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="module">
@@ -38,12 +38,12 @@
             color: var(--claro-dark);
         }
 
-        /* --- NAVBAR CON SEPARACIÓN (ESPACIO SUPERIOR) --- */
+        /* --- NAVBAR --- */
         .navbar-claro {
             border-bottom: 1px solid #eee;
             padding: 12px 0;
             background: white;
-            margin-bottom: 30px;
+            margin-bottom: 30px; 
         }
         .claro-logo { height: 35px; }
 
@@ -54,6 +54,8 @@
             padding: 50px 0 110px 0;
             text-align: center;
             position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
         }
 
         .btn-back {
@@ -64,7 +66,7 @@
         }
         .btn-back:hover { background: white; color: var(--claro-red); }
 
-        .header-title { font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
+        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
 
         /* --- CONTENEDOR PRINCIPAL --- */
         .main-content {
@@ -83,7 +85,16 @@
             padding: 25px;
             margin-bottom: 55px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            text-align: center;
+        }
+
+        .warning-callout {
+            background-color: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #a50d1f;
         }
 
         /* --- TARJETAS DE PASOS --- */
@@ -91,7 +102,7 @@
             background: white;
             border: 1px solid #e0e0e0;
             border-radius: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.05);
             overflow: hidden;
         }
@@ -107,72 +118,55 @@
             text-transform: uppercase;
         }
 
-        /* --- CÍRCULOS DE NÚMEROS EN NEGRO SÓLIDO --- */
+        /* --- CÍRCULOS NEGROS CON NÚMEROS BLANCOS --- */
         .step-badge {
-            background: #000000;
-            color: #ffffff;
-            width: 28px; height: 28px;
+            background: black; 
+            color: white; 
+            width: 30px; 
+            height: 30px;
             border-radius: 50%;
-            display: inline-flex; align-items: center; justify-content: center;
-            margin-right: 15px; font-size: 0.8rem;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .step-body { padding: 30px; }
         .literal-text { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .text-center-custom { text-align: center; }
 
-        /* --- BOTÓN SYTEX (Faltaba en tu código) --- */
-        .btn-link-sytex {
-            background-color: var(--claro-red);
-            color: white;
-            border-radius: 30px;
-            padding: 12px 35px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            border: none;
-            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+        /* --- LISTAS FAQ --- */
+        .custom-list { padding-left: 0; list-style: none; }
+        .custom-list li {
+            background: #fdfdfd; margin-bottom: 10px; padding: 15px; 
+            border-radius: 8px; border: 1px solid #eaeaea;
+            border-left: 4px solid var(--claro-dark);
+            font-size: 0.9rem; color: #444; line-height: 1.5;
         }
-        .btn-link-sytex:hover { background-color: #d10f26; color: white; transform: translateY(-2px); }
+        .custom-list .faq-q { font-weight: bold; color: var(--claro-red); display: block; margin-bottom: 5px; }
 
-        /* --- IMÁGENES Y VIDEO --- */
+        /* --- IMÁGENES Y MODAL --- */
         .img-wrapper {
-            position: relative;
-            cursor: zoom-in;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            padding: 8px;
-            background: #fff;
-            margin-top: 20px;
-            transition: 0.3s;
+            position: relative; cursor: zoom-in; transition: 0.3s;
+            border: 1px solid #eee; border-radius: 10px; padding: 8px; background: #fff; margin-top: 10px;
         }
-        .img-wrapper:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .img-step { width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain; }
+        .img-wrapper:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .img-step { width: 100%; height: auto; border-radius: 6px; }
         .img-caption { display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500; }
+        
+        #imgModal .modal-dialog { max-width: 95vw; }
+        #modalImage { max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
 
-        .important-callout {
-            background: #fff3f3;
-            border-left: 5px solid var(--claro-red);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 0.9rem;
-        }
-
-        .video-wrapper {
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-top: 20px;
-        }
-        video { width: 100%; display: block; }
+        /* --- SCROLL PERSONALIZADO PARA LISTA REVISITA --- */
+        .scroll-list { max-height: 350px; overflow-y: auto; }
+        .scroll-list::-webkit-scrollbar { width: 6px; }
+        .scroll-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .scroll-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .scroll-list::-webkit-scrollbar-thumb:hover { background: #aaa; }
 
         footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
-
-        /* MODAL */
-        #imgModal .modal-dialog { max-width: 95vw; }
-        #modalImage { max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -180,113 +174,175 @@
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between">
         <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual Sytex</span>
+        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Vimud</span>
     </div>
 </nav>
 
 <header class="hero-section">
     <div class="container">
         <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
-        <h2 class="header-title">PORTAL SYTEX</h2>
-        <p class="opacity-75 small mt-2">Manual de búsqueda: Formularios de splitter</p>
+        <h2 class="header-title">VIMUD - CLARO</h2>
+        <p class="opacity-75 small mt-2">Gestión de Cambio de Domicilio</p>
     </div>
 </header>
 
 <main class="main-content">
     
-    <div class="intro-card">
-        <p class="mb-0 text-muted">Este documento detalla el procedimiento para ingresar a la plataforma <strong>Sytex</strong> y gestionar correctamente la visualización técnica de splitters.</p>
+    <div class="intro-card shadow-sm">
+        <p class="mb-3 text-muted text-center-custom">Una VIMUD corresponde a una solicitud para un cambio de domicilio de un servicio de internet por parte del cliente. En este proceso, es necesario realizar un nuevo cableado en la nueva ubicación, reutilizando los equipos que el cliente ya posee, mientras los mismos estén en buenas condiciones y vigentes.</p>
+        <div class="warning-callout text-center-custom">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            Antes de hacer una VIMUD, hay que verificar su factibilidad; en caso de que se pueda realizar, se debe hacer una desaprovisión de los equipos para poder utilizarlos en el nuevo domicilio.
+        </div>
     </div>
 
-    
     <div class="step-card">
-      <div class="step-header"><span class="step-badge">1</span> Acceso y Login</div>
+        <div class="step-header"><span class="step-badge">1</span> ESCENARIO FRECUENTES</div>
         <div class="step-body">
-            <p class="literal-text text-center">Para ingresar a la plataforma, utilice el siguiente enlace:</p>
-            <div class="text-center my-4">
-                <a href="http://auth.sytex.io/" target="_blank" class="btn-link-sytex">
-                    <i class="fas fa-external-link-alt me-2"></i> IR A SYTEX
-                </a>
-            </div>
-            <p class="literal-text text-center">Debe acceder utilizando su <strong>correo electronico</strong> y la contraseña correspondiente.</p>
+            <p class="literal-text text-center-custom">Si cliente cuenta con el/los equipos Se debe avanzar con la instalación reutilizando los mismos. En las siguientes imágenes verán las opciones a marcar en dicho escenario.</p>
             
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX1.png">
-                <img src="../assets/img/sytex/SYTEX1.png" class="img-step" alt="Login Orion">
-                <span class="img-caption">PANTALLA DE INICIO DE SESIÓN</span>
+            <div class="text-center my-4">
+                <span class="badge bg-dark px-3 py-2 fs-6">Marcar: Reutilizaron de equipos</span>
             </div>
         </div>
     </div>
 
-
     <div class="step-card">
-        <div class="step-header"><span class="step-badge">2</span> Búsqueda de Formulario</div>
+        <div class="step-header"><span class="step-badge">2</span> ESCENARIO: SIN EQUIPOS</div>
         <div class="step-body">
-            <p class="literal-text">Vamos a la búsqueda del formulario del splitter desde el icono de la lupa. Al dejar el puntero se extenderá para pegar el acrónimo.</p>
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX2.png">
-                <img src="../assets/img/sytex/SYTEX2.png" class="img-step" alt="Búsqueda Sytex">
-                <span class="img-caption">HERRAMIENTA DE BÚSQUEDA</span>
+            <p class="literal-text text-center-custom">Si el cliente NO cuenta con el/los equipos Se deben reemplazar, marcando en OFSC/TOA los equipos faltantes. Una vez dado al botón de finalización, deberán seleccionar y completar la información necesaria.</p>
+            
+            <div class="text-center my-4">
+                <span class="badge bg-dark px-3 py-2 fs-6 mb-2">Marcar: ¿EQUIPO/S FALTANTE/S?</span><br>
+                <small class="text-muted">(Aclarando si es ONT, ONT+STB o STB)</small>
             </div>
         </div>
     </div>
 
+    <!-- AQUÍ ESTÁ LA NUEVA SECCIÓN DE REVISITA -->
     <div class="step-card">
-        <div class="step-header"><span class="step-badge">3</span> Selección de Elemento</div>
+        <div class="step-header bg-primary"><span class="step-badge">3</span> CONCEPTO DE REVISITA</div>
         <div class="step-body">
-            <p class="literal-text">Buscaremos el acrónimo de ejemplo y seleccionamos la pestaña <strong>“Formularios”</strong> una vez que cargue la búsqueda.</p>
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX3.png">
-                <img src="../assets/img/sytex/SYTEX3.png" class="img-step" alt="Selección Sytex">
-                <span class="img-caption">FILTROS DE BÚSQUEDA</span>
+            <p class="literal-text text-center-custom fw-bold fs-5 mb-2">Si al llegar al nuevo domicilio del cliente, el técnico verifica los equipos ya instalados, dicha orden corresponde a una REVISITA.</p>
+            <p class="literal-text text-center-custom mb-4">Esto indica que en esa orden hubo una visita previa con un cierre exitoso, pero no operativo.</p>
+            
+            <div class="row align-items-center mb-4">
+                <!-- Columna Izquierda: Imagen de Referencia -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="img-wrapper mx-auto" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/vimud/revisita.png">
+                        <!-- Reemplazá el src con la ruta real de tu imagen -->
+                        <img src="../assets/img/vimud/revisita.png" class="img-step" alt="Pantalla Revisita">
+                        <span class="img-caption"><i class="fas fa-search-plus me-1"></i> CLICK PARA AMPLIAR</span>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Listas de Motivos -->
+                <div class="col-lg-8">
+                    <div class="row g-3">
+                        <!-- LISTA ROJA (REVISITA NO) -->
+                        <div class="col-sm-6">
+                            <div class="card border-danger h-100 shadow-sm">
+                                <div class="card-header bg-danger text-white text-center fw-bold py-2">
+                                    REVISITA NO
+                                </div>
+                                <div class="card-body p-0 scroll-list">
+                                    <ul class="list-group list-group-flush text-center small fw-medium">
+                                        <li class="list-group-item py-1">Rechaza oferta comercial</li>
+                                        <li class="list-group-item py-1">Ref se retira durante la inst</li>
+                                        <li class="list-group-item py-1">Sin potencia/Mala potencia</li>
+                                        <li class="list-group-item py-1">Sin capacidad</li>
+                                        <li class="list-group-item py-1">Sin Energia Electrica</li>
+                                        <li class="list-group-item py-1">Recoordinar por falta de stock</li>
+                                        <li class="list-group-item py-1">Adecuacion</li>
+                                        <li class="list-group-item py-1">Averia Masiva</li>
+                                        <li class="list-group-item py-1">Montante obstruida</li>
+                                        <li class="list-group-item py-1">Cañerias obstruidas</li>
+                                        <li class="list-group-item py-1">Poste en mal estado</li>
+                                        <li class="list-group-item py-1">Cliente Ausente</li>
+                                        <li class="list-group-item py-1">Falta poste de apoyo</li>
+                                        <li class="list-group-item py-1">Edificio no acometido</li>
+                                        <li class="list-group-item py-1">No filtra orden en SGT</li>
+                                        <li class="list-group-item py-1">Falta caja en la cuadra</li>
+                                        <li class="list-group-item py-1">Puerto de red mal asignado</li>
+                                        <li class="list-group-item py-1">Estetica en la instalacion</li>
+                                        <li class="list-group-item py-1">Domicilio erroneo</li>
+                                        <li class="list-group-item py-1">Inconvenientes Climaticos</li>
+                                        <li class="list-group-item py-1">Domicilio reportado por fraude</li>
+                                        <li class="list-group-item py-1">Cliente no cuenta con perisos</li>
+                                        <li class="list-group-item py-1">Zona Peligrosa</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LISTA VERDE (REVISITA SI) -->
+                        <div class="col-sm-6">
+                            <div class="card border-success h-100 shadow-sm">
+                                <div class="card-header bg-success text-white text-center fw-bold py-2">
+                                    REVISITA SI
+                                </div>
+                                <div class="card-body p-0">
+                                    <ul class="list-group list-group-flush text-center small fw-medium">
+                                        <li class="list-group-item py-1">A la espera de rta. sistemas TV</li>
+                                        <li class="list-group-item py-1">A la espera rta. sistemas</li>
+                                        <li class="list-group-item py-1">Cl instalado no operativo</li>
+                                        <li class="list-group-item py-1">Posible fraude instalado</li>
+                                        <li class="list-group-item py-1">Problema Telefonia</li>
+                                        <li class="list-group-item py-1">Instalada Exitosamente</li>
+                                        <li class="list-group-item py-1">Problema Provision</li>
+                                        <li class="list-group-item py-1">Cl Inst sin equipos de TV fisicos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-callout text-center-custom mt-4" style="background-color: #fff9e6; border-color: #ffc107; color: #856404;">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong style="font-style: italic;">ES IMPORTANTE CONFIRMAR CON SU REFERENTE Y ANALISTA DE CLARO SI EL DOMICILIO FUE VISITADO ANTERIORMENTE.</strong>
             </div>
         </div>
     </div>
 
     <div class="step-card">
-        <div class="step-header"><span class="step-badge">4</span> Validación y Estado</div>
+        <div class="step-header"><span class="step-badge">4</span> ESCENARIOS FRECUENTES (FAQ)</div>
         <div class="step-body">
-            <p class="literal-text">De los formularios que encontraremos seleccionaremos la que se encuentre aprobada.</p>
-            <div class="important-callout">
-                <h6 class="fw-bold mb-2 text-danger"><i class="fas fa-exclamation-circle me-2"></i>IMPORTANTE</h6>
-                <p class="mb-0">Siempre se deben ver los formularios aprobados.</p>
-            </div>
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX4.png">
-                <img src="../assets/img/sytex/SYTEX4.png" class="img-step" alt="Estado Aprobado">
-                <span class="img-caption">VALIDACIÓN DE ESTADO</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="step-card">
-        <div class="step-header"><span class="step-badge">5</span> Visualización del Documento</div>
-        <div class="step-body">
-            <p class="literal-text">Presione sobre los 3 puntos para que se abra el desplegable y elegir la opción de <strong>“Ver documento”</strong>.</p>
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX5.png">
-                <img src="../assets/img/sytex/SYTEX5.png" class="img-step" alt="Opciones">
-                <span class="img-caption">MENÚ DE OPCIONES</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="step-card">
-        <div class="step-header"><span class="step-badge">6</span> Resultado Final</div>
-        <div class="step-body">
-            <p class="literal-text">Se abrirá una nueva página con fotos y descripción del splitter donde se encuentra ubicado.</p>
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/sytex/SYTEX6.png">
-                <img src="../assets/img/sytex/SYTEX6.png" class="img-step" alt="Formulario Final">
-                <span class="img-caption">VISTA TÉCNICA FINAL</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="step-card">
-        <div class="step-header" style="background-color: var(--claro-dark);"><span class="step-badge"><i class="fas fa-play"></i></span> Video del Instructivo</div>
-        <div class="step-body text-center">
-            <p class="literal-text mb-4">En el siguiente video podrán observar el paso a paso mencionado anteriormente.</p>
-            <div class="video-wrapper">
-                <video controls>
-                    <source src="../assets/video/sytexFilms.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de videos.
-                </video>
-            </div>
+            <ul class="custom-list">
+                <li>
+                    <span class="faq-q">¿El cliente tiene equipos, pero están dañados/obsoletos?</span>
+                    Se debe realizar la instalación con equipos nuevos y retirar los equipos dañados/obsoletos. Marcar en OFSC el retiro de los mismos como "Desinstalación" y verificando el seriado recuperado en el inventario.
+                </li>
+                <li>
+                    <span class="faq-q">¿Es necesario ir a retirar el cableado y equipos del domicilio anterior?</span>
+                    No, no es necesario retirar el cableado ni los equipos del domicilio anterior. (de esto debe encargarse el cliente).
+                </li>
+                <li>
+                    <span class="faq-q">¿Dirección de mudanza errónea?</span>
+                    Se debe llamar a Mesa de Despacho para verificar si el domicilio real tiene cobertura. Si el mismo se encuentra dentro de la cobertura, se avanza; en caso contrario, se cancela la VIMUD por domicilio erróneo.
+                </li>
+                <li>
+                    <span class="faq-q">¿El cliente olvidó los equipos?</span>
+                    Debe recuperarlos para que se puedan instalar en la misma orden. En caso de no poder recuperarlos en el momento, la orden se debe recoordinar.
+                </li>
+                <li>
+                    <span class="faq-q">¿El cliente desea agregar/quitar un STB y AP?</span>
+                    Si el cliente desea agregar/quitar un STB/AP a su servicio contratado, primero se debe finalizar la orden de trabajo y luego solicitar un Adicional TV (ADTV) o Instalación AP (INSTAP) para agregar. Para quitar un STB, se debe solicitar la baja del mismo.
+                </li>
+                <li>
+                    <span class="faq-q">¿Los seriados provisionados no son los mismos que los físicos?</span>
+                    En este caso, se debe realizar la instalación de equipos nuevos sin desinstalar los equipos desde OFSC/TOA, llevándose los equipos físicos para la devolución interna.
+                </li>
+                <li>
+                    <span class="faq-q">RED UFINET:</span>
+                    No se llevan a cabo las mudanzas (ni desde/hasta F. Varela-Quilmes). Se debe reportar la misma con Mesa de Despacho.
+                </li>
+                <li>
+                    <span class="faq-q">Cableado Existente:</span>
+                    En caso de que el nuevo domicilio cuente con cableado ya existente, este no puede reutilizarse y debe ser desinstalado y llevado a la contratista para devolución de scrap.
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -296,6 +352,7 @@
     &copy; 2026 Claro Argentina | Instalaciones
 </footer>
 
+<!-- Modal para Ampliar Imágenes -->
 <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-transparent border-0">
@@ -309,6 +366,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Lógica para el modal de imágenes
     const imgModal = document.getElementById('imgModal');
     imgModal.addEventListener('show.bs.modal', function (event) {
         const trigger = event.relatedTarget;

@@ -131,6 +131,7 @@
             margin-right: 15px; 
             font-size: 0.9rem;
             font-weight: bold;
+            flex-shrink: 0;
         }
 
         .step-body { padding: 30px; }
@@ -146,6 +147,172 @@
             font-size: 0.9rem; color: #444; line-height: 1.5;
         }
         .custom-list .faq-q { font-weight: bold; color: var(--claro-red); display: block; margin-bottom: 5px; }
+
+        /* --- REVISITA: COLUMNAS SI / NO --- */
+        .revisita-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .revisita-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .revisita-col {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .revisita-col-header {
+            padding: 10px 15px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .revisita-col-header.no {
+            background-color: var(--claro-red);
+            color: white;
+        }
+
+        .revisita-col-header.si {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .revisita-col-header.condiciones {
+            background-color: var(--claro-dark);
+            color: white;
+        }
+
+        .revisita-col-body {
+            background: white;
+            padding: 15px;
+        }
+
+        .revisita-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .revisita-list li {
+            font-size: 0.82rem;
+            color: #444;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .revisita-list li:last-child { border-bottom: none; }
+
+        .revisita-list li .dot-no {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--claro-red);
+            flex-shrink: 0; margin-top: 5px;
+        }
+
+        .revisita-list li .dot-si {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #28a745;
+            flex-shrink: 0; margin-top: 5px;
+        }
+
+        /* --- CONDICIONES CARD --- */
+        .condicion-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.82rem;
+            color: #444;
+        }
+        .condicion-item:last-child { border-bottom: none; }
+
+        .condicion-num {
+            background: var(--claro-dark);
+            color: white;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .condicion-ok {
+            margin-left: auto;
+            color: #28a745;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .provisionador-block {
+            background: #f9f9f9;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-top: 10px;
+            border: 1px solid #eee;
+        }
+
+        .provisionador-block .prov-label {
+            font-size: 0.7rem;
+            color: #999;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .provisionador-block .prov-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: #555;
+            margin-bottom: 3px;
+        }
+
+        .provisionador-block .prov-row span:first-child {
+            color: #888;
+        }
+
+        .revisita-action-badge {
+            display: inline-block;
+            background: var(--claro-dark);
+            color: white;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-top: 12px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* --- WARNING AMARILLO --- */
+        .warning-callout-yellow {
+            background-color: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #856404;
+        }
 
         footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
     </style>
@@ -169,6 +336,7 @@
 
 <main class="main-content">
     
+    <!-- INTRO -->
     <div class="intro-card shadow-sm">
         <p class="mb-3 text-muted text-center-custom">Una VIMUD corresponde a una solicitud para un cambio de domicilio de un servicio de internet por parte del cliente. En este proceso, es necesario realizar un nuevo cableado en la nueva ubicación, reutilizando los equipos que el cliente ya posee, mientras los mismos estén en buenas condiciones y vigentes.</p>
         <div class="warning-callout text-center-custom">
@@ -177,22 +345,22 @@
         </div>
     </div>
 
+    <!-- PASO 1 -->
     <div class="step-card">
-        <div class="step-header"><span class="step-badge">1</span> ESCENARIO: CON EQUIPOS</div>
+        <div class="step-header"><span class="step-badge">1</span> ESCENARIO FRECUENTES</div>
         <div class="step-body">
             <p class="literal-text text-center-custom">Si cliente cuenta con el/los equipos Se debe avanzar con la instalación reutilizando los mismos. En las siguientes imágenes verán las opciones a marcar en dicho escenario.</p>
-            
             <div class="text-center my-4">
                 <span class="badge bg-dark px-3 py-2 fs-6">Marcar: Reutilizaron de equipos</span>
             </div>
         </div>
     </div>
 
+    <!-- PASO 2 -->
     <div class="step-card">
         <div class="step-header"><span class="step-badge">2</span> ESCENARIO: SIN EQUIPOS</div>
         <div class="step-body">
             <p class="literal-text text-center-custom">Si el cliente NO cuenta con el/los equipos Se deben reemplazar, marcando en OFSC/TOA los equipos faltantes. Una vez dado al botón de finalización, deberán seleccionar y completar la información necesaria.</p>
-            
             <div class="text-center my-4">
                 <span class="badge bg-dark px-3 py-2 fs-6 mb-2">Marcar: ¿EQUIPO/S FALTANTE/S?</span><br>
                 <small class="text-muted">(Aclarando si es ONT, ONT+STB o STB)</small>
@@ -200,19 +368,108 @@
         </div>
     </div>
 
+    <!-- PASO 3: REVISITA — AMPLIADO -->
     <div class="step-card">
         <div class="step-header"><span class="step-badge">3</span> CONCEPTO DE REVISITA</div>
         <div class="step-body">
             <p class="literal-text text-center-custom fw-bold">Si al llegar al nuevo domicilio del cliente, el técnico verifica los equipos ya instalados, dicha orden corresponde a una REVISITA.</p>
             <p class="literal-text text-center-custom">Esto indica que en esa orden hubo una visita previa con un cierre exitoso, pero no operativo.</p>
-            
-            <div class="warning-callout text-center-custom mt-4" style="background-color: #fff9e6; border-color: #ffc107; color: #856404;">
+
+            <!-- GRILLA REVISITA -->
+            <div class="revisita-grid">
+
+                <!-- Columna: Condiciones Para Finalización -->
+                <div class="revisita-col">
+                    <div class="revisita-col-header condiciones">Condiciones Para Finalización</div>
+                    <div class="revisita-col-body">
+                        <div class="condicion-item">
+                            <span class="condicion-num">3</span>
+                            <span>Carga Inventario Obligatorio</span>
+                        </div>
+                        <div class="condicion-item">
+                            <span class="condicion-num">1</span>
+                            <span>Validación de Revisita</span>
+                            <span class="condicion-ok">OK</span>
+                        </div>
+                        <div class="condicion-item">
+                            <span class="condicion-num">2</span>
+                            <span>Carga de Fotos</span>
+                            <span class="condicion-ok">OK</span>
+                        </div>
+
+                        <div class="provisionador-block">
+                            <div class="prov-label">Datos Informado por el Provisionador</div>
+                            <div class="prov-row"><span>OLT</span><span>TU001-GP-03</span></div>
+                            <div class="prov-row"><span>SPLITTER</span><span>TU001-R0095-913</span></div>
+                            <div class="prov-row"><span>Serial Modem</span><span>48575443F34B90A6</span></div>
+                        </div>
+
+                        <div class="text-center">
+                            <span class="revisita-action-badge"><i class="fas fa-redo-alt me-2"></i>REVISITA</span>
+                            <span class="revisita-action-badge mt-2" style="background: #555;"><i class="fas fa-recycle me-2"></i>Reutilización de equipos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna: REVISITA NO -->
+                <div class="revisita-col">
+                    <div class="revisita-col-header no"><i class="fas fa-times-circle me-2"></i>REVISITA NO</div>
+                    <div class="revisita-col-body">
+                        <ul class="revisita-list">
+                            <li><span class="dot-no"></span>Rechaza oferta comercial</li>
+                            <li><span class="dot-no"></span>Ref se retira durante la inst</li>
+                            <li><span class="dot-no"></span>Sin potencia / Mala potencia</li>
+                            <li><span class="dot-no"></span>Sin capacidad</li>
+                            <li><span class="dot-no"></span>Sin Energía Eléctrica</li>
+                            <li><span class="dot-no"></span>Recoordinar por falta de stock</li>
+                            <li><span class="dot-no"></span>Adecuación</li>
+                            <li><span class="dot-no"></span>Avería Masiva</li>
+                            <li><span class="dot-no"></span>Montante obstruida</li>
+                            <li><span class="dot-no"></span>Cañerías obstruidas</li>
+                            <li><span class="dot-no"></span>Poste en mal estado</li>
+                            <li><span class="dot-no"></span>Cliente Ausente</li>
+                            <li><span class="dot-no"></span>Falta poste de apoyo</li>
+                            <li><span class="dot-no"></span>Edificio no acometido</li>
+                            <li><span class="dot-no"></span>No filtra orden en SGT</li>
+                            <li><span class="dot-no"></span>Falta caja en la cuadra</li>
+                            <li><span class="dot-no"></span>Puerto de red mal asignado</li>
+                            <li><span class="dot-no"></span>Estética en la instalación</li>
+                            <li><span class="dot-no"></span>Domicilio erróneo</li>
+                            <li><span class="dot-no"></span>Inconvenientes Climáticos</li>
+                            <li><span class="dot-no"></span>Domicilio reportado por fraude</li>
+                            <li><span class="dot-no"></span>Cliente no cuenta con perisos</li>
+                            <li><span class="dot-no"></span>Zona Peligrosa</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Columna: REVISITA SÍ -->
+                <div class="revisita-col">
+                    <div class="revisita-col-header si"><i class="fas fa-check-circle me-2"></i>REVISITA SÍ</div>
+                    <div class="revisita-col-body">
+                        <ul class="revisita-list">
+                            <li><span class="dot-si"></span>A la espera de rta. sistemas TV</li>
+                            <li><span class="dot-si"></span>A la espera de rta. sistemas</li>
+                            <li><span class="dot-si"></span>CI instalado no operativo</li>
+                            <li><span class="dot-si"></span>Posible fraude instalado</li>
+                            <li><span class="dot-si"></span>Problema Telefonía</li>
+                            <li><span class="dot-si"></span>Instalada Exitosamente</li>
+                            <li><span class="dot-si"></span>Problema Provisión</li>
+                            <li><span class="dot-si"></span>CI Inst sin equipos de TV físicos</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /revisita-grid -->
+
+            <div class="warning-callout-yellow text-center-custom mt-4">
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 <strong>ES IMPORTANTE CONFIRMAR CON SU REFERENTE Y ANALISTA DE CLARO SI EL DOMICILIO FUE VISITADO ANTERIORMENTE.</strong>
             </div>
         </div>
     </div>
 
+    <!-- PASO 4 -->
     <div class="step-card">
         <div class="step-header"><span class="step-badge">4</span> ESCENARIOS FRECUENTES (FAQ)</div>
         <div class="step-body">
@@ -235,7 +492,7 @@
                 </li>
                 <li>
                     <span class="faq-q">¿El cliente desea agregar/quitar un STB y AP?</span>
-                    Si el cliente desea agregar/quitar un STB/AP a su servicio contratado, primero se debe finalizar la orden de trabajo y luego solicitar un Adicional TV (ADTV) o Instalación AP (INSTAP) para agregar[cite: 1]. Para quitar un STB, se debe solicitar la baja del mismo.
+                    Si el cliente desea agregar/quitar un STB/AP a su servicio contratado, primero se debe finalizar la orden de trabajo y luego solicitar un Adicional TV (ADTV) o Instalación AP (INSTAP) para agregar. Para quitar un STB, se debe solicitar la baja del mismo.
                 </li>
                 <li>
                     <span class="faq-q">¿Los seriados provisionados no son los mismos que los físicos?</span>
