@@ -6,145 +6,18 @@
     <title>Portal de Instalaciones - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     
-    <style>
-        :root {
-            --claro-red: #ee122c; /* El rojo oficial exacto */
-            --claro-gray: #f2f2f2;
-            --claro-dark: #333333;
-            --claro-blue: #0082c9;
-        }
-
-        body {
-            background-color: white;
-            font-family: 'Roboto', sans-serif;
-            color: var(--claro-dark);
-            margin: 0;
-        }
-
-        /* --- NAVBAR ESTILO CLARO --- */
-        .navbar-claro {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-            background: white;
-        }
-
-        .claro-logo {
-            height: 45px;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .hero-section h2 {
-            font-weight: 700;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        /* --- CONTENEDOR DE TARJETAS --- */
-        .main-container {
-            max-width: 1100px;
-            margin: -40px auto 50px; /* Sube las tarjetas sobre el hero */
-            padding: 0 20px;
-        }
-
-        .btn-card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 35px 20px;
-            text-align: center;
-            transition: all 0.25s ease-in-out;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-
-        .btn-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border-color: var(--claro-red);
-            color: inherit;
-        }
-
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            background-color: var(--claro-gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-
-        .btn-card:hover .icon-circle {
-            background-color: #ffeaea;
-        }
-
-        .btn-card i {
-            font-size: 2rem;
-            color: var(--claro-red);
-        }
-
-        .btn-card span {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--claro-dark);
-            text-transform: none;
-            line-height: 1.3;
-        }
-
-        .btn-logout {
-            background: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .btn-logout:hover {
-            background: white;
-            color: var(--claro-red);
-        }
-
-        footer {
-            background: var(--claro-gray);
-            padding: 40px 0;
-            margin-top: 50px;
-            border-top: 1px solid #ddd;
-        }
-
-        @media (max-width: 768px) {
-            .hero-section { padding: 40px 20px 60px; }
-            .hero-section h2 { font-size: 1.5rem; }
-        }
-    </style>
+    
 </head>
-<body>
+<body class="page-portada" data-page="portada" data-auth="required">
 
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between align-items-center">
         <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        <a href="#" id="logoutBtn" class="btn-logout" style="color: var(--claro-red); border-color: var(--claro-red);">Cerrar Sesión</a>
+        <a href="#" id="logoutBtn" class="btn-logout logout-accent" data-logout-btn>Cerrar Sesión</a>
     </div>
 </nav>
 
@@ -207,34 +80,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    async function validarAcceso() {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            window.location.href = "../index.html";
-        }
-    }
-    validarAcceso();
-
-    const logoutAction = async (e) => {
-        e.preventDefault();
-        const { error } = await supabase.auth.signOut();
-        if (!error) {
-            window.location.href = "../index.html";
-        } else {
-            alert("Error al cerrar sesión");
-        }
-    };
-
-    document.getElementById('logoutBtn').addEventListener('click', logoutAction);
-    document.getElementById('logoutBtnHero').addEventListener('click', logoutAction);
-</script>
-
+    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/efectos.js"></script>
 </body>
 </html>

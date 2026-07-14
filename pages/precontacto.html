@@ -6,181 +6,13 @@
     <title>Protocolo de Precontacto - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-        const supabase = createClient(supabaseUrl, supabaseKey)
-
-        async function validarAcceso() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
-        }
-        validarAcceso();
-    </script>
-
-    <style>
-        :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
-            --claro-blue: #0082c9;
-        }
-
-        body {
-            background-color: #fcfcfc;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            color: var(--claro-dark);
-        }
-
-        /* --- NAVBAR --- */
-        .navbar-claro {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-            background: white;
-            margin-bottom: 25px;
-        }
-        .claro-logo { height: 35px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 40px 0 100px 0;
-            text-align: center;
-            position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white;
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-content {
-            max-width: 1100px;
-            margin: -60px auto 50px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- NOTA IMPORTANTE --- */
-        .important-note {
-            background-color: #fff9e6;
-            border: 1px solid #ffeeba;
-            border-left: 5px solid #ffc107;
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 45px; /* Separación solicitada */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            font-size: 0.95rem;
-            color: #856404;
-        }
-
-        /* --- TARJETAS DE PASOS --- */
-        .step-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: 0.3s;
-        }
-        .step-card:hover { transform: translateY(-5px); }
-
-        .step-header {
-            padding: 12px 25px;
-            color: white;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            background-color: var(--claro-red);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        .step-badge {
-            background: rgba(0,0,0,0.2);
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            display: inline-flex; align-items: center; justify-content: center;
-            margin-right: 15px; font-size: 0.8rem;
-        }
-
-        .step-body { padding: 25px; }
-
-        /* --- SCRIPT BOX (COPIABLE) --- */
-        .script-container {
-            position: relative;
-            background-color: #f8f9fa;
-            border: 1px dashed var(--claro-red);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 10px;
-        }
-
-        .script-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.95rem;
-            color: #444;
-            font-style: italic;
-            margin: 0;
-            padding-right: 80px;
-        }
-
-        .btn-copy {
-            position: absolute; top: 10px; right: 10px;
-            background: white; border: 1px solid #ddd;
-            border-radius: 20px; padding: 4px 12px;
-            font-size: 0.7rem; font-weight: 700;
-            color: var(--claro-red); cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-copy:hover { background: var(--claro-red); color: white; border-color: var(--claro-red); }
-
-        /* --- SIDEBAR --- */
-        .contact-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .badge-call {
-            padding: 12px;
-            font-weight: 700;
-            border-radius: 8px;
-            color: white;
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            margin-bottom: 10px;
-            transition: 0.3s;
-        }
-        .bg-residencial { background-color: var(--claro-red); }
-        .bg-pyme { background-color: #0056b3; }
-        .badge-call:hover { opacity: 0.9; transform: scale(1.02); color: white; }
-
-        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
-    </style>
+    
 </head>
-<body>
+<body class="page-precontacto" data-page="precontacto" data-auth="required">
 
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between">
@@ -191,7 +23,7 @@
 
 <header class="hero-section">
     <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="btn-back" data-go-back><i class="fas fa-arrow-left"></i></a>
         <h2 class="header-title">Protocolo de Precontacto</h2>
         <p class="opacity-75 small mt-2">Flujo de comunicación obligatoria con el cliente</p>
     </div>
@@ -213,7 +45,7 @@
                 <div class="step-body">
                     <p class="text-muted small mb-3">Presentación formal del Dispatcher / Técnico.</p>
                     <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script1')">COPIAR</button>
+                        <button class="btn-copy" data-copy-target="script1">COPIAR</button>
                         <p class="script-text" id="script1">"Hola, buen día. ¿Se encuentra [Nombre del Cliente]? Le habla [Tu Nombre] de Claro, el motivo de mi llamado es por la instalación de su servicio solicitado."</p>
                     </div>
                 </div>
@@ -224,7 +56,7 @@
                 <div class="step-body">
                     <p class="text-muted small mb-3">Confirmar dirección exacta antes de desplazarse.</p>
                     <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script2')">COPIAR</button>
+                        <button class="btn-copy" data-copy-target="script2">COPIAR</button>
                         <p class="script-text" id="script2">"¿Me confirma si el domicilio es [Calle y Altura] entre [Calle 1] y [Calle 2]?"</p>
                     </div>
                     <div class="mt-3 p-2 rounded bg-light border-start border-danger border-4">
@@ -240,7 +72,7 @@
                 <div class="step-body">
                     <p class="text-muted small mb-3">Asegurar que el producto (2Play/3Play) coincida con la solicitud.</p>
                     <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script3')">COPIAR</button>
+                        <button class="btn-copy" data-copy-target="script3">COPIAR</button>
                         <p class="script-text" id="script3">"¿Usted solicitó el servicio de [Tipo de servicio]?"</p>
                     </div>
                 </div>
@@ -262,7 +94,7 @@
                 <div class="step-body">
                     <p class="text-muted small mb-3">Informar ETA (Tiempo estimado de arribo).</p>
                     <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script5')">COPIAR</button>
+                        <button class="btn-copy" data-copy-target="script5">COPIAR</button>
                         <p class="script-text" id="script5">"El tecnico se estara acercando a su domicilio en aproximadamente [Tiempo] minutos."</p>
                     </div>
                 </div>
@@ -280,7 +112,7 @@
                         <i class="fas fa-phone-alt me-2"></i> Pymes: *617
                     </a>
                 </div>
-                <p class="text-muted extra-small mt-3 text-center" style="font-size: 0.75rem;">
+                <p class="text-muted extra-small mt-3 text-center extra-small-copy">
                     Recordá tener a mano el número de orden de trabajo (OT) antes de llamar.
                 </p>
             </div>
@@ -292,22 +124,8 @@
     &copy; 2026 Claro Argentina | Instalaciones
 </footer>
 
-<script>
-    function copyText(id) {
-        const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            const btn = event.target;
-            const originalText = btn.innerText;
-            btn.innerText = "COPIADO!";
-            btn.classList.add('bg-success', 'text-white');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('bg-success', 'text-white');
-            }, 2000);
-        });
-    }
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/efectos.js"></script>
 </body>
 </html>

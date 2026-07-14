@@ -6,155 +6,13 @@
     <title>Contacto Mesa de Despacho - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-        const supabase = createClient(supabaseUrl, supabaseKey)
-
-        async function validarAcceso() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
-        }
-        validarAcceso();
-    </script>
-
-    <style>
-        :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
-            --anexo-gold: #ffc107;
-        }
-
-        body {
-            background-color: #fcfcfc;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            color: var(--claro-dark);
-        }
-
-        /* --- NAVBAR CON SEPARACIÓN --- */
-        .navbar-claro {
-            border-bottom: 1px solid #eee;
-            padding: 12px 0;
-            background: white;
-            margin-bottom: 30px; 
-        }
-        .claro-logo { height: 35px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 50px 0 110px 0;
-            text-align: center;
-            position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white;
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0; }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-content {
-            max-width: 1100px;
-            margin: -60px auto 50px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- ALERTA EXCLUSIVA (ESTILO AMARILLO) --- */
-        .exclusive-note {
-            background-color: #fff9e6;
-            border: 1px solid #ffeeba;
-            border-left: 5px solid var(--anexo-gold);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 45px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            text-align: center;
-            font-weight: 700;
-            color: #856404;
-        }
-
-        /* --- TARJETAS IVR --- */
-        .ivr-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            height: 100%;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .ivr-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
-
-        .option-header {
-            padding: 25px 20px;
-            color: white;
-            text-align: center;
-        }
-        .header-black { background-color: var(--claro-dark); }
-        .header-red-claro { background-color: var(--claro-red); }
-
-        /* --- CÍRCULOS NEGROS --- */
-        .option-badge {
-            background: black;
-            color: white;
-            width: 35px; height: 35px;
-            border-radius: 50%;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 1rem; margin-bottom: 12px;
-            border: 2px solid white;
-        }
-        .header-black .option-badge { background: #555; } /* Contraste para el fondo negro */
-
-        .option-title { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 1rem; }
-
-        .card-body-custom { padding: 30px; }
-
-        .category-label {
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            color: #888;
-            margin-top: 20px;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #f2f2f2;
-            padding-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .motive-list { list-style: none; padding: 0; margin: 0; }
-        .motive-list li {
-            padding: 8px 0;
-            font-size: 0.95rem;
-            color: #333;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #fafafa;
-        }
-        .motive-list li i { color: var(--claro-red); margin-right: 12px; font-size: 0.7rem; }
-
-        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
-    </style>
+    
 </head>
-<body>
+<body class="page-contactoMesa" data-page="contactomesa" data-auth="required">
 
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between">
@@ -165,7 +23,7 @@
 
 <header class="hero-section">
     <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="btn-back" data-go-back><i class="fas fa-arrow-left"></i></a>
         <h2 class="header-title">Contacto Mesa de Despacho</h2>
         <p class="opacity-75 small mt-2 uppercase tracking-widest">Guía de IVR para personal técnico</p>
     </div>
@@ -251,5 +109,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/efectos.js"></script>
 </body>
 </html>
