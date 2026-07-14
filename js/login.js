@@ -37,7 +37,8 @@ async function validateProtectedPage() {
         if (!session) {
             window.location.href = '../index.html';
         }
-    } catch {
+    } catch (error) {
+        console.error('Error validando sesión de Supabase:', error);
         window.location.href = '../index.html';
     }
 }

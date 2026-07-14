@@ -206,7 +206,7 @@ const motives = [
             title: "Domicilio Erróneo",
             type: "no-realizada",
             desc:  ["En caso de que la orden pertenezca al segmento Pymes: Reportar con mesa de despacho correspondiente ya que por proceso no permite la modificación en linea.",
-                    "En caso de que la orden pertenezca al segmento Residencial: Reportar con mesa de despacho correspondiente ya que si el domicilio real se encuentra mayor a 1km no sepuede realizar la modificación de la misma en linea.",
+                    "En caso de que la orden pertenezca al segmento Residencial: Reportar con mesa de despacho correspondiente ya que si el domicilio real se encuentra mayor a 1km no se puede realizar la modificación de la misma en linea.",
                     "En caso que se valide que el domicilio real se encuentre con cobertura y menor a 1km se deberá ir a sitio"],
             steps: ["Reportar a mesa de despacho según segmento.", 
                     "Pymes: *617 // 0800-122-1617", "Residencial: *6565 // Opción 1"],
@@ -389,7 +389,7 @@ const motives = [
             title: "Referente Se Retira durante la Instalación",
             type: "no-realizada",
             desc: ["Cliente/Referente nos informa en sitio que se debe retirar y no puede esperar a que finalicemos la instalación.",
-                   "¡Este cierre se utiliza únicamente cuando eltécnico realizo alguna tarea en el domicilio!. Ej: ingreso de FO"],
+                   "¡Este cierre se utiliza únicamente cuando el técnico realizo alguna tarea en el domicilio!. Ej: ingreso de FO"],
             steps: ["Reportar a mesa de despacho según segmento:", 
                     "Pymes: *617 // 0800-122-1617", 
                     "Residencial: *6565 // Opción 1"],
@@ -644,7 +644,7 @@ const motives = [
  */
 function initMotivosOfsc() {
     const page = document.body.dataset.page;
-    if (page !== 'motivosOfsc') {
+    if (page !== 'motivosofsc') {
         return;
     }
 
