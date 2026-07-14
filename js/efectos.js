@@ -389,7 +389,7 @@ const motives = [
             title: "Referente Se Retira durante la Instalación",
             type: "no-realizada",
             desc: ["Cliente/Referente nos informa en sitio que se debe retirar y no puede esperar a que finalicemos la instalación.",
-                   "¡Este cierre se utiliza únicamente cuando el técnico realizo alguna tarea en el domicilio!. Ej: ingreso de FO"],
+                   "¡Este cierre se utiliza únicamente cuando el técnico realizó alguna tarea en el domicilio!. Ej: ingreso de FO"],
             steps: ["Reportar a mesa de despacho según segmento:", 
                     "Pymes: *617 // 0800-122-1617", 
                     "Residencial: *6565 // Opción 1"],
