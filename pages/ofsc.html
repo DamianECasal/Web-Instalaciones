@@ -8,189 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-        const supabase = createClient(supabaseUrl, supabaseKey)
-
-        async function validarAcceso() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
-        }
-        validarAcceso();
-    </script>
     
-    <style>
-        :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
-        }
-
-        body {
-            background-color: #fcfcfc;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            color: var(--claro-dark);
-        }
-
-        /* --- NAVBAR CON SEPARACIÓN --- */
-        .navbar-claro {
-            border-bottom: 1px solid #eee;
-            padding: 12px 0;
-            background: white;
-            margin-bottom: 30px; 
-        }
-        .claro-logo { height: 35px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 50px 0 100px 0;
-            text-align: center;
-            position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white;
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0; }
-
-        /* --- CONTENEDOR Y BUSCADOR --- */
-        .main-content {
-            max-width: 1200px;
-            margin: -45px auto 50px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .search-wrapper {
-            max-width: 600px;
-            margin: 0 auto 50px;
-        }
-
-        .search-box {
-            background: white;
-            border-radius: 30px;
-            padding: 10px 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-box input {
-            border: none;
-            outline: none;
-            width: 100%;
-            padding: 5px 10px;
-            font-size: 1rem;
-        }
-
-        /* --- TARJETAS --- */
-        .instruction-card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 16px;
-            padding: 30px 20px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .instruction-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: var(--claro-red);
-        }
-
-        .icon-circle {
-            width: 75px;
-            height: 75px;
-            background-color: var(--claro-gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--claro-red);
-            font-size: 2rem;
-            transition: 0.3s;
-        }
-
-        .instruction-card:hover .icon-circle {
-            background-color: var(--claro-red);
-            color: white;
-        }
-
-        .instruction-card h5 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 12px;
-            color: var(--claro-dark);
-        }
-
-        .instruction-card p {
-            font-size: 0.85rem;
-            color: #777;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .btn-view {
-            background-color: var(--claro-red);
-            color: white;
-            border-radius: 25px;
-            padding: 8px 25px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            border: none;
-            margin-top: auto;
-            width: 100%;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-view:hover {
-            background-color: #d10f26;
-            color: white;
-            box-shadow: 0 4px 10px rgba(238, 18, 44, 0.2);
-        }
-        
-        /* Estilos personalizados para el Modal */
-        .modal-content {
-            border-radius: 16px;
-            border: none;
-        }
-        .modal-header {
-            border-bottom: 1px solid #eee;
-        }
-
-        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
-    </style>
 </head>
-<body>
+<body class="page-ofsc" data-page="ofsc" data-auth="required">
 
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between">
@@ -203,7 +25,7 @@
     <div class="container">
         <a href="instructivos.html" class="btn-back"><i class="fas fa-arrow-left"></i></a>
         <h2 class="header-title">USO DE LA HERRAMIENTA OFSC</h2>
-        <p class="opacity-75 small mt-2 text-uppercase" style="letter-spacing: 1px;">Guía de procedimientos en plataforma TOA</p>
+        <p class="opacity-75 small mt-2 text-uppercase letter-spacing-1">Guía de procedimientos en plataforma TOA</p>
     </div>
 </header>
 
@@ -311,7 +133,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content shadow-lg">
             <div class="modal-header">
-                <h5 class="modal-title font-weight-bold" id="videoModalLabel" style="font-family: 'Montserrat', sans-serif; color: var(--claro-red);">
+                <h5 class="modal-title font-weight-bold" id="videoModalLabel">
                     <i class="fas fa-play-circle me-2"></i> Guía Instructiva
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -327,47 +149,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    // Buscador en tiempo real
-    document.getElementById('manualSearch').addEventListener('input', function(e) {
-        const text = e.target.value.toLowerCase();
-        const items = document.querySelectorAll('.manual-item');
-        items.forEach(item => {
-            const title = item.querySelector('h5').innerText.toLowerCase();
-            const desc = item.querySelector('p').innerText.toLowerCase();
-            if (title.includes(text) || desc.includes(text)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-
-    // Lógica para el Modal de Video
-    document.addEventListener('DOMContentLoaded', function() {
-        const videoModal = document.getElementById('videoModal');
-        const videoIframe = document.getElementById('videoIframe');
-        const modalTitle = document.getElementById('videoModalLabel');
-
-        // Al abrir el modal
-        videoModal.addEventListener('show.bs.modal', function (event) {
-            // Obtener el botón que disparó el evento
-            const button = event.relatedTarget;
-            // Extraer la URL del video y el título de la tarjeta
-            const videoUrl = button.getAttribute('data-video');
-            const cardTitle = button.parentElement.querySelector('h5').innerText;
-            
-            // Actualizar el título del modal y la URL del iframe
-            modalTitle.innerHTML = `<i class="fas fa-play-circle me-2"></i> ${cardTitle}`;
-            videoIframe.src = videoUrl;
-        });
-
-        // Al cerrar el modal (Para que el audio no siga reproduciéndose)
-        videoModal.addEventListener('hide.bs.modal', function () {
-            videoIframe.src = '';
-        });
-    });
-</script>
-
+    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/efectos.js"></script>
 </body>
 </html>

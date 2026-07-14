@@ -8,316 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-        const supabase = createClient(supabaseUrl, supabaseKey)
-
-        async function validarAcceso() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
-        }
-        validarAcceso();
-    </script>
-
-    <style>
-        :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
-        }
-
-        body {
-            background-color: #fcfcfc;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            color: var(--claro-dark);
-        }
-
-        /* --- NAVBAR --- */
-        .navbar-claro {
-            border-bottom: 1px solid #eee;
-            padding: 12px 0;
-            background: white;
-            margin-bottom: 30px; 
-        }
-        .claro-logo { height: 35px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 50px 0 110px 0;
-            text-align: center;
-            position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white;
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-content {
-            max-width: 1000px;
-            margin: -70px auto 50px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- TARJETA DE INTRO --- */
-        .intro-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 55px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-
-        .warning-callout {
-            background-color: #fff3f3;
-            border-left: 5px solid var(--claro-red);
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: #a50d1f;
-        }
-
-        /* --- TARJETAS DE PASOS --- */
-        .step-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            margin-bottom: 35px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        .step-header {
-            padding: 14px 25px;
-            color: white;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            background-color: var(--claro-red);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        /* --- CÍRCULOS NEGROS CON NÚMEROS BLANCOS --- */
-        .step-badge {
-            background: black; 
-            color: white; 
-            width: 30px; 
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center;
-            margin-right: 15px; 
-            font-size: 0.9rem;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .step-body { padding: 30px; }
-        .literal-text { font-size: 0.95rem; color: #444; line-height: 1.6; }
-        .text-center-custom { text-align: center; }
-
-        /* --- LISTAS --- */
-        .custom-list { padding-left: 0; list-style: none; }
-        .custom-list li {
-            background: #fdfdfd; margin-bottom: 10px; padding: 15px; 
-            border-radius: 8px; border: 1px solid #eaeaea;
-            border-left: 4px solid var(--claro-dark);
-            font-size: 0.9rem; color: #444; line-height: 1.5;
-        }
-        .custom-list .faq-q { font-weight: bold; color: var(--claro-red); display: block; margin-bottom: 5px; }
-
-        /* --- REVISITA: COLUMNAS SI / NO --- */
-        .revisita-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        @media (max-width: 768px) {
-            .revisita-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .revisita-col {
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .revisita-col-header {
-            padding: 10px 15px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 0.05em;
-        }
-
-        .revisita-col-header.no {
-            background-color: var(--claro-red);
-            color: white;
-        }
-
-        .revisita-col-header.si {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .revisita-col-header.condiciones {
-            background-color: var(--claro-dark);
-            color: white;
-        }
-
-        .revisita-col-body {
-            background: white;
-            padding: 15px;
-        }
-
-        .revisita-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .revisita-list li {
-            font-size: 0.82rem;
-            color: #444;
-            padding: 5px 0;
-            border-bottom: 1px solid #f0f0f0;
-            line-height: 1.4;
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-        }
-
-        .revisita-list li:last-child { border-bottom: none; }
-
-        .revisita-list li .dot-no {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: var(--claro-red);
-            flex-shrink: 0; margin-top: 5px;
-        }
-
-        .revisita-list li .dot-si {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: #28a745;
-            flex-shrink: 0; margin-top: 5px;
-        }
-
-        /* --- CONDICIONES CARD --- */
-        .condicion-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 7px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.82rem;
-            color: #444;
-        }
-        .condicion-item:last-child { border-bottom: none; }
-
-        .condicion-num {
-            background: var(--claro-dark);
-            color: white;
-            width: 22px; height: 22px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .condicion-ok {
-            margin-left: auto;
-            color: #28a745;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-
-        .provisionador-block {
-            background: #f9f9f9;
-            border-radius: 6px;
-            padding: 10px 12px;
-            margin-top: 10px;
-            border: 1px solid #eee;
-        }
-
-        .provisionador-block .prov-label {
-            font-size: 0.7rem;
-            color: #999;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 6px;
-        }
-
-        .provisionador-block .prov-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.78rem;
-            color: #555;
-            margin-bottom: 3px;
-        }
-
-        .provisionador-block .prov-row span:first-child {
-            color: #888;
-        }
-
-        .revisita-action-badge {
-            display: inline-block;
-            background: var(--claro-dark);
-            color: white;
-            border-radius: 6px;
-            padding: 6px 14px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            margin-top: 12px;
-            text-align: center;
-            width: 100%;
-        }
-
-        /* --- WARNING AMARILLO --- */
-        .warning-callout-yellow {
-            background-color: #fff9e6;
-            border-left: 5px solid #ffc107;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #856404;
-        }
-
-        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
-    </style>
+    
 </head>
-<body>
+<body class="page-vimud" data-page="vimud" data-auth="required">
 
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between">
@@ -328,7 +23,7 @@
 
 <header class="hero-section">
     <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="btn-back" data-go-back><i class="fas fa-arrow-left"></i></a>
         <h2 class="header-title">VIMUD - CLARO</h2>
         <p class="opacity-75 small mt-2">Gestión de Cambio de Domicilio</p>
     </div>
@@ -406,7 +101,7 @@
 
                         <div class="text-center">
                             <span class="revisita-action-badge"><i class="fas fa-redo-alt me-2"></i>REVISITA</span>
-                            <span class="revisita-action-badge mt-2" style="background: #555;"><i class="fas fa-recycle me-2"></i>Reutilización de equipos</span>
+                            <span class="revisita-action-badge mt-2 revisita-action-neutral"><i class="fas fa-recycle me-2"></i>Reutilización de equipos</span>
                         </div>
                     </div>
                 </div>
@@ -518,5 +213,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/efectos.js"></script>
 </body>
 </html>

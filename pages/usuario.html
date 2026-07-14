@@ -8,172 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-        const supabase = createClient(supabaseUrl, supabaseKey)
-
-        async function validarAcceso() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
-        }
-        validarAcceso();
-    </script>
     
-    <style>
-        :root {
-            --claro-red: #ee122c;
-            --claro-blue: #0082c9;
-            --claro-gray: #f2f2f2;
-            --dark-gray: #333;
-        }
-
-        body { 
-            background-color: #fcfcfc; 
-            font-family: 'Roboto', sans-serif; 
-            margin: 0; 
-            color: var(--dark-gray);
-        }
-
-        /* --- NAVBAR SUPERIOR --- */
-        .navbar-claro {
-            background: white;
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-        }
-        .claro-logo { height: 35px; }
-
-        /* --- ENCABEZADO (HERO) --- */
-        .header-section {
-            background: linear-gradient(135deg, var(--claro-red) 0%, #a50d1f 100%);
-            color: white;
-            padding: 40px 0 100px 0; /* Aumentamos el espacio abajo para que no tape nada */
-            text-align: center;
-            position: relative;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white; 
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            margin: 0; 
-            font-size: 1.8rem; 
-            letter-spacing: 1px;
-        }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-container {
-            max-width: 1100px;
-            margin: -60px auto 50px; /* Ajustamos el "vuelo" sobre el rojo */
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- NOTA IMPORTANTE (CUADRO AMARILLO) --- */
-        .important-note {
-            background-color: #fff9e6;
-            border: 1px solid #ffeeba;
-            border-left: 5px solid #ffc107;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra más profunda para que resalte */
-            font-size: 0.95rem;
-        }
-
-        /* --- TARJETAS DE PASOS --- */
-        .step-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            height: 100%;
-            overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-        }
-
-        .step-header {
-            padding: 15px 20px;
-            color: white;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-        }
-        .bg-red { background-color: var(--claro-red); }
-        .bg-blue { background-color: var(--claro-blue); }
-
-        .step-badge {
-            background: rgba(0,0,0,0.2);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            font-size: 0.8rem;
-        }
-
-        .step-body { padding: 25px; }
-        .step-instruction { color: #666; font-size: 0.85rem; margin-bottom: 15px; }
-
-        /* --- CAJA DE TEXTO (SCRIPT) --- */
-        .script-box-container {
-            position: relative;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-left: 4px solid var(--claro-red);
-            border-radius: 6px;
-            padding: 15px;
-        }
-
-        .script-text {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            color: #333;
-            margin: 0;
-            white-space: pre-wrap;
-        }
-
-        .btn-copy {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 4px 10px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-copy:hover { background: var(--claro-red); color: white; border-color: var(--claro-red); }
-
-        footer { 
-            text-align: center; 
-            padding: 40px 0; 
-            color: #999; 
-            font-size: 0.8rem; 
-        }
-
-    </style>
 </head>
-<body>
+<body class="page-usuario" data-page="usuario" data-auth="required">
 
 <nav class="navbar-claro">
     <div class="container d-flex justify-content-between">
@@ -184,7 +23,7 @@
 
 <header class="header-section">
     <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="btn-back" data-go-back><i class="fas fa-arrow-left"></i></a>
         <h2 class="header-title">PROCESO DE ALTA - USUARIOS ADMINISTRATIVOS</h2>
         <p class="mb-0 opacity-75">Solicitud de Alta de Usuario de Red / OFSC</p>
     </div>
@@ -208,7 +47,7 @@
                 <div class="step-body">
                     <p class="step-instruction">La solicitud debe ser dirigida al referente o analista a cargo de la plaza.</p>
                     <div class="script-box-container">
-                        <button class="btn-copy" onclick="copyText('scriptRed')"><i class="far fa-copy me-1"></i>Copiar</button>
+                        <button class="btn-copy" data-copy-target="scriptRed"><i class="far fa-copy me-1"></i>Copiar</button>
                         <pre class="script-text" id="scriptRed">"Estimados,
 
 Solicito el alta de usuario de red para el siguiente recurso:
@@ -230,8 +69,8 @@ TELEFONO:"</pre>
                 </div>
                 <div class="step-body">
                     <p class="step-instruction">La solicitud debe ser dirigida al referente o analista a cargo de la plaza.</p>
-                    <div class="script-box-container" style="border-left-color: var(--claro-blue);">
-                        <button class="btn-copy" onclick="copyText('scriptOfsc')"><i class="far fa-copy me-1"></i>Copiar</button>
+                    <div class="script-box-container user-script-accent">
+                        <button class="btn-copy" data-copy-target="scriptOfsc"><i class="far fa-copy me-1"></i>Copiar</button>
                         <pre class="script-text" id="scriptOfsc">"Estimados,
 
 Solicito el alta de OFSC para el siguiente usuario:
@@ -250,16 +89,9 @@ Carpetas a visualizar"</pre>
     <p class="mb-1">© 2026 Claro Argentina | Todos los derechos reservados</p>
 </footer>
 
-<script>
-    function copyText(id) {
-        const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Texto copiado al portapapeles");
-        });
-    }
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/efectos.js"></script>
 </body>
 </html>

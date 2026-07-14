@@ -1,205 +1,3114 @@
-  :root {
-            --claro-red: #d93025;
-            --dark-gray: #333;
-            --light-bg: #f8f9fa;
-        }
+/* ===================== VARIABLES ===================== */
+:root {
+    --claro-red: #ee122c;
+    --claro-dark: #333333;
+    --claro-gray: #f2f2f2;
+    --claro-light-bg: #f8f9fa;
+    --claro-blue: #0082c9;
+    --success-green: #28a745;
+}
 
-        body {
-            background: var(--light-bg);
+/* ======================= RESET ======================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* =================== NAVBAR / HERO ==================== */
+.navbar-claro {
+    background: #fff;
+}
+
+.btn-back {
+    text-decoration: none;
+}
+
+/********************** CARDS ****************************/
+.instruction-card,
+.btn-card,
+.motive-card {
+    transition: all 0.3s ease;
+}
+
+/********************* BUTTONS ***************************/
+.btn-view,
+.btn-login,
+.btn-logout,
+.btn-copy {
+    transition: all 0.3s ease;
+}
+
+/********************** FORMS ****************************/
+.form-control:focus {
+    outline: none;
+}
+
+/********************** FOOTER ***************************/
+footer {
+    margin-top: 40px;
+}
+
+/********************* UTILITIES *************************/
+.letter-spacing-1 {
+    letter-spacing: 1px;
+}
+
+.modal-close-floating {
+    z-index: 1055;
+}
+
+.logout-accent {
+    color: var(--claro-red) !important;
+    border-color: var(--claro-red) !important;
+}
+
+.revisita-action-neutral {
+    background: #555;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.warning-callout-highlight {
+    background-color: #fff9e6;
+    border-color: #ffc107;
+    color: #856404;
+}
+
+.user-script-accent {
+    border-left-color: var(--claro-blue);
+}
+
+.video-step-header {
+    background-color: var(--claro-dark);
+}
+
+.extra-small-copy {
+    font-size: 0.75rem;
+}
+
+
+/* ===================== INDEX ===================== */
+body.page-index {
+background-color: var(--claro-gray);
             font-family: 'Roboto', sans-serif;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
-        }
+            justify-content: center;
+            margin: 0;
+            /* Fondo sutil con el rojo de Claro */
+            background: linear-gradient(180deg, #d93025 0%, #d93025 30%, #f8f9fa 30%, #f8f9fa 100%);
+}
 
-        h1, h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        .main-container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* Estilo de la Botonera (Cards) */
-        .btn-card {
-            background: white;
+body.page-index .login-card {
+background: white;
+            padding: 45px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
             border: none;
+}
+
+body.page-index .claro-logo-login {
+width: 140px;
+            margin-bottom: 25px;
+}
+
+body.page-index .login-card h2 {
+font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--claro-dark);
+            margin-bottom: 8px;
+            text-transform: none;
+}
+
+body.page-index .subtitle {
+color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+}
+
+body.page-index .form-label {
+font-size: 0.75rem;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+}
+
+body.page-index .form-control {
+border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            transition: all 0.3s;
+}
+
+body.page-index .form-control:focus {
+border-color: var(--claro-red);
+            box-shadow: 0 0 0 3px rgba(238, 18, 44, 0.1);
+            outline: none;
+}
+
+body.page-index .btn-login {
+background-color: var(--claro-red);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 14px;
+            width: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-top: 10px;
+}
+
+body.page-index .btn-login:hover {
+background-color: #d10f26;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(238, 18, 44, 0.3);
+            color: white;
+}
+
+body.page-index .footer-text {
+margin-top: 30px;
+            color: #999;
+            font-size: 0.8rem;
+}
+
+body.page-index /* Ajuste para iconos en los inputs */
+        .input-group-text {
+background: transparent;
+            border-right: none;
+            color: #999;
+}
+
+body.page-index .input-group .form-control {
+border-left: none;
+}
+
+
+/* ===================== AVAYA ===================== */
+body.page-avaya {
+background-color: #fcfcfc; 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            color: var(--claro-dark);
+}
+
+body.page-avaya .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 10px 0;
+            background: white;
+}
+
+body.page-avaya .claro-logo {
+height: 35px;
+}
+
+body.page-avaya .hero-section {
+background: linear-gradient(135deg, var(--claro-red) 0%, #a50d1f 100%);
+            color: white;
+            padding: 40px 0 80px 0;
+            text-align: center;
+            position: relative;
+}
+
+body.page-avaya .btn-back {
+position: absolute; 
+            left: 20px; 
+            top: 20px;
+            color: white; 
+            background: rgba(255,255,255,0.15); 
+            width: 40px; 
+            height: 40px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border-radius: 50%; 
+            text-decoration: none; 
+            transition: 0.3s;
+}
+
+body.page-avaya .btn-back:hover {
+background: white; 
+            color: var(--claro-red); 
+            transform: translateX(-3px);
+}
+
+body.page-avaya .header-title {
+font-weight: 700; 
+            text-transform: uppercase; 
+            font-size: 1.8rem;
+            margin: 0;
+}
+
+body.page-avaya .main-content {
+max-width: 1100px;
+            margin: -40px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-avaya .section-badge {
+background: white;
+            color: var(--claro-red);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            display: inline-block;
+}
+
+body.page-avaya .resource-card {
+background: white;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            height: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+body.page-avaya .resource-card:hover {
+transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            border-color: var(--claro-red);
+}
+
+body.page-avaya .icon-circle {
+width: 70px;
+            height: 70px;
+            background: var(--claro-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--claro-red);
+            font-size: 1.8rem;
+            transition: 0.3s;
+}
+
+body.page-avaya .resource-card:hover .icon-circle {
+background: #ffeaea;
+}
+
+body.page-avaya .resource-title {
+font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--claro-dark);
+            margin-bottom: 25px;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+}
+
+body.page-avaya .btn-download {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+}
+
+body.page-avaya .btn-download:hover {
+background-color: #d10f26;
+            color: white;
+            box-shadow: 0 5px 15px rgba(238, 18, 44, 0.3);
+}
+
+body.page-avaya footer {
+text-align: center; 
+            padding: 40px 0; 
+            color: #999; 
+            font-size: 0.8rem;
+}
+
+
+/* ===================== CONTACTOMESA ===================== */
+body.page-contactoMesa {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-contactoMesa .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-contactoMesa .claro-logo {
+height: 35px;
+}
+
+body.page-contactoMesa .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-contactoMesa .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-contactoMesa .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-contactoMesa .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0;
+}
+
+body.page-contactoMesa .main-content {
+max-width: 1100px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-contactoMesa .exclusive-note {
+background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            border-left: 5px solid var(--anexo-gold);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 45px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+            font-weight: 700;
+            color: #856404;
+}
+
+body.page-contactoMesa .ivr-card {
+background: white;
+            border: 1px solid #e0e0e0;
             border-radius: 15px;
-            padding: 40px 20px;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+}
+
+body.page-contactoMesa .ivr-card:hover {
+transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+body.page-contactoMesa .option-header {
+padding: 25px 20px;
+            color: white;
+            text-align: center;
+}
+
+body.page-contactoMesa .header-black {
+background-color: var(--claro-dark);
+}
+
+body.page-contactoMesa .header-red-claro {
+background-color: var(--claro-red);
+}
+
+body.page-contactoMesa .option-badge {
+background: black;
+            color: white;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1rem; margin-bottom: 12px;
+            border: 2px solid white;
+}
+
+body.page-contactoMesa .header-black .option-badge {
+background: #555;
+}
+
+body.page-contactoMesa /* Contraste para el fondo negro */
+
+        .option-title {
+display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 1rem;
+}
+
+body.page-contactoMesa .card-body-custom {
+padding: 30px;
+}
+
+body.page-contactoMesa .category-label {
+font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #f2f2f2;
+            padding-bottom: 5px;
+            letter-spacing: 1px;
+}
+
+body.page-contactoMesa .motive-list {
+list-style: none; padding: 0; margin: 0;
+}
+
+body.page-contactoMesa .motive-list li {
+padding: 8px 0;
+            font-size: 0.95rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #fafafa;
+}
+
+body.page-contactoMesa .motive-list li i {
+color: var(--claro-red); margin-right: 12px; font-size: 0.7rem;
+}
+
+body.page-contactoMesa footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+
+/* ===================== FOTOSTOA ===================== */
+body.page-fotosToa {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-fotosToa .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px; /* Separación solicitada */
+}
+
+body.page-fotosToa .claro-logo {
+height: 35px;
+}
+
+body.page-fotosToa .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 100px 0;
+            text-align: center;
+            position: relative;
+}
+
+body.page-fotosToa .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-fotosToa .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-fotosToa .header-title {
+font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-fotosToa .main-content {
+max-width: 1200px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-fotosToa .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 50px; /* Separación marcada */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+}
+
+body.page-fotosToa .nav-pills .nav-link {
+color: #666;
+            font-weight: 700;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            border-radius: 25px;
+            padding: 10px 25px;
+            transition: 0.3s;
+            background: white;
+}
+
+body.page-fotosToa .nav-pills .nav-link.active {
+background-color: var(--claro-red) !important;
+            border-color: var(--claro-red);
+            color: white;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.3);
+}
+
+body.page-fotosToa .photo-card {
+background: white;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            height: 100%;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+body.page-fotosToa .photo-card:hover {
+transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: var(--claro-red);
+}
+
+body.page-fotosToa .card-header-custom {
+background-color: var(--claro-red);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            color: white;
+}
+
+body.page-fotosToa .photo-number {
+background: var(--claro-dark);
+            color: white;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.8rem; margin-right: 12px;
+}
+
+body.page-fotosToa .section-tag {
+font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+}
+
+body.page-fotosToa .img-wrapper {
+cursor: zoom-in;
+            overflow: hidden;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+}
+
+body.page-fotosToa .img-step {
+width: 100%; height: 220px; object-fit: cover; transition: 0.4s;
+}
+
+body.page-fotosToa .photo-card:hover .img-step {
+transform: scale(1.05);
+}
+
+body.page-fotosToa .description-box {
+padding: 15px;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            min-height: 80px;
+}
+
+body.page-fotosToa footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-fotosToa /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-fotosToa #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px;
+}
+
+
+/* ===================== INSTRUCTIVOS ===================== */
+body.page-instructivos {
+background-color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-instructivos .navbar-claro {
+border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+            background: white;
+}
+
+body.page-instructivos .claro-logo {
+height: 40px;
+}
+
+body.page-instructivos .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 80px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-instructivos .btn-back {
+position: absolute;
+            left: 20px;
+            top: 20px;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: 0.3s;
+}
+
+body.page-instructivos .btn-back:hover {
+background: white; color: var(--claro-red); transform: translateX(-3px);
+}
+
+body.page-instructivos .search-wrapper {
+max-width: 700px;
+            margin: -40px auto 30px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-instructivos .search-box {
+background: white;
+            border-radius: 30px;
+            padding: 10px 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+}
+
+body.page-instructivos .search-box input {
+border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 1rem;
+}
+
+body.page-instructivos .filter-container {
+margin-bottom: 40px;
+}
+
+body.page-instructivos .filter-btn {
+border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 500;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+            margin: 5px;
+            transition: 0.3s;
+}
+
+body.page-instructivos .btn-check:checked + .filter-btn {
+background-color: var(--claro-red) !important;
+            border-color: var(--claro-red) !important;
+            color: white !important;
+}
+
+body.page-instructivos .instruction-card {
+background: white;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 30px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+body.page-instructivos .instruction-card:hover {
+transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: var(--claro-red);
+}
+
+body.page-instructivos .icon-circle {
+width: 70px;
+            height: 70px;
+            background-color: var(--claro-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--claro-red);
+            font-size: 1.8rem;
+            transition: 0.3s;
+}
+
+body.page-instructivos .instruction-card:hover .icon-circle {
+background-color: #ffeaea;
+}
+
+body.page-instructivos .btn-view {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 25px;
+            padding: 8px 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            border: none;
+            margin-top: auto;
+            width: 100%;
+            transition: 0.3s;
+}
+
+body.page-instructivos .btn-view:hover {
+background-color: #b2261e; color: white;
+}
+
+body.page-instructivos footer {
+background: var(--claro-gray); padding: 30px 0; margin-top: 60px;
+}
+
+
+/* ===================== MOTIVOSOFSC ===================== */
+body.page-motivosOfsc {
+background-color: #fcfcfc; 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            color: var(--claro-dark);
+}
+
+body.page-motivosOfsc .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-motivosOfsc .claro-logo {
+height: 35px;
+}
+
+body.page-motivosOfsc .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 100px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-motivosOfsc .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-motivosOfsc .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-motivosOfsc .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0;
+}
+
+body.page-motivosOfsc .main-content {
+max-width: 1200px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-motivosOfsc .controls-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 45px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+body.page-motivosOfsc .nav-pills .nav-link {
+color: #666; font-weight: 700; border: 1px solid #ddd;
+            margin: 0 5px; border-radius: 25px; padding: 8px 20px;
+            font-size: 0.85rem; transition: 0.3s; background: white;
+}
+
+body.page-motivosOfsc .btn-todos.active {
+background-color: var(--claro-blue) !important; color: white;
+}
+
+body.page-motivosOfsc .btn-no-realizada.active {
+background-color: var(--claro-red) !important; color: white;
+}
+
+body.page-motivosOfsc .btn-realizada.active {
+background-color: var(--success-green) !important; color: white;
+}
+
+body.page-motivosOfsc .motive-card {
+cursor: pointer; 
+            transition: 0.3s; 
+            border: 1px solid #eee;
+            border-left: 6px solid var(--claro-red);
+            height: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+body.page-motivosOfsc .motive-card:hover {
+transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+
+body.page-motivosOfsc .motive-card.realizada {
+border-left-color: var(--success-green);
+}
+
+body.page-motivosOfsc .text-truncate-2 {
+display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            font-size: 0.9rem;
+            font-weight: 700;
+}
+
+body.page-motivosOfsc .modal-content {
+border-radius: 16px; border: none; overflow: hidden;
+}
+
+body.page-motivosOfsc .modal-body {
+padding: 30px;
+}
+
+body.page-motivosOfsc .section-title {
+font-weight: 800; color: #000000; margin-top: 25px; text-transform: uppercase; 
+            font-size: 0.80rem; border-bottom: 2px solid #f2f2f2; padding-bottom: 5px; margin-bottom: 15px;
+            letter-spacing: 1px;
+}
+
+body.page-motivosOfsc .modal-list {
+list-style: none; padding-left: 0;
+}
+
+body.page-motivosOfsc .modal-list li {
+margin-bottom: 10px; color: #444; font-size: 0.95rem; line-height: 1.5; 
+            display: flex; align-items: center;
+}
+
+body.page-motivosOfsc /* Punto Negro Chico */
+        .dot-indicator {
+width: 8px;
+            height: 8px;
+            background-color: black;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 15px;
+            flex-shrink: 0;
+}
+
+body.page-motivosOfsc .stock-box {
+background: #fff3f3; 
+            padding: 15px; 
+            border-radius: 8px; 
+            border-left: 4px solid var(--claro-red); 
+            font-size: 0.9rem; 
+            color: #a50d1f; 
+            font-weight: 500;
+}
+
+body.page-motivosOfsc footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+
+/* ===================== OFSC ===================== */
+body.page-ofsc {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-ofsc .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-ofsc .claro-logo {
+height: 35px;
+}
+
+body.page-ofsc .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 100px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-ofsc .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-ofsc .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-ofsc .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0;
+}
+
+body.page-ofsc .main-content {
+max-width: 1200px;
+            margin: -45px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-ofsc .search-wrapper {
+max-width: 600px;
+            margin: 0 auto 50px;
+}
+
+body.page-ofsc .search-box {
+background: white;
+            border-radius: 30px;
+            padding: 10px 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+}
+
+body.page-ofsc .search-box input {
+border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 1rem;
+}
+
+body.page-ofsc .instruction-card {
+background: white;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 30px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+body.page-ofsc .instruction-card:hover {
+transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--claro-red);
+}
+
+body.page-ofsc .icon-circle {
+width: 75px;
+            height: 75px;
+            background-color: var(--claro-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--claro-red);
+            font-size: 2rem;
+            transition: 0.3s;
+}
+
+body.page-ofsc .instruction-card:hover .icon-circle {
+background-color: var(--claro-red);
+            color: white;
+}
+
+body.page-ofsc .instruction-card h5 {
+font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--claro-dark);
+}
+
+body.page-ofsc .instruction-card p {
+font-size: 0.85rem;
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 20px;
+}
+
+body.page-ofsc .btn-view {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 25px;
+            padding: 8px 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border: none;
+            margin-top: auto;
+            width: 100%;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+}
+
+body.page-ofsc .btn-view:hover {
+background-color: #d10f26;
+            color: white;
+            box-shadow: 0 4px 10px rgba(238, 18, 44, 0.2);
+}
+
+body.page-ofsc /* Estilos personalizados para el Modal */
+        .modal-content {
+border-radius: 16px;
+            border: none;
+}
+
+body.page-ofsc .modal-header {
+border-bottom: 1px solid #eee;
+}
+
+body.page-ofsc footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+
+/* ===================== ORION ===================== */
+body.page-orion {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-orion .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px; /* Separación con el bloque rojo */
+}
+
+body.page-orion .claro-logo {
+height: 35px;
+}
+
+body.page-orion .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+}
+
+body.page-orion .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-orion .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-orion .header-title {
+font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-orion .main-content {
+max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-orion .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; /* Espacio antes del Paso 1 */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+}
+
+body.page-orion .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-orion .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-orion .step-badge {
+background: var(--claro-dark); /* Fondo Negro */
+            color: white; /* Número Blanco */
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: bold;
+}
+
+body.page-orion .step-body {
+padding: 30px;
+}
+
+body.page-orion .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-orion .btn-link-gis {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+}
+
+body.page-orion .btn-link-gis:hover {
+background-color: #d10f26; color: white; transform: translateY(-2px);
+}
+
+body.page-orion .img-wrapper {
+position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+}
+
+body.page-orion .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+body.page-orion .img-step {
+width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain;
+}
+
+body.page-orion .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-orion footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-orion /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-orion #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+
+/* ===================== PORTADA ===================== */
+body.page-portada {
+background-color: white;
+            font-family: 'Roboto', sans-serif;
+            color: var(--claro-dark);
+            margin: 0;
+}
+
+body.page-portada .navbar-claro {
+border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            background: white;
+}
+
+body.page-portada .claro-logo {
+height: 45px;
+}
+
+body.page-portada .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-portada .hero-section h2 {
+font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 10px;
+}
+
+body.page-portada .main-container {
+max-width: 1100px;
+            margin: -40px auto 50px; /* Sube las tarjetas sobre el hero */
+            padding: 0 20px;
+}
+
+body.page-portada .btn-card {
+background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 35px 20px;
+            text-align: center;
+            transition: all 0.25s ease-in-out;
             text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+body.page-portada .btn-card:hover {
+transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: var(--claro-red);
+            color: inherit;
+}
+
+body.page-portada .icon-circle {
+width: 80px;
+            height: 80px;
+            background-color: var(--claro-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            height: 100%;
-            border-bottom: 5px solid transparent;
-        }
-
-        .btn-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-bottom: 5px solid var(--claro-red);
-            color: var(--claro-red);
-        }
-
-        .btn-card i {
-            font-size: 3rem;
-            color: var(--claro-red);
             margin-bottom: 20px;
-        }
+            transition: 0.3s;
+}
 
-        .btn-card span {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--dark-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+body.page-portada .btn-card:hover .icon-circle {
+background-color: #ffeaea;
+}
 
-        .header-section {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .welcome-text {
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-         :root { --claro-red: #d93025; --success-green: #28a745; }
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .nav-pills .nav-link.active { background-color: var(--claro-red); }
-        .motive-card { 
-            cursor: pointer; 
-            transition: 0.3s; 
-            border-left: 5px solid var(--claro-red);
-            height: 100%;
-        }
-        .motive-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .realizada { border-left-color: var(--success-green); }
-        .modal-header { background-color: var(--claro-red); color: white; }
-        .badge-step { background-color: #eee; color: #333; margin-right: 5px; }
-        .section-title { font-weight: bold; color: var(--claro-red); margin-top: 15px; text-transform: uppercase; font-size: 0.9rem; }
-
-         :root {
-            --claro-red: #d93025;
-            --light-bg: #f8f9fa;
-        }
-
-        body {
-            background-color: var(--light-bg);
-            font-family: 'Roboto', sans-serif;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Buscador */
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-        }
-
-        /* Estilo de Tarjetas */
-        .instruction-card {
-            background: white;
-            border: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            height: 100%;
-            border-left: 5px solid var(--claro-red);
-        }
-
-        .instruction-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
+body.page-portada .btn-card i {
+font-size: 2rem;
             color: var(--claro-red);
-            margin-bottom: 15px;
-        }
+}
 
-        .btn-view {
-            background-color: var(--claro-red);
+body.page-portada .btn-card span {
+font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--claro-dark);
+            text-transform: none;
+            line-height: 1.3;
+}
+
+body.page-portada .btn-logout {
+background: transparent;
             color: white;
-            border-radius: 20px;
-            padding: 5px 20px;
+            border: 1px solid white;
+            padding: 8px 20px;
+            border-radius: 25px;
             font-weight: 500;
-            border: none;
-        }
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+}
 
-        .btn-view:hover {
-            background-color: #b2261e;
+body.page-portada .btn-logout:hover {
+background: white;
+            color: var(--claro-red);
+}
+
+body.page-portada footer {
+background: var(--claro-gray);
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+body.page-portada .hero-section {
+padding: 40px 20px 60px;
+}
+
+body.page-portada .hero-section h2 {
+font-size: 1.5rem;
+}
+}
+
+
+/* ===================== PORTALGIS ===================== */
+body.page-portalGis {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-portalGis .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 10px 0;
+            background: white;
+}
+
+body.page-portalGis .claro-logo {
+height: 35px;
+}
+
+body.page-portalGis .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
             color: white;
-        }
+            padding: 40px 0 100px 0; /* Espacio para el float */
+            text-align: center;
+            position: relative;
+}
 
-        /* Filtros */
-        .filter-btn {
-            border-radius: 20px;
-            margin: 0 5px;
-            padding: 5px 20px;
-        }
+body.page-portalGis .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
 
-        .btn-check:checked + .btn-outline-danger {
+body.page-portalGis .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-portalGis .header-title {
+font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-portalGis .main-content {
+max-width: 1000px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-portalGis .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-portalGis .step-header {
+padding: 12px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
             background-color: var(--claro-red);
-            color: white;
-        }
-
-         body {
-            background-color: #f0ebf1; /* Color de fondo tipo Google Forms */
-            font-family: 'Roboto', Arial, sans-serif;
-        }
-        .form-header {
-            background-color: #d93025; /* Rojo corporativo */
-            height: 10px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-        .card {
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .main-card {
-            border-top: 10px solid #d93025; /* Banda superior roja */
-        }
-        .required-star {
-            color: #d93025;
-            margin-left: 4px;
-        }
-        .form-label {
-            font-weight: 500;
-            font-size: 1rem;
-        }
-        .form-subtitle {
-            font-size: 0.85rem;
-            color: #70757a;
-            margin-bottom: 10px;
-        }
-        .btn-submit {
-            background-color: #d93025;
-            color: white;
-            padding: 10px 24px;
-            border: none;
-            font-weight: bold;
-        }
-        .btn-submit:hover {
-            background-color: #b2261e;
-            color: white;
-        }
-        .important-note {
-            color: #d93025;
+            font-size: 0.9rem;
             text-transform: uppercase;
+}
+
+body.page-portalGis .step-header.anexo {
+background-color: var(--claro-dark); border-bottom: 4px solid var(--anexo-gold);
+}
+
+body.page-portalGis .step-badge {
+background: #000000; /* <--- Círculo negro sólido */
+            color: #ffffff; /* <--- Número en color blanco */
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-right: 15px; font-size: 0.8rem;
+}
+
+body.page-portalGis .step-body {
+padding: 30px;
+}
+
+body.page-portalGis .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-portalGis .btn-link-gis {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+}
+
+body.page-portalGis .btn-link-gis:hover {
+background-color: #d10f26; color: white; transform: translateY(-2px);
+}
+
+body.page-portalGis .img-wrapper {
+position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+}
+
+body.page-portalGis .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+body.page-portalGis .img-step {
+width: 100%; height: auto; border-radius: 6px; max-height: 400px; object-fit: contain;
+}
+
+body.page-portalGis .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-portalGis .important-callout {
+background: #fff9e6;
+            border-left: 5px solid var(--anexo-gold);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: #856404;
+}
+
+body.page-portalGis footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-portalGis /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-portalGis #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px;
+}
+
+
+/* ===================== PRECONTACTO ===================== */
+body.page-precontacto {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-precontacto .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 10px 0;
+            background: white;
+            margin-bottom: 25px;
+}
+
+body.page-precontacto .claro-logo {
+height: 35px;
+}
+
+body.page-precontacto .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 40px 0 100px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-precontacto .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-precontacto .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-precontacto .header-title {
+font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-precontacto .main-content {
+max-width: 1100px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-precontacto .important-note {
+background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            border-left: 5px solid #ffc107;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 45px; /* Separación solicitada */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            color: #856404;
+}
+
+body.page-precontacto .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: 0.3s;
+}
+
+body.page-precontacto .step-card:hover {
+transform: translateY(-5px);
+}
+
+body.page-precontacto .step-header {
+padding: 12px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-precontacto .step-badge {
+background: rgba(0,0,0,0.2);
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-right: 15px; font-size: 0.8rem;
+}
+
+body.page-precontacto .step-body {
+padding: 25px;
+}
+
+body.page-precontacto .script-container {
+position: relative;
+            background-color: #f8f9fa;
+            border: 1px dashed var(--claro-red);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 10px;
+}
+
+body.page-precontacto .script-text {
+font-family: 'Roboto', sans-serif;
+            font-size: 0.95rem;
+            color: #444;
+            font-style: italic;
+            margin: 0;
+            padding-right: 80px;
+}
+
+body.page-precontacto .btn-copy {
+position: absolute; top: 10px; right: 10px;
+            background: white; border: 1px solid #ddd;
+            border-radius: 20px; padding: 4px 12px;
+            font-size: 0.7rem; font-weight: 700;
+            color: var(--claro-red); cursor: pointer;
+            transition: 0.2s;
+}
+
+body.page-precontacto .btn-copy:hover {
+background: var(--claro-red); color: white; border-color: var(--claro-red);
+}
+
+body.page-precontacto .contact-card {
+background: white;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+body.page-precontacto .badge-call {
+padding: 12px;
+            font-weight: 700;
+            border-radius: 8px;
+            color: white;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: 0.3s;
+}
+
+body.page-precontacto .bg-residencial {
+background-color: var(--claro-red);
+}
+
+body.page-precontacto .bg-pyme {
+background-color: #0056b3;
+}
+
+body.page-precontacto .badge-call:hover {
+opacity: 0.9; transform: scale(1.02); color: white;
+}
+
+body.page-precontacto footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+
+/* ===================== PRUEBA ===================== */
+body.page-prueba {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-prueba .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-prueba .claro-logo {
+height: 35px;
+}
+
+body.page-prueba .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-prueba .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-prueba .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-prueba .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-prueba .main-content {
+max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-prueba .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+body.page-prueba .warning-callout {
+background-color: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #a50d1f;
+}
+
+body.page-prueba .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-prueba .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-prueba .step-badge {
+background: black; 
+            color: white; 
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
             font-weight: bold;
-        }
+}
+
+body.page-prueba .step-body {
+padding: 30px;
+}
+
+body.page-prueba .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-prueba .text-center-custom {
+text-align: center;
+}
+
+body.page-prueba .custom-list {
+padding-left: 0; list-style: none;
+}
+
+body.page-prueba .custom-list li {
+background: #fdfdfd; margin-bottom: 10px; padding: 15px; 
+            border-radius: 8px; border: 1px solid #eaeaea;
+            border-left: 4px solid var(--claro-dark);
+            font-size: 0.9rem; color: #444; line-height: 1.5;
+}
+
+body.page-prueba .custom-list .faq-q {
+font-weight: bold; color: var(--claro-red); display: block; margin-bottom: 5px;
+}
+
+body.page-prueba .img-wrapper {
+position: relative; cursor: zoom-in; transition: 0.3s;
+            border: 1px solid #eee; border-radius: 10px; padding: 8px; background: #fff; margin-top: 10px;
+}
+
+body.page-prueba .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px);
+}
+
+body.page-prueba .img-step {
+width: 100%; height: auto; border-radius: 6px;
+}
+
+body.page-prueba .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-prueba #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-prueba #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+body.page-prueba .scroll-list {
+max-height: 350px; overflow-y: auto;
+}
+
+body.page-prueba .scroll-list::-webkit-scrollbar {
+width: 6px;
+}
+
+body.page-prueba .scroll-list::-webkit-scrollbar-track {
+background: #f1f1f1; border-radius: 10px;
+}
+
+body.page-prueba .scroll-list::-webkit-scrollbar-thumb {
+background: #ccc; border-radius: 10px;
+}
+
+body.page-prueba .scroll-list::-webkit-scrollbar-thumb:hover {
+background: #aaa;
+}
+
+body.page-prueba footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+
+/* ===================== SGT ===================== */
+body.page-sgt {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-sgt .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-sgt .claro-logo {
+height: 35px;
+}
+
+body.page-sgt .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 40px 0 100px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-sgt .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-sgt .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-sgt .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.6rem; margin: 0;
+}
+
+body.page-sgt .main-content {
+max-width: 1000px;
+            margin: -60px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-sgt .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--claro-red);
+}
+
+body.page-sgt .nav-pills .nav-link {
+color: #666;
+            font-weight: 700;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            border-radius: 25px;
+            padding: 10px 25px;
+            background: white;
+}
+
+body.page-sgt .nav-pills .nav-link.active {
+background-color: var(--claro-red) !important;
+            color: white;
+            border-color: var(--claro-red);
+}
+
+body.page-sgt .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-sgt .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-sgt .step-badge {
+background: black; 
+            color: white; 
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: bold;
+}
+
+body.page-sgt .step-body {
+padding: 30px;
+}
+
+body.page-sgt .btn-link-red {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+}
+
+body.page-sgt .btn-link-red:hover {
+background-color: #d10f26; color: white; transform: translateY(-2px);
+}
+
+body.page-sgt .img-wrapper {
+position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+}
+
+body.page-sgt .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+body.page-sgt .img-step {
+width: 100%; height: auto; border-radius: 6px;
+}
+
+body.page-sgt .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-sgt footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-sgt /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-sgt #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px;
+}
+
+
+/* ===================== SYTEX ===================== */
+body.page-sytex {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-sytex .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-sytex .claro-logo {
+height: 35px;
+}
+
+body.page-sytex .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+}
+
+body.page-sytex .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-sytex .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-sytex .header-title {
+font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-sytex .main-content {
+max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-sytex .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+}
+
+body.page-sytex .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-sytex .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-sytex .step-badge {
+background: #000000;
+            color: #ffffff;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-right: 15px; font-size: 0.8rem;
+}
+
+body.page-sytex .step-body {
+padding: 30px;
+}
+
+body.page-sytex .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-sytex .btn-link-sytex {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+}
+
+body.page-sytex .btn-link-sytex:hover {
+background-color: #d10f26; color: white; transform: translateY(-2px);
+}
+
+body.page-sytex .img-wrapper {
+position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+}
+
+body.page-sytex .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+body.page-sytex .img-step {
+width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain;
+}
+
+body.page-sytex .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-sytex .important-callout {
+background: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+}
+
+body.page-sytex .video-wrapper {
+background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 20px;
+}
+
+body.page-sytex video {
+width: 100%; display: block;
+}
+
+body.page-sytex footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-sytex /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-sytex #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px;
+}
+
+
+/* ===================== USUARIO ===================== */
+body.page-usuario {
+background-color: #fcfcfc; 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            color: var(--dark-gray);
+}
+
+body.page-usuario .navbar-claro {
+background: white;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+}
+
+body.page-usuario .claro-logo {
+height: 35px;
+}
+
+body.page-usuario .header-section {
+background: linear-gradient(135deg, var(--claro-red) 0%, #a50d1f 100%);
+            color: white;
+            padding: 40px 0 100px 0; /* Aumentamos el espacio abajo para que no tape nada */
+            text-align: center;
+            position: relative;
+}
+
+body.page-usuario .btn-back {
+position: absolute; left: 20px; top: 20px; color: white; 
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-usuario .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-usuario .header-title {
+font-family: 'Montserrat', sans-serif; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            margin: 0; 
+            font-size: 1.8rem; 
+            letter-spacing: 1px;
+}
+
+body.page-usuario .main-container {
+max-width: 1100px;
+            margin: -60px auto 50px; /* Ajustamos el "vuelo" sobre el rojo */
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-usuario .important-note {
+background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra más profunda para que resalte */
+            font-size: 0.95rem;
+}
+
+body.page-usuario .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+body.page-usuario .step-header {
+padding: 15px 20px;
+            color: white;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+}
+
+body.page-usuario .bg-red {
+background-color: var(--claro-red);
+}
+
+body.page-usuario .bg-blue {
+background-color: var(--claro-blue);
+}
+
+body.page-usuario .step-badge {
+background: rgba(0,0,0,0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 0.8rem;
+}
+
+body.page-usuario .step-body {
+padding: 25px;
+}
+
+body.page-usuario .step-instruction {
+color: #666; font-size: 0.85rem; margin-bottom: 15px;
+}
+
+body.page-usuario .script-box-container {
+position: relative;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-left: 4px solid var(--claro-red);
+            border-radius: 6px;
+            padding: 15px;
+}
+
+body.page-usuario .script-text {
+font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #333;
+            margin: 0;
+            white-space: pre-wrap;
+}
+
+body.page-usuario .btn-copy {
+position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+}
+
+body.page-usuario .btn-copy:hover {
+background: var(--claro-red); color: white; border-color: var(--claro-red);
+}
+
+body.page-usuario footer {
+text-align: center; 
+            padding: 40px 0; 
+            color: #999; 
+            font-size: 0.8rem;
+}
+
+
+/* ===================== VIMUD ===================== */
+body.page-vimud {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-vimud .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-vimud .claro-logo {
+height: 35px;
+}
+
+body.page-vimud .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-vimud .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-vimud .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-vimud .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-vimud .main-content {
+max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-vimud .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+body.page-vimud .warning-callout {
+background-color: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #a50d1f;
+}
+
+body.page-vimud .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-vimud .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-vimud .step-badge {
+background: black; 
+            color: white; 
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: bold;
+            flex-shrink: 0;
+}
+
+body.page-vimud .step-body {
+padding: 30px;
+}
+
+body.page-vimud .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-vimud .text-center-custom {
+text-align: center;
+}
+
+body.page-vimud .custom-list {
+padding-left: 0; list-style: none;
+}
+
+body.page-vimud .custom-list li {
+background: #fdfdfd; margin-bottom: 10px; padding: 15px; 
+            border-radius: 8px; border: 1px solid #eaeaea;
+            border-left: 4px solid var(--claro-dark);
+            font-size: 0.9rem; color: #444; line-height: 1.5;
+}
+
+body.page-vimud .custom-list .faq-q {
+font-weight: bold; color: var(--claro-red); display: block; margin-bottom: 5px;
+}
+
+body.page-vimud .revisita-grid {
+display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+}
+
+@media (max-width: 768px) {
+body.page-vimud .revisita-grid {
+grid-template-columns: 1fr;
+}
+}
+
+body.page-vimud .revisita-col {
+border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+body.page-vimud .revisita-col-header {
+padding: 10px 15px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.05em;
+}
+
+body.page-vimud .revisita-col-header.no {
+background-color: var(--claro-red);
+            color: white;
+}
+
+body.page-vimud .revisita-col-header.si {
+background-color: #28a745;
+            color: white;
+}
+
+body.page-vimud .revisita-col-header.condiciones {
+background-color: var(--claro-dark);
+            color: white;
+}
+
+body.page-vimud .revisita-col-body {
+background: white;
+            padding: 15px;
+}
+
+body.page-vimud .revisita-list {
+list-style: none;
+            padding: 0;
+            margin: 0;
+}
+
+body.page-vimud .revisita-list li {
+font-size: 0.82rem;
+            color: #444;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+}
+
+body.page-vimud .revisita-list li:last-child {
+border-bottom: none;
+}
+
+body.page-vimud .revisita-list li .dot-no {
+width: 7px; height: 7px; border-radius: 50%;
+            background: var(--claro-red);
+            flex-shrink: 0; margin-top: 5px;
+}
+
+body.page-vimud .revisita-list li .dot-si {
+width: 7px; height: 7px; border-radius: 50%;
+            background: #28a745;
+            flex-shrink: 0; margin-top: 5px;
+}
+
+body.page-vimud .condicion-item {
+display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.82rem;
+            color: #444;
+}
+
+body.page-vimud .condicion-item:last-child {
+border-bottom: none;
+}
+
+body.page-vimud .condicion-num {
+background: var(--claro-dark);
+            color: white;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+}
+
+body.page-vimud .condicion-ok {
+margin-left: auto;
+            color: #28a745;
+            font-weight: 600;
+            font-size: 0.75rem;
+}
+
+body.page-vimud .provisionador-block {
+background: #f9f9f9;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-top: 10px;
+            border: 1px solid #eee;
+}
+
+body.page-vimud .provisionador-block .prov-label {
+font-size: 0.7rem;
+            color: #999;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+}
+
+body.page-vimud .provisionador-block .prov-row {
+display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: #555;
+            margin-bottom: 3px;
+}
+
+body.page-vimud .provisionador-block .prov-row span:first-child {
+color: #888;
+}
+
+body.page-vimud .revisita-action-badge {
+display: inline-block;
+            background: var(--claro-dark);
+            color: white;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-top: 12px;
+            text-align: center;
+            width: 100%;
+}
+
+body.page-vimud .warning-callout-yellow {
+background-color: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #856404;
+}
+
+body.page-vimud footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+
+/* ===================== VPN ===================== */
+body.page-vpn {
+background-color: var(--claro-gray); font-family: 'Roboto', sans-serif;
+}
+
+body.page-vpn .header-banner {
+background: white; border-bottom: 4px solid var(--claro-red); padding: 25px 0; margin-bottom: 40px;
+}
+
+body.page-vpn .step-container {
+background: white; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 30px; overflow: hidden;
+}
+
+body.page-vpn .step-header {
+background: var(--claro-red); color: white; padding: 12px 25px; font-weight: bold; display: flex; align-items: center;
+}
+
+body.page-vpn .step-body {
+padding: 30px;
+}
+
+body.page-vpn .step-badge {
+background: var(--dark-header); color: white; border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.9rem;
+}
+
+body.page-vpn .literal-text {
+font-size: 1rem; color: #444; line-height: 1.7;
+}
+
+body.page-vpn .important-callout {
+background: #fff3f3; border-left: 5px solid var(--claro-red); padding: 15px; border-radius: 5px; margin: 20px 0; font-style: italic;
+}
+
+body.page-vpn .download-btn {
+background-color: var(--claro-red); color: white; border-radius: 25px; padding: 10px 30px; font-weight: 500; text-decoration: none; display: inline-block; transition: 0.3s;
+}
+
+body.page-vpn .download-btn:hover {
+background-color: #b2261e; color: white; transform: scale(1.05);
+}
+
+body.page-vpn .img-box {
+background: #f1f1f1; border: 2px dashed #ccc; border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; color: #999; margin-top: 20px; text-align: center; padding: 20px;
+}
+
+
+/* ===================== WFM ===================== */
+body.page-wfm {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-wfm .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-wfm .claro-logo {
+height: 35px;
+}
+
+body.page-wfm .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-wfm .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-wfm .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-wfm .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-wfm .main-content {
+max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-wfm .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; /* Espacio antes del Paso 1 */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+body.page-wfm .vpn-callout {
+background-color: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #a50d1f;
+}
+
+body.page-wfm .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-wfm .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-wfm .step-badge {
+background: black; 
+            color: white; 
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: bold;
+}
+
+body.page-wfm .step-body {
+padding: 30px;
+}
+
+body.page-wfm .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-wfm .btn-link-gis {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+}
+
+body.page-wfm .btn-link-gis:hover {
+background-color: #d10f26; color: white; transform: translateY(-2px);
+}
+
+body.page-wfm .img-wrapper {
+position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+}
+
+body.page-wfm .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+body.page-wfm .img-step {
+width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain;
+}
+
+body.page-wfm .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-wfm footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-wfm /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-wfm #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+
+/* ===================== WTM ===================== */
+body.page-wtm {
+background-color: #fcfcfc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: var(--claro-dark);
+}
+
+body.page-wtm .navbar-claro {
+border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            background: white;
+            margin-bottom: 30px;
+}
+
+body.page-wtm .claro-logo {
+height: 35px;
+}
+
+body.page-wtm .hero-section {
+background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
+            color: white;
+            padding: 50px 0 110px 0;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+}
+
+body.page-wtm .btn-back {
+position: absolute; left: 20px; top: 20px; color: white;
+            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none; transition: 0.3s;
+}
+
+body.page-wtm .btn-back:hover {
+background: white; color: var(--claro-red);
+}
+
+body.page-wtm .header-title {
+font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0;
+}
+
+body.page-wtm .main-content {
+max-width: 1000px;
+            margin: -70px auto 50px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+}
+
+body.page-wtm .intro-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 55px; /* Espacio antes del Paso 1 */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+body.page-wtm .vpn-callout {
+background-color: #fff3f3;
+            border-left: 5px solid var(--claro-red);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #a50d1f;
+}
+
+body.page-wtm .step-card {
+background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+}
+
+body.page-wtm .step-header {
+padding: 14px 25px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background-color: var(--claro-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+}
+
+body.page-wtm .step-badge {
+background: black; 
+            color: white; 
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: bold;
+}
+
+body.page-wtm .step-body {
+padding: 30px;
+}
+
+body.page-wtm .literal-text {
+font-size: 0.95rem; color: #444; line-height: 1.6;
+}
+
+body.page-wtm .btn-link-gis {
+background-color: var(--claro-red);
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
+}
+
+body.page-wtm .btn-link-gis:hover {
+background-color: #d10f26; color: white; transform: translateY(-2px);
+}
+
+body.page-wtm .img-wrapper {
+position: relative;
+            cursor: zoom-in;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 8px;
+            background: #fff;
+            margin-top: 20px;
+            transition: 0.3s;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+}
+
+body.page-wtm .img-wrapper:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+body.page-wtm .img-step {
+width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain;
+}
+
+body.page-wtm .img-caption {
+display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500;
+}
+
+body.page-wtm footer {
+text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;
+}
+
+body.page-wtm /* MODAL */
+        #imgModal .modal-dialog {
+max-width: 95vw;
+}
+
+body.page-wtm #modalImage {
+max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
