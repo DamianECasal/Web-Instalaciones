@@ -6,6 +6,9 @@
     --claro-light-bg: #f8f9fa;
     --claro-blue: #0082c9;
     --success-green: #28a745;
+    --font-body: 'Roboto', sans-serif;
+    --font-display: 'Montserrat', 'Roboto', sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
 }
 
 /* ======================= RESET ======================== */
@@ -15,6 +18,40 @@
 
 body {
     margin: 0;
+    font-family: var(--font-body);
+    color: var(--claro-dark);
+    line-height: 1.5;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: inherit;
+    line-height: 1.2;
+}
+
+p,
+li {
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+.header-title {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
 }
 
 /* =================== NAVBAR / HERO ==================== */
@@ -2389,7 +2426,7 @@ position: relative;
 }
 
 body.page-usuario .script-text {
-font-family: 'Courier New', Courier, monospace;
+font-family: var(--font-mono);
             font-size: 0.9rem;
             color: #333;
             margin: 0;
