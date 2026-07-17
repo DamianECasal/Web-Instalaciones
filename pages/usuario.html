@@ -6,7 +6,7 @@
     <title>Alta de Usuario - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="module">
@@ -26,240 +26,364 @@
     
     <style>
         :root {
-            --claro-red: #ee122c;
-            --claro-blue: #0082c9;
-            --claro-gray: #f2f2f2;
-            --dark-gray: #333;
+            --red:        #ee122c;
+            --red-dark:   #a50d1f;
+            --red-deeper: #7a0915;
+            --white:      #ffffff;
+            --off-white:  #f8f9fa;
+            --text:       #1f2937;
+            --text-muted: #6b7280;
+            --border:     #e5e7eb;
+            --blue:       #0284c7;
+            --blue-light: #e0f2fe;
+            --warning-bg: #fffbeb;
+            --warning-border: #f59e0b;
+            --warning-text: #92400e;
         }
 
-        body { 
-            background-color: #fcfcfc; 
-            font-family: 'Roboto', sans-serif; 
-            margin: 0; 
-            color: var(--dark-gray);
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAVBAR SUPERIOR --- */
+        /* ── NAVBAR ── */
         .navbar-claro {
-            background: white;
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .claro-logo { height: 35px; }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .claro-logo { height: 34px; }
+        .nav-pill {
+            background: #f3f4f6;
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+        }
 
-        /* --- ENCABEZADO (HERO) --- */
-        .header-section {
-            background: linear-gradient(135deg, var(--claro-red) 0%, #a50d1f 100%);
-            color: white;
-            padding: 40px 0 100px 0; /* Aumentamos el espacio abajo para que no tape nada */
-            text-align: center;
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 55%, var(--red-deeper) 100%);
             position: relative;
+            overflow: hidden;
+            padding: 72px 24px 140px;
+            text-align: center;
         }
+        .hero-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+        .hero-ring-1 { width: 520px; height: 520px; top: -200px; right: -140px; }
+        .hero-ring-2 { width: 320px; height: 320px; bottom: -120px; left: -80px; }
+        .hero-ring-3 { width: 180px; height: 180px; top: 40px; left: 80px; background: rgba(255,255,255,0.03); }
 
         .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white; 
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
+            position: absolute; left: 24px; top: 24px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white; display: flex; align-items: center;
+            justify-content: center; text-decoration: none;
+            transition: background 0.2s;
+            backdrop-filter: blur(4px);
         }
-        .btn-back:hover { background: white; color: var(--claro-red); }
+        .btn-back:hover { background: white; color: var(--red); }
 
-        .header-title { 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            margin: 0; 
-            font-size: 1.8rem; 
-            letter-spacing: 1px;
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
         }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-container {
-            max-width: 1100px;
-            margin: -60px auto 50px; /* Ajustamos el "vuelo" sobre el rojo */
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
+        .hero-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin: 0 0 12px;
         }
-
-        /* --- NOTA IMPORTANTE (CUADRO AMARILLO) --- */
-        .important-note {
-            background-color: #fff9e6;
-            border: 1px solid #ffeeba;
-            border-left: 5px solid #ffc107;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra más profunda para que resalte */
+        .hero-sub {
+            color: rgba(255,255,255,0.65);
             font-size: 0.95rem;
+            font-weight: 400;
+            margin: 0;
         }
 
-        /* --- TARJETAS DE PASOS --- */
+        /* ── CONTENEDOR PRINCIPAL ── */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: -70px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* ── NOTA IMPORTANTE (WARNING) ── */
+        .important-note {
+            background-color: var(--warning-bg);
+            border: 1px solid #fef3c7;
+            border-left: 4px solid var(--warning-border);
+            padding: 20px 24px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            color: var(--warning-text);
+        }
+        .important-note h6 {
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .important-note p { font-size: 0.95rem; margin: 0; line-height: 1.5; }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── TARJETAS DE PASOS ── */
         .step-card {
             background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
             height: 100%;
-            overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
         }
 
         .step-header {
-            padding: 15px 20px;
-            color: white;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
             display: flex;
             align-items: center;
+            margin-bottom: 16px;
         }
-        .bg-red { background-color: var(--claro-red); }
-        .bg-blue { background-color: var(--claro-blue); }
-
+        
         .step-badge {
-            background: rgba(0,0,0,0.2);
-            width: 28px;
-            height: 28px;
+            width: 38px; height: 38px;
             border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            font-size: 0.8rem;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.1rem;
+            margin-right: 14px;
         }
+        .badge-red { background: #fff0f2; color: var(--red); }
+        .badge-blue { background: var(--blue-light); color: var(--blue); }
 
-        .step-body { padding: 25px; }
-        .step-instruction { color: #666; font-size: 0.85rem; margin-bottom: 15px; }
-
-        /* --- CAJA DE TEXTO (SCRIPT) --- */
-        .script-box-container {
-            position: relative;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-left: 4px solid var(--claro-red);
-            border-radius: 6px;
-            padding: 15px;
-        }
-
-        .script-text {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            color: #333;
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
             margin: 0;
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* ── SCRIPT BOX (COPIABLE) ── */
+        .script-box {
+            background-color: var(--off-white);
+            border: 1px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+        .script-box.box-red:hover { border-color: var(--red); }
+        .script-box.box-blue:hover { border-color: var(--blue); }
+        
+        .script-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            margin: 0;
+            padding-right: 90px;
+            line-height: 1.6;
             white-space: pre-wrap;
         }
 
         .btn-copy {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 4px 10px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
+            position: absolute; top: 16px; right: 16px;
+            background: white; border: 1px solid var(--border);
+            border-radius: 8px; padding: 6px 14px;
+            font-size: 0.7rem; font-weight: 700;
+            color: var(--text); cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 6px;
         }
-        .btn-copy:hover { background: var(--claro-red); color: white; border-color: var(--claro-red); }
+        .btn-copy.btn-red:hover { color: var(--red); border-color: var(--red); box-shadow: 0 2px 6px rgba(238,18,44,0.1); }
+        .btn-copy.btn-blue:hover { color: var(--blue); border-color: var(--blue); box-shadow: 0 2px 6px rgba(2,132,199,0.1); }
+        .btn-copy.copied { background: #10b981; color: white; border-color: #10b981; }
 
-        footer { 
-            text-align: center; 
-            padding: 40px 0; 
-            color: #999; 
-            font-size: 0.8rem; 
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding: 36px 24px;
+            text-align: center;
         }
+        footer p { font-size: 0.78rem; color: #bbb; margin: 0; line-height: 1.8; }
 
+        @media (max-width: 768px) {
+            .hero { padding: 60px 20px 110px; }
+            .page-wrapper { margin-top: -50px; }
+        }
     </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar-claro">
-    <div class="container d-flex justify-content-between">
+    <div class="navbar-inner">
         <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Alta de Usuarios</span>
+        <span class="nav-pill">Alta de Usuarios</span>
     </div>
 </nav>
 
-<header class="header-section">
-    <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
-        <h2 class="header-title">PROCESO DE ALTA - USUARIOS ADMINISTRATIVOS</h2>
-        <p class="mb-0 opacity-75">Solicitud de Alta de Usuario de Red / OFSC</p>
-    </div>
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <div class="hero-ring hero-ring-3"></div>
+    <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+    <div class="hero-eyebrow">Gestión Administrativa</div>
+    <h1 class="hero-title">Alta - Usuarios Administrativos</h1>
+    <p class="hero-sub">Solicitud de Alta de Usuario de Red y herramientas OFSC</p>
 </header>
 
-<div class="main-container">
+<!-- CONTENIDO PRINCIPAL -->
+<div class="page-wrapper">
     
     <div class="important-note">
-        <h6 class="fw-bold mb-2 text-warning-emphasis"><i class="fas fa-exclamation-triangle me-2"></i>NOTA IMPORTANTE</h6>
-        <p class="mb-0">Una vez solicitada el alta de usuario de red, se deberá gestionar el acceso a las herramientas correspondientes.</p>
+        <h6><i class="fas fa-exclamation-triangle"></i> Nota Importante</h6>
+        <p>Una vez solicitada el alta de usuario de red, se deberá gestionar el acceso a las herramientas correspondientes.</p>
     </div>
 
-    <h5 class="fw-bold mb-4">Template de la Solicitud</h5>
+    <h5 class="section-title">Templates de Solicitud</h5>
 
     <div class="row g-4">
+        
+        <!-- TARJETA: USUARIO DE RED -->
         <div class="col-md-6">
             <div class="step-card">
-                <div class="step-header bg-red">
-                    <span class="step-badge">C</span> USUARIO DE RED (CLARO)
+                <div class="step-header">
+                    <div class="step-badge badge-red">C</div>
+                    <h3 class="step-title">Usuario de Red (Claro)</h3>
                 </div>
-                <div class="step-body">
-                    <p class="step-instruction">La solicitud debe ser dirigida al referente o analista a cargo de la plaza.</p>
-                    <div class="script-box-container">
-                        <button class="btn-copy" onclick="copyText('scriptRed')"><i class="far fa-copy me-1"></i>Copiar</button>
-                        <pre class="script-text" id="scriptRed">"Estimados,
+                <p class="step-desc">La solicitud debe ser dirigida al referente o analista a cargo de la plaza.</p>
+                
+                <div class="script-box box-red">
+                    <button class="btn-copy btn-red" onclick="copyText('scriptRed', this)">
+                        <i class="far fa-copy"></i> Copiar
+                    </button>
+                    <pre class="script-text" id="scriptRed">Estimados,
 
 Solicito el alta de usuario de red para el siguiente recurso:
 
-NOMBRE Y APELLIDO:
-DNI:
-CARGO:
-EMAIL:
-TELEFONO:"</pre>
-                    </div>
+Nombre y Apellido:
+D.N.I:
+Cargo:
+Email:
+Teléfono:
                 </div>
             </div>
         </div>
 
+        <!-- TARJETA: OFSC -->
         <div class="col-md-6">
             <div class="step-card">
-                <div class="step-header bg-blue">
-                    <span class="step-badge"><i class="fas fa-cloud"></i></span> ORACLE FIELD SERVICES CLOUD (OFSC)
+                <div class="step-header">
+                    <div class="step-badge badge-blue"><i class="fas fa-cloud"></i></div>
+                    <h3 class="step-title">OFSC (Oracle Field Services Cloud)</h3>
                 </div>
-                <div class="step-body">
-                    <p class="step-instruction">La solicitud debe ser dirigida al referente o analista a cargo de la plaza.</p>
-                    <div class="script-box-container" style="border-left-color: var(--claro-blue);">
-                        <button class="btn-copy" onclick="copyText('scriptOfsc')"><i class="far fa-copy me-1"></i>Copiar</button>
-                        <pre class="script-text" id="scriptOfsc">"Estimados,
+                <p class="step-desc">La solicitud debe ser dirigida al referente o analista a cargo de la plaza.</p>
+                
+                <div class="script-box box-blue">
+                    <button class="btn-copy btn-blue" onclick="copyText('scriptOfsc', this)">
+                        <i class="far fa-copy"></i> Copiar
+                    </button>
+                    <pre class="script-text" id="scriptOfsc">Estimados,
 
 Solicito el alta de OFSC para el siguiente usuario:
 
-Nombre y Apellido
-Cargo a desempeñar
-Carpetas a visualizar"</pre>
-                    </div>
+Nombre y Apellido:
+Cargo a desempeñar:
+Carpetas a visualizar:</pre>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
-    <p class="mb-1">© 2026 Claro Argentina | Todos los derechos reservados</p>
+    <p>© 2026 Claro Argentina · Instalaciones</p>
+    <p>Uso exclusivo para personal técnico autorizado.</p>
 </footer>
 
 <script>
-    function copyText(id) {
+    function copyText(id, btnElement) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
-            alert("Texto copiado al portapapeles");
+            const originalHtml = btnElement.innerHTML;
+            
+            btnElement.innerHTML = '<i class="fas fa-check"></i> Copiado';
+            btnElement.classList.add('copied');
+            
+            setTimeout(() => {
+                btnElement.innerHTML = originalHtml;
+                btnElement.classList.remove('copied');
+            }, 2000);
         });
     }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Instructivo WFM - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="module">
@@ -17,292 +17,267 @@
 
         async function validarAcceso() {
             const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
+            if (error || !session) { window.location.href = "../index.html"; }
         }
         validarAcceso();
     </script>
 
     <style>
         :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
+            --red:        #ee122c;
+            --red-dark:   #a50d1f;
+            --red-deeper: #7a0915;
+            --white:      #ffffff;
+            --off-white:  #f8f9fa;
+            --text:       #1f2937;
+            --text-muted: #6b7280;
+            --border:     #e5e7eb;
+            --warning-bg: #fffbeb;
+            --warning-border: #f59e0b;
+            --warning-text: #92400e;
         }
 
-        body {
-            background-color: #fcfcfc;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            color: var(--claro-dark);
+        body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text); margin: 0; -webkit-font-smoothing: antialiased;}
+
+        /* ── NAVBAR ── */
+        .navbar-claro { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+        .claro-logo { height: 34px; }
+        .nav-pill { background: #f3f4f6; border-radius: 20px; padding: 7px 16px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); }
+
+        /* ── HERO ── */
+        .hero { background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 55%, var(--red-deeper) 100%); padding: 72px 24px 140px; text-align: center; color: white; position: relative; overflow: hidden; }
+        .hero-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); pointer-events: none; }
+        .hero-ring-1 { width: 520px; height: 520px; top: -200px; right: -140px; }
+        .hero-ring-2 { width: 320px; height: 320px; bottom: -120px; left: -80px; }
+        .btn-back { position: absolute; left: 24px; top: 24px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.15); color: white; display: flex; align-items: center; justify-content: center; text-decoration: none; backdrop-filter: blur(4px); }
+        .btn-back:hover { background: white; color: var(--red); }
+        .hero-eyebrow { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: rgba(255,255,255,0.9); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 18px; }
+        .hero-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin: 0 0 12px; }
+        .hero-sub { color: rgba(255,255,255,0.75); font-size: 0.95rem; margin: 0; }
+
+        /* ── INTRO FLOTANTE ── */
+        .intro-float { max-width: 760px; margin: -36px auto 0; padding: 0 20px; position: relative; z-index: 20; }
+        .intro-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+        .intro-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .intro-card-icon { width: 44px; height: 44px; border-radius: 12px; background: #fff0f2; color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .intro-card p { margin: 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+        
+        .vpn-alert { background: #fff0f2; border-left: 4px solid var(--red); padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 500; color: var(--red-dark); display: flex; align-items: center; gap: 12px; }
+        .vpn-alert i { font-size: 1.1rem; color: var(--red); }
+
+        /* ── TIMELINE ── */
+        .page-wrapper { max-width: 900px; margin: 60px auto 50px; padding: 0 20px; }
+        .timeline { position: relative; padding-left: 50px; }
+        .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 20px; width: 2px; background: var(--border); }
+        .timeline-step { position: relative; margin-bottom: 48px; }
+        .timeline-step:last-child { margin-bottom: 0; }
+        
+        .step-indicator { position: absolute; left: -50px; top: 0; width: 42px; height: 42px; background: white; border: 3px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-muted); transition: all 0.3s; z-index: 10; }
+        .step-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; gap: 24px; align-items: center; transition: all 0.3s; }
+        .timeline-step:hover .step-indicator { border-color: var(--red); background: var(--red); color: white; box-shadow: 0 0 0 6px rgba(238,18,44,0.15); }
+        .timeline-step:hover .step-card { border-color: rgba(238,18,44,0.3); transform: translateX(5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+
+        .step-img-wrap { width: 320px; aspect-ratio: 16/10; flex-shrink: 0; border-radius: 12px; overflow: hidden; position: relative; cursor: zoom-in; background: #f4f4f4; border: 1px solid var(--border); }
+        .step-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: 0.4s; }
+        .timeline-step:hover .step-img-wrap img { transform: scale(1.05); }
+        .zoom-icon { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.5); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; opacity: 0; transition: 0.3s; backdrop-filter: blur(2px); }
+        .step-img-wrap:hover .zoom-icon { opacity: 1; }
+
+        .step-info { flex: 1; }
+        .step-info h3 { font-size: 1.15rem; font-weight: 800; color: var(--text); margin: 0 0 8px 0; letter-spacing: -0.01em; }
+        .step-info p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+        /* Estilo de listas para los pasos */
+        .step-list { list-style: none; padding: 0; margin: 12px 0 0 0; }
+        .step-list li { font-size: 0.85rem; color: var(--text); margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+        .step-list i { color: var(--red); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+
+        .btn-action { background: var(--red); color: white; padding: 10px 20px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; transition: 0.2s; }
+        .btn-action:hover { background: var(--red-dark); color: white; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(238,18,44,0.2); }
+
+        /* ── MODAL CENTRADO ── */
+        #imgModal .modal-dialog { max-width: 95vw; display: flex; align-items: center; justify-content: center; min-height: 90vh; margin: 0 auto; }
+        #imgModal .modal-content { background: transparent; border: none; display: flex; align-items: center; justify-content: center; }
+        #imgModal .modal-body { padding: 0; display: flex; align-items: center; justify-content: center; position: relative; }
+        #modalImage { max-height: 85vh; max-width: 90vw; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); display: block; }
+        .modal-close-btn { position: fixed; top: 20px; right: 20px; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; transition: 0.2s; z-index: 1060; }
+        .modal-close-btn:hover { background: var(--red); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .timeline { padding-left: 40px; }
+            .timeline::before { left: 16px; }
+            .step-indicator { left: -40px; width: 34px; height: 34px; font-size: 0.9rem; }
+            .step-card { flex-direction: column; align-items: flex-start; padding: 16px; gap: 16px; }
+            .step-img-wrap { width: 100%; }
+            .timeline-step:hover .step-card { transform: translateY(-3px) translateX(0); }
         }
 
-        /* --- NAVBAR CON SEPARACIÓN (CUADRO VERDE 1) --- */
-        .navbar-claro {
-            border-bottom: 1px solid #eee;
-            padding: 12px 0;
-            background: white;
-            margin-bottom: 30px; 
-        }
-        .claro-logo { height: 35px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 50px 0 110px 0;
-            text-align: center;
-            position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white;
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-content {
-            max-width: 1000px;
-            margin: -70px auto 50px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- TARJETA DE INTRO (CON SEPARACIÓN CUADRO VERDE 2) --- */
-        .intro-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 55px; /* Espacio antes del Paso 1 */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-
-        .vpn-callout {
-            background-color: #fff3f3;
-            border-left: 5px solid var(--claro-red);
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #a50d1f;
-        }
-
-        /* --- TARJETAS DE PASOS --- */
-        .step-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            margin-bottom: 35px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        .step-header {
-            padding: 14px 25px;
-            color: white;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            background-color: var(--claro-red);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        /* --- CÍRCULOS NEGROS CON NÚMEROS BLANCOS --- */
-        .step-badge {
-            background: black; 
-            color: white; 
-            width: 30px; 
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center;
-            margin-right: 15px; 
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .step-body { padding: 30px; }
-        .literal-text { font-size: 0.95rem; color: #444; line-height: 1.6; }
-
-        /* --- BOTÓN WFM --- */
-        .btn-link-gis {
-            background-color: var(--claro-red);
-            color: white;
-            border-radius: 30px;
-            padding: 12px 35px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            border: none;
-            box-shadow: 0 4px 15px rgba(238, 18, 44, 0.2);
-        }
-        .btn-link-gis:hover { background-color: #d10f26; color: white; transform: translateY(-2px); }
-
-        /* --- IMÁGENES --- */
-        .img-wrapper {
-            position: relative;
-            cursor: zoom-in;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            padding: 8px;
-            background: #fff;
-            margin-top: 20px;
-            transition: 0.3s;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .img-wrapper:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .img-step { width: 100%; height: auto; border-radius: 6px; max-height: 450px; object-fit: contain; }
-        .img-caption { display: block; text-align: center; font-size: 0.75rem; color: #888; margin-top: 10px; font-weight: 500; }
-
-        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
-
-        /* MODAL */
-        #imgModal .modal-dialog { max-width: 95vw; }
-        #modalImage { max-height: 90vh; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        /* ── FOOTER ── */
+        footer { margin-top: 80px; border-top: 1px solid var(--border); padding: 36px 24px; text-align: center; }
+        footer p { font-size: 0.78rem; color: #bbb; margin: 0; line-height: 1.8; }
     </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar-claro">
-    <div class="container d-flex justify-content-between">
+    <div class="navbar-inner">
         <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual WFM</span>
+        <span class="nav-pill">Manual WFM</span>
     </div>
 </nav>
 
-<header class="hero-section">
-    <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
-        <h2 class="header-title">WFM - CLARO</h2>
-        <p class="opacity-75 small mt-2">Consultas y gestión de Órdenes</p>
-    </div>
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+    <div class="hero-eyebrow">Gestión de Órdenes</div>
+    <h1 class="hero-title">Instructivo - WFM</h1>
+    <p class="hero-sub">Work Force Management · Consultas técnicas</p>
 </header>
 
-<main class="main-content">
-    
-    <div class="intro-card shadow-sm">
-        <p class="mb-0 text-muted">Este instructivo detalla el uso de la plataforma <strong>WFM (Work Force Management)</strong> para la consulta técnica y gestión de órdenes de trabajo.</p>
-        <div class="vpn-callout">
-            <i class="fas fa-vpn-lock me-2"></i>
-            <strong>REQUISITO PREVIO:</strong> Es obligatorio que el equipo esté conectado a la <strong>VPN</strong> para acceder a las herramientas de la plataforma.
+<!-- INTRO FLOTANTE -->
+<div class="intro-float">
+    <div class="intro-card" style="flex-direction: column; align-items: stretch;">
+        <div class="intro-header">
+            <div class="intro-card-icon"><i class="fas fa-calendar-check"></i></div>
+            <p>Este instructivo detalla el uso de la plataforma <strong>WFM</strong> para la consulta técnica y gestión de órdenes de trabajo.</p>
+        </div>
+        <div class="vpn-alert">
+            <i class="fas fa-shield-halved"></i>
+            <span><strong>REQUISITO PREVIO:</strong> Es obligatorio que el equipo esté conectado a la VPN para acceder a las herramientas de la plataforma.</span>
         </div>
     </div>
+</div>
 
-<div class="step-card">
-        <div class="step-header"><span class="step-badge">1</span> ACCESO AL PORTAL</div>
-        <div class="step-body">
-            <p class="literal-text text-center">Para ingresar a la plataforma, acceda a través del siguiente enlace:</p>
-            <div class="text-center my-4">
-                <a href="https://wfmar.claro.com.ar/login" target="_blank" class="btn-link-gis">
-                    <i class="fas fa-external-link-alt me-2"></i> IR A WFM CLARO</a>
-            </div>
-                <p class="literal-text text-center">Inicie sesión utilizando su <strong>usuario de red</strong> y la contraseña correspondiente.</p>
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM1.png">
-                <img src="../assets/img/wfm/WFM1.png" class="img-step" alt="Login WFM">
-                <span class="img-caption">INTERFAZ DE LOGIN</span>
-            </div>
-        </div>
-    </div>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="page-wrapper">
+    <div class="timeline">
 
-    <div class="step-card">
-        <div class="step-header"><span class="step-badge">2</span>MENU PRINCIPAL</div>
-        <div class="step-body">
-            <p class="literal-text">Dentro del sistema, diríjase al menú superior y seleccione el <strong>BUSCADOR</strong> para cargar la orden de trabajo y realizar la consulta del estado de la misma.</p>
-            
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM2.png">
-                <img src="../assets/img/wfm/WFM2.png" class="img-step" alt="Módulos WFM">
-                <span class="img-caption">MENÚ DE CONSULTAS WTM E INVENTARIOS</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="step-card">
-        <div class="step-header"><span class="step-badge">3</span> CONSULTA DE ORDEN (OT)</div>
-        <div class="step-body">
-            <p class="literal-text">Ingrese el número de orden en el buscador para visualizar la información técnica de la <strong>OT</strong>:</p>
-            <ul class="list-group list-group-flush mb-4 literal-text border rounded-3 mt-3">
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Datos del cliente (Nombre, contacto, domicilio).</li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Ubicación geográfica y coordenadas.</li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Detalle del servicio y tecnología (GPON).</li>
-            </ul> 
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM3.png">
-                <img src="../assets/img/wfm/WFM3.png" class="img-step" alt="Información de OT">
-                <span class="img-caption">VISTA GENERAL DE LA ORDEN DE TRABAJO</span>
-            </div>
-        </div>
-    </div>
-
-        <div class="step-card">
-        <div class="step-header"><span class="step-badge">4</span> NOTAS Y ARCHIVOS ADJUNTOS</div>
-        <div class="step-body">
-            <p class="literal-text">En la parte inferior podras observar: <strong>Notas Administrativas</strong>, Notas del Técnico y descargar <strong>Archivos Adjuntos</strong> con evidencias de trabajos anteriores.</p>
-            <ul class="list-group list-group-flush mb-4 literal-text border rounded-3 mt-3">
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Observaciones informadas por el area de ventas.</li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Notas Administrativas acentadas por el area de Mesa de Depacho.</li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Notas Tecnicas acentadas por un tecnico de una visita anterior y descargar fotos adjuntas.</li>
-            </ul> 
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM4.png">
-                <img src="../assets/img/wfm/WFM4.png" class="img-step" alt="Notas y Adjuntos">
-                <span class="img-caption">PANEL DE OBSERVACIONES Y DOCUMENTACIÓN</span>
-            </div>
-        </div>
-    </div>
-
-
+        <!-- Paso 1 -->
+        <div class="timeline-step">
+            <div class="step-indicator">1</div>
             <div class="step-card">
-        <div class="step-header"><span class="step-badge">5</span> HISTORIAL DE MOVIMIENTOS E HISTORICO DE ASIGNACIONES</div>
-        <div class="step-body">
-            <p class="literal-text">Desplegando el <strong>Historial de Movimientos</strong> podemos observar el detalles de la trazabilidad. </p>
-            <ul class="list-group list-group-flush mb-4 literal-text border rounded-3 mt-3">
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Asignaciones a contratas.</li>
-                <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i>Estados históricos.</li>
-            </ul> 
-            <div class="img-wrapper" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM5.png">
-                <img src="../assets/img/wfm/WFM5.png" class="img-step" alt="Historial Movimientos">
-                <span class="img-caption">TRAZABILIDAD Y ESTADOS DE LA ORDEN</span>
+                <div class="step-img-wrap" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM1.png">
+                    <img src="../assets/img/wfm/WFM1.png" alt="Login WFM">
+                    <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="step-info">
+                    <h3>Acceso al Portal</h3>
+                    <p>Inicie sesión utilizando su <strong>usuario de red</strong> y la contraseña correspondiente.</p>
+                    <a href="https://wfmar.claro.com.ar/login" target="_blank" class="btn-action">
+                        Ir a WFM Claro <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
         </div>
+
+        <!-- Paso 2 -->
+        <div class="timeline-step">
+            <div class="step-indicator">2</div>
+            <div class="step-card">
+                <div class="step-img-wrap" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM2.png">
+                    <img src="../assets/img/wfm/WFM2.png" alt="Menú Principal">
+                    <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="step-info">
+                    <h3>Menú Principal</h3>
+                    <p>Dentro del sistema, diríjase al menú superior y seleccione el <strong>BUSCADOR</strong> para cargar la orden de trabajo y realizar la consulta del estado de la misma.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 3 -->
+        <div class="timeline-step">
+            <div class="step-indicator">3</div>
+            <div class="step-card">
+                <div class="step-img-wrap" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM3.png">
+                    <img src="../assets/img/wfm/WFM3.png" alt="Consulta de Orden">
+                    <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="step-info">
+                    <h3>Consulta de Orden (OT)</h3>
+                    <p>Ingrese el número de orden en el buscador para visualizar la información técnica de la <strong>OT</strong>:</p>
+                    <ul class="step-list">
+                        <li><i class="fas fa-check-circle"></i> Datos del cliente (Nombre, contacto, domicilio).</li>
+                        <li><i class="fas fa-check-circle"></i> Ubicación geográfica y coordenadas.</li>
+                        <li><i class="fas fa-check-circle"></i> Detalle del servicio y tecnología (GPON).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 4 -->
+        <div class="timeline-step">
+            <div class="step-indicator">4</div>
+            <div class="step-card">
+                <div class="step-img-wrap" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM4.png">
+                    <img src="../assets/img/wfm/WFM4.png" alt="Notas y Archivos">
+                    <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="step-info">
+                    <h3>Notas y Archivos Adjuntos</h3>
+                    <p>En la parte inferior podrás observar: <strong>Notas Administrativas</strong>, Notas del Técnico y descargar <strong>Archivos Adjuntos</strong> con evidencias de trabajos anteriores.</p>
+                    <ul class="step-list">
+                        <li><i class="fas fa-check-circle"></i> Observaciones informadas por el área de ventas.</li>
+                        <li><i class="fas fa-check-circle"></i> Notas Administrativas asentadas por la Mesa de Despacho.</li>
+                        <li><i class="fas fa-check-circle"></i> Notas Técnicas asentadas en una visita anterior y fotos adjuntas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 5 -->
+        <div class="timeline-step">
+            <div class="step-indicator">5</div>
+            <div class="step-card">
+                <div class="step-img-wrap" data-bs-toggle="modal" data-bs-target="#imgModal" data-img-src="../assets/img/wfm/WFM5.png">
+                    <img src="../assets/img/wfm/WFM5.png" alt="Historial de Movimientos">
+                    <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="step-info">
+                    <h3>Historial y Asignaciones</h3>
+                    <p>Desplegando el <strong>Historial de Movimientos</strong> podemos observar el detalle de la trazabilidad.</p>
+                    <ul class="step-list">
+                        <li><i class="fas fa-check-circle"></i> Asignaciones a contratas.</li>
+                        <li><i class="fas fa-check-circle"></i> Estados históricos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
 
-</main>
-
-<footer>
-    &copy; 2026 Claro Argentina | Instalaciones
-</footer>
-
+<!-- MODAL LIGHTBOX -->
 <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-transparent border-0">
-            <div class="modal-body p-0 text-center position-relative">
-                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1055;"></button>
-                <img src="" id="modalImage" class="img-fluid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="modal-close-btn" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="" id="modalImage">
             </div>
         </div>
     </div>
 </div>
 
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Claro Argentina · Instalaciones</p>
+    <p>Uso exclusivo para personal técnico autorizado.</p>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const imgModal = document.getElementById('imgModal');
-    imgModal.addEventListener('show.bs.modal', function (event) {
+    imgModal.addEventListener('show.bs.modal', function(event) {
         const trigger = event.relatedTarget;
-        const src = trigger.getAttribute('data-img-src');
-        document.getElementById('modalImage').src = src;
+        document.getElementById('modalImage').src = trigger.getAttribute('data-img-src');
     });
 </script>
 

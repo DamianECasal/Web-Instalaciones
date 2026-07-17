@@ -4,236 +4,382 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Instalaciones - Claro</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
-            --claro-red: #ee122c; /* El rojo oficial exacto */
-            --claro-gray: #f2f2f2;
-            --claro-dark: #333333;
-            --claro-blue: #0082c9;
+            --red:        #ee122c;
+            --red-dark:   #a50d1f;
+            --red-deeper: #7a0915;
+            --red-light:  #ff4d63;
+            --white:      #ffffff;
+            --off-white:  #f8f8f8;
+            --text:       #1a1a1a;
+            --text-muted: #666;
+            --border:     #ebebeb;
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            background-color: white;
-            font-family: 'Roboto', sans-serif;
-            color: var(--claro-dark);
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
             margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAVBAR ESTILO CLARO --- */
+        /* ── NAVBAR ── */
         .navbar-claro {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-            background: white;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
-        .claro-logo {
-            height: 45px;
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+        .claro-logo { height: 34px; }
 
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .hero-section h2 {
-            font-weight: 700;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        /* --- CONTENEDOR DE TARJETAS --- */
-        .main-container {
-            max-width: 1100px;
-            margin: -40px auto 50px; /* Sube las tarjetas sobre el hero */
-            padding: 0 20px;
-        }
-
-        .btn-card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 35px 20px;
-            text-align: center;
-            transition: all 0.25s ease-in-out;
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--off-white);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 18px;
             text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .btn-logout:hover {
+            border-color: var(--red);
+            color: var(--red);
+            background: #fff0f2;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 55%, var(--red-deeper) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 24px 140px;
+            text-align: center;
+        }
+
+        /* Decoración geométrica */
+        .hero-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+        .hero-ring-1 { width: 520px; height: 520px; top: -200px; right: -140px; }
+        .hero-ring-2 { width: 320px; height: 320px; bottom: -120px; left: -80px; }
+        .hero-ring-3 { width: 180px; height: 180px; top: 40px; left: 80px; background: rgba(255,255,255,0.03); }
+
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.025em;
+            line-height: 1.08;
+            margin: 0 0 14px;
+        }
+        .hero-title span {
+            background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.65) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+
+        /* ── CARDS FLOTANTES ── */
+        .cards-float {
+            max-width: 900px;
+            margin: -60px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .portal-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .portal-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .hero { padding: 60px 16px 120px; }
+        }
+
+        .portal-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px 20px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(238,18,44,0.04) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.22s;
+        }
+        .portal-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.12);
+            border-color: rgba(238,18,44,0.3);
+            color: var(--text);
+        }
+        .portal-card:hover::before { opacity: 1; }
+
+        .card-icon-wrap {
+            width: 58px; height: 58px;
+            border-radius: 16px;
+            background: #fff0f2;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            color: var(--red);
+            margin-bottom: 16px;
+            transition: background 0.22s, color 0.22s;
+            position: relative;
+            z-index: 1;
+        }
+        .portal-card:hover .card-icon-wrap {
+            background: var(--red);
+            color: white;
         }
 
-        .btn-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border-color: var(--claro-red);
-            color: inherit;
+        .card-label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 6px;
+        }
+        .card-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
         }
 
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            background-color: var(--claro-gray);
+        /* Card con acento externo (link) */
+        .portal-card .ext-badge {
+            position: absolute;
+            top: 14px; right: 14px;
+            width: 22px; height: 22px;
+            background: var(--off-white);
+            border: 1px solid var(--border);
             border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.55rem;
+            color: var(--text-muted);
+        }
+
+        /* ── SECCIÓN SECUNDARIA ── */
+        .page-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin: 52px 0 18px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: 0.3s;
+            gap: 10px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
 
-        .btn-card:hover .icon-circle {
-            background-color: #ffeaea;
-        }
-
-        .btn-card i {
-            font-size: 2rem;
-            color: var(--claro-red);
-        }
-
-        .btn-card span {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--claro-dark);
-            text-transform: none;
-            line-height: 1.3;
-        }
-
-        .btn-logout {
-            background: transparent;
-            color: white;
-            border: 1px solid white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .btn-logout:hover {
+        /* Info strip */
+        .info-strip {
             background: white;
-            color: var(--claro-red);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
         }
+        .info-strip-icon {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: #fff0f2;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--red);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .info-strip-text { flex: 1; }
+        .info-strip-text strong { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+        .info-strip-text span { font-size: 0.78rem; color: var(--text-muted); }
+        .info-strip-arrow { color: #ccc; font-size: 0.8rem; }
 
+        /* ── FOOTER ── */
         footer {
-            background: var(--claro-gray);
-            padding: 40px 0;
-            margin-top: 50px;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+            text-align: center;
+            margin-top: 60px;
         }
-
-        @media (max-width: 768px) {
-            .hero-section { padding: 40px 20px 60px; }
-            .hero-section h2 { font-size: 1.5rem; }
-        }
+        footer p { font-size: 0.78rem; color: #bbb; margin: 0; line-height: 1.8; }
     </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar-claro">
-    <div class="container d-flex justify-content-between align-items-center">
+    <div class="navbar-inner">
         <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        <a href="#" id="logoutBtn" class="btn-logout" style="color: var(--claro-red); border-color: var(--claro-red);">Cerrar Sesión</a>
+        <a href="#" id="logoutBtn" class="btn-logout">
+            <i class="fas fa-arrow-right-from-bracket"></i> Cerrar sesión
+        </a>
     </div>
 </nav>
 
-<div class="hero-section">
-    <div class="container">
-        <h2>PORTAL DE PROCESOS Y HERRAMIENTAS</h2>
-        <p class="lead">Gestión de Instalaciones y Seguimiento</p>
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <div class="hero-ring hero-ring-3"></div>
+    <div class="hero-eyebrow">Personal técnico autorizado</div>
+    <h1 class="hero-title">Portal de <span>Procesos</span><br>y Herramientas</h1>
+    <p class="hero-sub">Gestión de Instalaciones y Seguimiento</p>
+</header>
+
+<!-- CARDS FLOTANTES -->
+<div class="cards-float">
+    <div class="portal-grid">
+
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=d-q_BZzxHUevogyQk6-L21t82VfgGdlMn5zt3SGmW0tUOElOU0UyRUhUVUVPSVFDT1VFNjU0WDFWNC4u"
+           target="_blank" class="portal-card">
+            <span class="ext-badge"><i class="fas fa-arrow-up-right-from-square"></i></span>
+            <div class="card-icon-wrap"><i class="fas fa-file-circle-exclamation"></i></div>
+            <div class="card-label">Forms Fallidas</div>
+            <div class="card-sub">Registro de órdenes con cierre fallido</div>
+        </a>
+
+        <a href="https://app.powerbi.com/groups/me/reports/f3bfd376-e1c9-4a31-99d3-e3d8091f90a3/48ee80cf50c305d0b56a?ctid=05bfea77-f19c-471d-afa2-0c9093af8bdb&experience=power-bi"
+           target="_blank" class="portal-card">
+            <span class="ext-badge"><i class="fas fa-arrow-up-right-from-square"></i></span>
+            <div class="card-icon-wrap"><i class="fas fa-chart-pie"></i></div>
+            <div class="card-label">Dashboard BI</div>
+            <div class="card-sub">Métricas y reportes en tiempo real</div>
+        </a>
+
+        <a href="instructivos.html" class="portal-card">
+            <div class="card-icon-wrap"><i class="fas fa-book-open"></i></div>
+            <div class="card-label">Instructivos</div>
+            <div class="card-sub">Guías técnicas y manuales de operación</div>
+        </a>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf2i42-j01TRr8yBrT-J9zOinHyRr7k704hvZA33NU22WXwbw/viewform"
+           target="_blank" class="portal-card">
+            <span class="ext-badge"><i class="fas fa-arrow-up-right-from-square"></i></span>
+            <div class="card-icon-wrap"><i class="fas fa-layer-group"></i></div>
+            <div class="card-label">Regularizaciones</div>
+            <div class="card-sub">Gestión y seguimiento de regularizaciones</div>
+        </a>
 
     </div>
 </div>
 
-<div class="main-container">
-    <div class="row g-4 justify-content-center">
-        
-        <div class="col-12 col-md-6 col-lg-3">
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=d-q_BZzxHUevogyQk6-L21t82VfgGdlMn5zt3SGmW0tUOElOU0UyRUhUVUVPSVFDT1VFNjU0WDFWNC4u" target="_blank" class="btn-card">
-                <div class="icon-circle">
-                    <i class="fa-solid fa-file-circle-exclamation"></i>
-                </div>
-                <span>Forms Fallidas</span>
-            </a>
-        </div>  
-
-        <div class="col-12 col-md-6 col-lg-3">
-            <a href="https://app.powerbi.com/groups/me/reports/f3bfd376-e1c9-4a31-99d3-e3d8091f90a3/48ee80cf50c305d0b56a?ctid=05bfea77-f19c-471d-afa2-0c9093af8bdb&experience=power-bi" target="_blank" class="btn-card">
-                <div class="icon-circle">
-                    <i class="fa-solid fa-chart-pie"></i>
-                </div>
-                <span>Dashboard BI</span>
-            </a>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3">
-            <a href="instructivos.html" class="btn-card">
-                <div class="icon-circle">
-                    <i class="fa-solid fa-book-open"></i>
-                </div>
-                <span>Instructivos</span>
-            </a>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf2i42-j01TRr8yBrT-J9zOinHyRr7k704hvZA33NU22WXwbw/viewform" target="_blank" class="btn-card">
-                <div class="icon-circle">
-                    <i class="fa-solid fa-layer-group"></i>
-                </div>
-                <span>Regularizaciones</span>
-            </a>
-        </div> 
-
-    </div>
-</div>
-
-<footer class="text-center text-muted">
-    <div class="container">
-        <p class="mb-1">© 2026 Claro Argentina | Todos los derechos reservados</p>  
-        <p class="small">Uso exclusivo para personal técnico autorizado de Instalaciones.</p>
-    </div>
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Claro Argentina · Instalaciones</p>
+    <p>Uso exclusivo para personal técnico autorizado.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
     const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
     const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
     const supabase = createClient(supabaseUrl, supabaseKey)
 
     async function validarAcceso() {
         const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-            window.location.href = "../index.html";
-        }
+        if (error || !session) { window.location.href = "../index.html"; }
     }
     validarAcceso();
 
-    const logoutAction = async (e) => {
+    const logout = async (e) => {
         e.preventDefault();
         const { error } = await supabase.auth.signOut();
-        if (!error) {
-            window.location.href = "../index.html";
-        } else {
-            alert("Error al cerrar sesión");
-        }
+        if (!error) { window.location.href = "../index.html"; }
+        else { alert("Error al cerrar sesión"); }
     };
-
-    document.getElementById('logoutBtn').addEventListener('click', logoutAction);
-    document.getElementById('logoutBtnHero').addEventListener('click', logoutAction);
+    document.getElementById('logoutBtn').addEventListener('click', logout);
 </script>
 
 </body>

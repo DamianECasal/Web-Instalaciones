@@ -6,7 +6,7 @@
     <title>Protocolo de Precontacto - Claro</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="module">
@@ -26,283 +26,603 @@
 
     <style>
         :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
-            --claro-blue: #0082c9;
+            --red:        #ee122c;
+            --red-dark:   #a50d1f;
+            --red-deeper: #7a0915;
+            --white:      #ffffff;
+            --off-white:  #f8f9fa;
+            --text:       #1f2937;
+            --text-muted: #6b7280;
+            --border:     #e5e7eb;
+            --blue:       #0284c7;
+            --blue-dark:  #0369a1;
+            --warning-bg: #fffbeb;
+            --warning-border: #f59e0b;
+            --warning-text: #92400e;
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            background-color: #fcfcfc;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
             margin: 0;
-            color: var(--claro-dark);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAVBAR --- */
+        /* ── NAVBAR ── */
         .navbar-claro {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-            background: white;
-            margin-bottom: 25px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .claro-logo { height: 35px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 40px 0 100px 0;
-            text-align: center;
-            position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-        }
-
-        .btn-back {
-            position: absolute; left: 20px; top: 20px; color: white;
-            background: rgba(255,255,255,0.15); width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; text-decoration: none; transition: 0.3s;
-        }
-        .btn-back:hover { background: white; color: var(--claro-red); }
-
-        .header-title { font-weight: 700; text-transform: uppercase; font-size: 1.8rem; margin: 0; }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-content {
-            max-width: 1100px;
-            margin: -60px auto 50px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- NOTA IMPORTANTE --- */
-        .important-note {
-            background-color: #fff9e6;
-            border: 1px solid #ffeeba;
-            border-left: 5px solid #ffc107;
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 45px; /* Separación solicitada */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            font-size: 0.95rem;
-            color: #856404;
-        }
-
-        /* --- TARJETAS DE PASOS --- */
-        .step-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: 0.3s;
-        }
-        .step-card:hover { transform: translateY(-5px); }
-
-        .step-header {
-            padding: 12px 25px;
-            color: white;
-            font-weight: 700;
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
             display: flex;
             align-items: center;
-            background-color: var(--claro-red);
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            justify-content: space-between;
+        }
+        .claro-logo { height: 34px; }
+        .nav-pill {
+            background: #f3f4f6;
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
         }
 
-        .step-badge {
-            background: rgba(0,0,0,0.2);
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            display: inline-flex; align-items: center; justify-content: center;
-            margin-right: 15px; font-size: 0.8rem;
-        }
-
-        .step-body { padding: 25px; }
-
-        /* --- SCRIPT BOX (COPIABLE) --- */
-        .script-container {
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 55%, var(--red-deeper) 100%);
             position: relative;
-            background-color: #f8f9fa;
-            border: 1px dashed var(--claro-red);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 10px;
-        }
-
-        .script-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.95rem;
-            color: #444;
-            font-style: italic;
-            margin: 0;
-            padding-right: 80px;
-        }
-
-        .btn-copy {
-            position: absolute; top: 10px; right: 10px;
-            background: white; border: 1px solid #ddd;
-            border-radius: 20px; padding: 4px 12px;
-            font-size: 0.7rem; font-weight: 700;
-            color: var(--claro-red); cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-copy:hover { background: var(--claro-red); color: white; border-color: var(--claro-red); }
-
-        /* --- SIDEBAR --- */
-        .contact-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .badge-call {
-            padding: 12px;
-            font-weight: 700;
-            border-radius: 8px;
-            color: white;
-            display: block;
+            overflow: hidden;
+            padding: 72px 24px 140px;
             text-align: center;
-            text-decoration: none;
-            margin-bottom: 10px;
-            transition: 0.3s;
         }
-        .bg-residencial { background-color: var(--claro-red); }
-        .bg-pyme { background-color: #0056b3; }
-        .badge-call:hover { opacity: 0.9; transform: scale(1.02); color: white; }
+        .hero-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+        .hero-ring-1 { width: 520px; height: 520px; top: -200px; right: -140px; }
+        .hero-ring-2 { width: 320px; height: 320px; bottom: -120px; left: -80px; }
 
-        footer { text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem; }
+        .btn-back {
+            position: absolute; left: 24px; top: 24px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white; display: flex; align-items: center;
+            justify-content: center; text-decoration: none;
+            transition: background 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .btn-back:hover { background: white; color: var(--red); }
+
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .hero-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin: 0 0 12px;
+        }
+        .hero-sub {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        /* ── CONTENEDOR PRINCIPAL ── */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: -70px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* ── NOTA IMPORTANTE (PRECONTACTO) ── */
+        .important-note {
+            background-color: var(--warning-bg);
+            border: 1px solid #fef3c7;
+            border-left: 4px solid var(--warning-border);
+            padding: 20px 24px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            color: var(--warning-text);
+        }
+        .important-note h6 {
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .important-note p { font-size: 0.95rem; margin: 0; line-height: 1.5; }
+
+        /* ── TARJETAS DE PASOS ── */
+        .step-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+        .step-header {
+            display: flex; align-items: center; margin-bottom: 16px;
+        }
+        .step-badge {
+            background: #fff0f2; color: var(--red);
+            width: 34px; height: 34px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1rem; margin-right: 14px;
+        }
+        .step-title {
+            font-size: 1.1rem; font-weight: 800; color: var(--text);
+            text-transform: uppercase; letter-spacing: 0.02em; margin: 0;
+        }
+        .step-desc {
+            font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;
+        }
+
+        /* ── SCRIPT BOX (COPIABLE) ── */
+        .script-box {
+            background-color: var(--off-white);
+            border: 1px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+        .script-box:hover { border-color: var(--red); }
+        .script-text {
+            font-size: 0.95rem; color: var(--text); font-style: italic;
+            margin: 0; padding-right: 90px; line-height: 1.6;
+        }
+        .btn-copy {
+            position: absolute; top: 16px; right: 16px;
+            background: white; border: 1px solid var(--border);
+            border-radius: 8px; padding: 6px 14px;
+            font-size: 0.7rem; font-weight: 700; color: var(--text);
+            cursor: pointer; transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .btn-copy:hover { color: var(--red); border-color: var(--red); box-shadow: 0 2px 6px rgba(238,18,44,0.1); }
+        .btn-copy.copied { background: #10b981; color: white; border-color: #10b981; }
+
+        .step-alert {
+            background: #fff0f2; border-left: 4px solid var(--red);
+            padding: 14px 16px; border-radius: 8px; margin-top: 16px;
+        }
+        .step-alert p { margin: 0; font-size: 0.85rem; color: var(--red-dark); font-weight: 600; line-height: 1.5; }
+
+        .req-list { list-style: none; padding: 0; margin: 0; }
+        .req-list li {
+            padding: 12px 16px; border-bottom: 1px solid var(--border);
+            font-size: 0.9rem; color: var(--text); display: flex; align-items: center; gap: 12px;
+        }
+        .req-list li:last-child { border-bottom: none; }
+        .req-list i { color: var(--red); font-size: 1.1rem; }
+
+        /* ── SIDEBAR DE CONTACTO ── */
+        .sidebar-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 28px 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 90px;
+        }
+        .sidebar-title {
+            font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 24px; border-bottom: 1px solid var(--border);
+            padding-bottom: 12px; color: var(--text); text-align: center;
+        }
+
+        /* Bloques de contacto internos */
+        .contact-block {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .contact-block:last-child {
+            margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+        }
+
+        .icon-squircle {
+            width: 64px; height: 64px;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; margin: 0 auto 16px auto;
+        }
+        .icon-squircle.residencial { background: #fff0f2; color: var(--red); }
+        .icon-squircle.pyme { background: #e0f2fe; color: var(--blue); }
+
+        .contact-subtitle {
+            font-size: 0.85rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px;
+        }
+        .phone-number {
+            font-size: 2.4rem; font-weight: 900; color: var(--text);
+            letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1;
+        }
+
+        .btn-call-solid {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 20px; border-radius: 12px;
+            font-size: 1rem; font-weight: 800; text-decoration: none;
+            transition: all 0.2s; color: white; border: none; width: 100%;
+            margin-bottom: 10px;
+        }
+        .btn-call-solid.residencial { background: var(--red); }
+        .btn-call-solid.residencial:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(238,18,44,0.25); color: white;}
+        .btn-call-solid.pyme { background: var(--blue); }
+        .btn-call-solid.pyme:hover { background: #0369a1; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2,132,199,0.25); color: white;}
+
+        .btn-ivr {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 16px; border-radius: 12px;
+            font-size: 0.9rem; font-weight: 700;
+            background: white; border: 1px solid var(--border);
+            color: var(--text); cursor: pointer; transition: all 0.2s; width: 100%;
+        }
+        .btn-ivr:hover { background: var(--off-white); border-color: var(--text-muted); }
+
+        .sidebar-note { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 16px; line-height: 1.5; }
+
+        /* ── MODAL IVR (MENÚ DE OPCIONES) ── */
+        .modal-content {
+            border-radius: 24px; border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .modal-header {
+            background: var(--red); color: white;
+            padding: 24px 30px; border-bottom: none;
+        }
+        .modal-title { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; }
+        .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); opacity: 0.8; }
+        
+        .modal-body { padding: 30px; background: var(--off-white); }
+
+        /* Alerta amarilla dentro del Modal (ESTILO TERCERA FOTO) */
+        .exclusive-note {
+            background-color: var(--warning-bg);
+            border: 1px solid #fde68a;
+            border-left: 6px solid var(--warning-border);
+            padding: 16px 20px;
+            border-radius: 12px;
+            color: var(--warning-text);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .exclusive-note strong { font-weight: 800; color: #b45309; }
+        .exclusive-note i { font-size: 1.2rem; color: var(--warning-border); flex-shrink: 0;}
+
+        .ivr-column {
+            background: white; border: 1px solid var(--border);
+            border-radius: 16px; padding: 24px; height: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .ivr-option-header {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+        }
+        .option-badge {
+            background: var(--red); color: white;
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1rem;
+        }
+        .option-title { font-size: 1.05rem; font-weight: 800; color: var(--text); margin: 0; }
+
+        .category-label {
+            font-size: 0.75rem; font-weight: 800; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 20px 0 10px 0;
+        }
+        .category-label:first-of-type { margin-top: 0; }
+
+        .ivr-motive-list { list-style: none; padding: 0; margin: 0; }
+        .ivr-motive-list li {
+            font-size: 0.88rem; color: var(--text);
+            padding: 6px 0; display: flex; align-items: flex-start; gap: 10px;
+        }
+        .ivr-motive-list i { color: var(--red); font-size: 0.7rem; margin-top: 5px; }
+
+        /* ── FOOTER ── */
+        footer { margin-top: 80px; border-top: 1px solid var(--border); padding: 36px 24px; text-align: center; }
+        footer p { font-size: 0.78rem; color: #bbb; margin: 0; line-height: 1.8; }
+
+        @media (max-width: 991px) {
+            .hero { padding: 60px 20px 110px; }
+            .page-wrapper { margin-top: -50px; }
+            .sidebar-card { position: relative; top: 0; margin-top: 24px; }
+            .ivr-column { margin-bottom: 20px; }
+        }
     </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar-claro">
-    <div class="container d-flex justify-content-between">
+    <div class="navbar-inner">
         <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        <span class="badge rounded-pill bg-light text-dark border align-self-center small">Manual de Precontacto</span>
+        <span class="nav-pill">Manual de Precontacto</span>
     </div>
 </nav>
 
-<header class="hero-section">
-    <div class="container">
-        <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
-        <h2 class="header-title">Protocolo de Precontacto</h2>
-        <p class="opacity-75 small mt-2">Flujo de comunicación obligatoria con el cliente</p>
-    </div>
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <div class="hero-ring hero-ring-3"></div>
+    <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+    <div class="hero-eyebrow">Atención al Cliente</div>
+    <h1 class="hero-title">Protocolo de Precontacto</h1>
+    <p class="hero-sub">Flujo de comunicación obligatoria antes de acudir al domicilio</p>
 </header>
 
-<main class="main-content">
+<!-- CONTENIDO PRINCIPAL -->
+<div class="page-wrapper">
     
     <div class="important-note">
-        <h6 class="fw-bold mb-2"><i class="fas fa-info-circle me-2"></i>NOTA IMPORTANTE</h6>
-        <p class="mb-0">No acudir al sitio como primera tarea de la franja sin contar previamente con un precontacto exitoso y la confirmación de MDD en las notas administrativas, ya que esto puede derivar en un cierre por "Cliente Ausente".</p>
+        <h6><i class="fas fa-exclamation-circle"></i> Nota Importante</h6>
+        <p>No acudir al sitio como primera tarea de la franja sin contar previamente con un precontacto exitoso y la confirmación de MDD en las notas administrativas, ya que esto puede derivar en un cierre por "Cliente Ausente".</p>
     </div>
 
-    <div class="row g-4">
+    <div class="row">
+        <!-- COLUMNA IZQUIERDA (PASOS) -->
         <div class="col-lg-8">
-            <h5 class="fw-bold mb-4">Flujo de Comunicación</h5>
-
+            
             <div class="step-card">
-                <div class="step-header"><span class="step-badge">1</span> IDENTIFICACIÓN Y SALUDO</div>
-                <div class="step-body">
-                    <p class="text-muted small mb-3">Presentación formal del Dispatcher / Técnico.</p>
-                    <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script1')">COPIAR</button>
-                        <p class="script-text" id="script1">"Hola, buen día. ¿Se encuentra [Nombre del Cliente]? Le habla [Tu Nombre] de Claro, el motivo de mi llamado es por la instalación de su servicio solicitado."</p>
-                    </div>
+                <div class="step-header">
+                    <div class="step-badge">1</div>
+                    <h3 class="step-title">Identificación y Saludo</h3>
+                </div>
+                <p class="step-desc">Presentación formal del Dispatcher / Técnico.</p>
+                <div class="script-box">
+                    <button class="btn-copy" onclick="copyText('script1', this)"><i class="far fa-copy"></i> Copiar</button>
+                    <p class="script-text" id="script1">"Hola, buen día. ¿Se encuentra [Nombre del Cliente]? Le habla [Tu Nombre] de Claro, el motivo de mi llamado es por la instalación de su servicio solicitado."</p>
                 </div>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><span class="step-badge">2</span> VALIDACIÓN DE DOMICILIO</div>
-                <div class="step-body">
-                    <p class="text-muted small mb-3">Confirmar dirección exacta antes de desplazarse.</p>
-                    <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script2')">COPIAR</button>
-                        <p class="script-text" id="script2">"¿Me confirma si el domicilio es [Calle y Altura] entre [Calle 1] y [Calle 2]?"</p>
-                    </div>
-                    <div class="mt-3 p-2 rounded bg-light border-start border-danger border-4">
-                        <p class="small text-danger fw-bold mb-0">
-                            <i class="fas fa-exclamation-triangle me-1"></i> Si el error de ubicación supera 1 km, informar a Mesa Despacho. Para las órdenes PYME o Corporativas, este procedimiento aplica únicamente a las instalaciones.
-                        </p>
-                    </div>
+                <div class="step-header">
+                    <div class="step-badge">2</div>
+                    <h3 class="step-title">Validación de Domicilio</h3>
+                </div>
+                <p class="step-desc">Confirmar dirección exacta antes de desplazarse.</p>
+                <div class="script-box">
+                    <button class="btn-copy" onclick="copyText('script2', this)"><i class="far fa-copy"></i> Copiar</button>
+                    <p class="script-text" id="script2">"¿Me confirma si el domicilio es [Calle y Altura] entre [Calle 1] y [Calle 2]?"</p>
+                </div>
+                <div class="step-alert">
+                    <p><i class="fas fa-exclamation-triangle me-1"></i> Si el error de ubicación supera 1 km, informar a Mesa Despacho. Para las órdenes PYME o Corporativas, este procedimiento aplica únicamente a las instalaciones.</p>
                 </div>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><span class="step-badge">3</span> SERVICIO</div>
-                <div class="step-body">
-                    <p class="text-muted small mb-3">Asegurar que el producto (2Play/3Play) coincida con la solicitud.</p>
-                    <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script3')">COPIAR</button>
-                        <p class="script-text" id="script3">"¿Usted solicitó el servicio de [Tipo de servicio]?"</p>
-                    </div>
+                <div class="step-header">
+                    <div class="step-badge">3</div>
+                    <h3 class="step-title">Servicio</h3>
+                </div>
+                <p class="step-desc">Asegurar que el producto (2Play/3Play) coincida con la solicitud.</p>
+                <div class="script-box">
+                    <button class="btn-copy" onclick="copyText('script3', this)"><i class="far fa-copy"></i> Copiar</button>
+                    <p class="script-text" id="script3">"¿Usted solicitó el servicio de [Tipo de servicio]?"</p>
                 </div>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><span class="step-badge">4</span> REQUISITOS</div>
-                <div class="step-body">
-                    <ul class="list-group list-group-flush border rounded">
-                        <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i> Mayor de 18 años con DNI.</li>
-                        <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i> Energía eléctrica activa.</li>
-                        <li class="list-group-item"><i class="fas fa-check-circle text-danger me-2"></i> Acceso a terrazas o montantes.</li>
-                    </ul>
+                <div class="step-header">
+                    <div class="step-badge">4</div>
+                    <h3 class="step-title">Requisitos</h3>
                 </div>
+                <p class="step-desc">Confirmar las condiciones básicas para realizar el trabajo.</p>
+                <ul class="req-list">
+                    <li><i class="fas fa-check-circle"></i> Mayor de 18 años con DNI.</li>
+                    <li><i class="fas fa-check-circle"></i> Energía eléctrica activa en el domicilio.</li>
+                    <li><i class="fas fa-check-circle"></i> Acceso disponible a terrazas o montantes.</li>
+                </ul>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><span class="step-badge">5</span> TIEMPO DE LLEGADA</div>
-                <div class="step-body">
-                    <p class="text-muted small mb-3">Informar ETA (Tiempo estimado de arribo).</p>
-                    <div class="script-container">
-                        <button class="btn-copy" onclick="copyText('script5')">COPIAR</button>
-                        <p class="script-text" id="script5">"El tecnico se estara acercando a su domicilio en aproximadamente [Tiempo] minutos."</p>
-                    </div>
+                <div class="step-header">
+                    <div class="step-badge">5</div>
+                    <h3 class="step-title">Tiempo de Llegada</h3>
+                </div>
+                <p class="step-desc">Informar ETA (Tiempo estimado de arribo).</p>
+                <div class="script-box">
+                    <button class="btn-copy" onclick="copyText('script5', this)"><i class="far fa-copy"></i> Copiar</button>
+                    <p class="script-text" id="script5">"El técnico se estará acercando a su domicilio en aproximadamente [Tiempo] minutos."</p>
                 </div>
             </div>
+
         </div>
 
+        <!-- COLUMNA DERECHA (SIDEBAR CON CONTACTO E IVR) -->
         <div class="col-lg-4">
-            <div class="contact-card">
-                <h6 class="fw-bold mb-3 border-bottom pb-2 text-uppercase small">Central de Despacho</h6>
-                <div class="d-grid gap-2">
-                    <a href="tel:*6565" class="badge-call bg-residencial">
-                        <i class="fas fa-phone-alt me-2"></i> Residencial: *6565
+            <div class="sidebar-card">
+                <h6 class="sidebar-title">Central de Despacho</h6>
+                
+                <!-- BLOQUE RESIDENCIAL -->
+                <div class="contact-block">
+                    <div class="icon-squircle residencial"><i class="fas fa-home"></i></div>
+                    <div class="contact-subtitle">Segmento Residencial</div>
+                    <div class="phone-number">*6565</div>
+                    
+                    <a href="tel:*6565" class="btn-call-solid residencial">
+                        <i class="fas fa-phone-alt"></i> Llamar
                     </a>
-                    <a href="tel:*617" class="badge-call bg-pyme">
-                        <i class="fas fa-phone-alt me-2"></i> Pymes: *617
+                    <button class="btn-ivr" data-bs-toggle="modal" data-bs-target="#ivrModal" title="Ver Opciones de IVR">
+                        <i class="fas fa-list-ul"></i> Opciones IVR
+                    </button>
+                </div>
+
+                <!-- BLOQUE PYMES -->
+                <div class="contact-block pt-4">
+                    <div class="icon-squircle pyme"><i class="fas fa-building"></i></div>
+                    <div class="contact-subtitle">Segmento Pymes</div>
+                    <div class="phone-number">*617</div>
+                    
+                    <a href="tel:*617" class="btn-call-solid pyme">
+                        <i class="fas fa-phone-alt"></i> Llamar
                     </a>
                 </div>
-                <p class="text-muted extra-small mt-3 text-center" style="font-size: 0.75rem;">
-                    Recordá tener a mano el número de orden de trabajo (OT) antes de llamar.
+                
+                <p class="sidebar-note">
+                    Recordá tener a mano el <strong>número de orden (OT)</strong> antes de llamar.
                 </p>
             </div>
         </div>
     </div>
-</main>
+</div>
 
+<!-- MODAL EMERGENTE: OPCIONES IVR -->
+<div class="modal fade" id="ivrModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-sitemap me-2"></i> Menú de Opciones *6565</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                
+                <!-- CARTEL DE USO EXCLUSIVO DENTRO DEL MODAL (ESTILO TERCERA FOTO) -->
+                <div class="exclusive-note">
+                    <i class="fas fa-user-shield"></i>
+                    <span><strong>USO EXCLUSIVO PARA TÉCNICOS.</strong> No brindar el número *6565 a clientes externos bajo ninguna circunstancia.</span>
+                </div>
+
+                <div class="row g-4">
+                    
+                    <!-- COLUMNA OPCIÓN 1 -->
+                    <div class="col-md-6">
+                        <div class="ivr-column">
+                            <div class="ivr-option-header">
+                                <div class="option-badge">1</div>
+                                <h4 class="option-title">Problemas Lógicos / Físicos</h4>
+                            </div>
+                            
+                            <div class="category-label">Lógicos</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle"></i> Problema de Sistemas / TV</li>
+                                <li><i class="fas fa-circle"></i> Problema Telefonía</li>
+                                <li><i class="fas fa-circle"></i> Error en Provisión</li>
+                                <li><i class="fas fa-circle"></i> No Filtra</li>
+                            </ul>
+
+                            <div class="category-label">Físicos</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle"></i> Falta caja / CTO mal asignada</li>
+                                <li><i class="fas fa-circle"></i> Fuera de Cobertura / Norma</li>
+                                <li><i class="fas fa-circle"></i> Sin capacidad / Potencia Mala</li>
+                                <li><i class="fas fa-circle"></i> Ramas cruzadas / Pasiva rota</li>
+                                <li><i class="fas fa-circle"></i> Poste en mal estado</li>
+                                <li><i class="fas fa-circle"></i> Cliente desconectado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA OPCIÓN 2 -->
+                    <div class="col-md-6">
+                        <div class="ivr-column">
+                            <div class="ivr-option-header">
+                                <div class="option-badge" style="background: #333;">2</div>
+                                <h4 class="option-title">Otros Problemas</h4>
+                            </div>
+                            
+                            <div class="category-label">Contacto / Comercial</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Cliente Ausente / Adelanto OT</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Mejor Oferta / Plan Erróneo</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Error componentes (Nombre/DNI)</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Diferencia STB / Servicio Caído</li>
+                            </ul>
+
+                            <div class="category-label">Responsabilidad Cliente</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Cañerías Obstruidas / Sin Energía</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Sin Permisos (Cliente/Linderos)</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Cliente Desiste / Posterga Fecha</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Zona Peligrosa / Domicilio Erróneo</li>
+                            </ul>
+
+                            <div class="category-label">Estructura y Otros</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Edificio No Acometido</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Falta de Equipos en Stock</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Inconvenientes Climáticos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-    &copy; 2026 Claro Argentina | Instalaciones
+    <p>© 2026 Claro Argentina · Instalaciones</p>
+    <p>Uso exclusivo para personal técnico autorizado.</p>
 </footer>
 
 <script>
-    function copyText(id) {
+    function copyText(id, btnElement) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
-            const btn = event.target;
-            const originalText = btn.innerText;
-            btn.innerText = "COPIADO!";
-            btn.classList.add('bg-success', 'text-white');
+            const originalHtml = btnElement.innerHTML;
+            
+            btnElement.innerHTML = '<i class="fas fa-check"></i> Copiado';
+            btnElement.classList.add('copied');
+            
             setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('bg-success', 'text-white');
+                btnElement.innerHTML = originalHtml;
+                btnElement.classList.remove('copied');
             }, 2000);
         });
     }

@@ -4,403 +4,572 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructivos y Procesos - Claro</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script type="module">
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
         const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
         const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
         const supabase = createClient(supabaseUrl, supabaseKey)
-
         async function validarAcceso() {
             const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = "../index.html";
-            }
+            if (error || !session) { window.location.href = "../index.html"; }
         }
         validarAcceso();
     </script>
-    
+
     <style>
         :root {
-            --claro-red: #ee122c;
-            --claro-dark: #333333;
-            --claro-gray: #f2f2f2;
+            --red:        #ee122c;
+            --red-dark:   #a50d1f;
+            --red-deeper: #7a0915;
+            --red-light:  #ff4d63;
+            --white:      #ffffff;
+            --off-white:  #f8f8f8;
+            --text:       #1a1a1a;
+            --text-muted: #666;
+            --border:     #ebebeb;
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            background-color: white;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
             margin: 0;
-            color: var(--claro-dark);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAVBAR --- */
+        /* ── NAVBAR ── */
         .navbar-claro {
-            border-bottom: 1px solid #ddd;
-            padding: 12px 0;
-            background: white;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .claro-logo { height: 40px; }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .claro-logo { height: 34px; }
+        .nav-pill {
+            background: #f2f2f2;
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+        }
 
-        /* --- HERO SECTION --- */
-        .hero-section {
-            background: linear-gradient(135deg, #ee122c 0%, #a50d1f 100%);
-            color: white;
-            padding: 50px 0 80px 0;
-            text-align: center;
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 55%, var(--red-deeper) 100%);
             position: relative;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
+            overflow: hidden;
+            padding: 72px 24px 120px;
+            text-align: center;
+        }
+
+        /* Círculos decorativos */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            top: -180px; right: -120px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            bottom: -100px; left: -60px;
+            pointer-events: none;
+        }
+        .hero-dot {
+            position: absolute;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            top: 30px; left: 60px;
         }
 
         .btn-back {
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            color: white;
+            position: absolute; left: 24px; top: 24px;
+            width: 40px; height: 40px; border-radius: 50%;
             background: rgba(255,255,255,0.15);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white; display: flex; align-items: center;
+            justify-content: center; text-decoration: none;
+            transition: background 0.2s;
+            backdrop-filter: blur(4px);
         }
-        .btn-back:hover { background: white; color: var(--claro-red); transform: translateX(-3px); }
+        .btn-back:hover { background: white; color: var(--red); }
 
-        /* --- BUSCADOR Y FILTROS --- */
-        .search-wrapper {
-            max-width: 700px;
-            margin: -40px auto 30px;
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin: 0 0 12px;
+        }
+        .hero-title span {
+            background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        /* ── SEARCH FLOAT ── */
+        .search-float {
+            max-width: 640px;
+            margin: -32px auto 0;
             padding: 0 20px;
             position: relative;
-            z-index: 10;
+            z-index: 20;
         }
-
         .search-box {
             background: white;
-            border-radius: 30px;
-            padding: 10px 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            padding: 14px 22px;
+            gap: 12px;
+            border: 1px solid var(--border);
         }
-
+        .search-box i { color: #bbb; font-size: 1rem; flex-shrink: 0; }
         .search-box input {
-            border: none;
-            outline: none;
+            border: none; outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
             width: 100%;
-            padding: 5px 10px;
-            font-size: 1rem;
+            background: transparent;
         }
+        .search-box input::placeholder { color: #bbb; }
 
-        .filter-container { margin-bottom: 40px; }
-        .filter-btn {
-            border-radius: 25px;
+        /* ── FILTROS ── */
+        .filters-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 36px 0 40px;
+        }
+        .filter-chip {
+            border: 1.5px solid var(--border);
+            border-radius: 24px;
             padding: 8px 20px;
-            font-weight: 500;
-            border: 1px solid #ddd;
+            font-size: 0.82rem;
+            font-weight: 600;
             background: white;
-            color: #666;
-            margin: 5px;
-            transition: 0.3s;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .filter-chip:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .btn-check:checked + .filter-chip {
+            background: var(--red);
+            border-color: var(--red);
+            color: white;
+            box-shadow: 0 4px 14px rgba(238,18,44,0.3);
         }
 
-        .btn-check:checked + .filter-btn {
-            background-color: var(--claro-red) !important;
-            border-color: var(--claro-red) !important;
-            color: white !important;
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
 
-        /* --- TARJETAS --- */
-        .instruction-card {
+        /* ── CARDS ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 16px;
+        }
+
+        .inst-card {
             background: white;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            padding: 30px 20px;
-            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px 22px 22px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            align-items: flex-start;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+            position: relative;
+            overflow: hidden;
         }
-
-        .instruction-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-            border-color: var(--claro-red);
+        .inst-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(238,18,44,0.04) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.22s;
         }
-
-        .icon-circle {
-            width: 70px;
-            height: 70px;
-            background-color: var(--claro-gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--claro-red);
-            font-size: 1.8rem;
-            transition: 0.3s;
+        .inst-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+            border-color: rgba(238,18,44,0.3);
+            color: var(--text);
         }
+        .inst-card:hover::before { opacity: 1; }
 
-        .instruction-card:hover .icon-circle {
-            background-color: #ffeaea;
+        .card-icon-wrap {
+            width: 50px; height: 50px;
+            border-radius: 14px;
+            background: #fff0f2;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            color: var(--red);
+            margin-bottom: 18px;
+            transition: background 0.22s;
         }
+        .inst-card:hover .card-icon-wrap { background: var(--red); color: white; }
 
-        .btn-view {
-            background-color: var(--claro-red);
-            color: white;
-            border-radius: 25px;
-            padding: 8px 25px;
-            font-weight: 600;
+        .card-category {
+            font-size: 0.65rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--red);
+            margin-bottom: 6px;
+        }
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 0 8px;
+        }
+        .card-desc {
             font-size: 0.8rem;
-            border: none;
-            margin-top: auto;
-            width: 100%;
-            transition: 0.3s;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0 0 20px;
+            flex: 1;
+        }
+        .card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .card-cta i { font-size: 0.65rem; transition: transform 0.2s; }
+        .inst-card:hover .card-cta i { transform: translateX(3px); }
+
+        /* Card destacada (span 2 cols) */
+        .card-featured {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+            border-color: transparent;
+            color: white;
+        }
+        .card-featured .card-icon-wrap { background: rgba(255,255,255,0.15); color: white; }
+        .card-featured .card-category { color: rgba(255,255,255,0.6); }
+        .card-featured .card-title { color: white; }
+        .card-featured .card-desc { color: rgba(255,255,255,0.7); }
+        .card-featured .card-cta { color: white; }
+        .card-featured::before { display: none; }
+        .card-featured:hover { color: white; box-shadow: 0 16px 40px rgba(238,18,44,0.35); border-color: transparent; }
+        .card-featured:hover .card-icon-wrap { background: rgba(255,255,255,0.25); color: white; }
+
+        @media (min-width: 640px) {
+            .col-span-2 { grid-column: span 2; }
         }
 
-        .btn-view:hover { background-color: #b2261e; color: white; }
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding: 36px 24px;
+            text-align: center;
+        }
+        footer p { font-size: 0.78rem; color: #bbb; margin: 0; line-height: 1.8; }
 
-        footer { background: var(--claro-gray); padding: 30px 0; margin-top: 60px; }
+        /* ── WRAPPER ── */
+        .page-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 480px) {
+            .hero { padding: 60px 16px 100px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .col-span-2 { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar-claro">
-        <div class="container d-flex justify-content-between align-items-center">
-            <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
-        </div>
-    </nav>
-
-    <header class="hero-section">
-    <div class="container">
-        <a href="./portada.html" class="btn-back"><i class="fas fa-arrow-left"></i></a>
-        <h2 class="header-title">INSTRUCTIVOS Y PROCESOS</h2>
-        <p class="opacity-75 small mt-2 text-uppercase" style="letter-spacing: 1px;">Encontrá guías técnicas y manuales de operación</p>
+<!-- NAVBAR -->
+<nav class="navbar-claro">
+    <div class="navbar-inner">
+        <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
+        <span class="nav-pill">Portal Interno</span>
     </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-dot"></div>
+    <a href="./portada.html" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+    <div class="hero-eyebrow">Personal técnico autorizado</div>
+    <h1 class="hero-title"><span>Instructivos</span> y Procesos</h1>
+    <p class="hero-sub">Guías técnicas, manuales y protocolos de operación</p>
 </header>
 
-    <div class="search-wrapper">
-        <div class="search-box d-flex align-items-center">
-            <i class="fas fa-search text-muted me-2"></i>
-            <input type="text" id="manualSearch" placeholder="¿Qué estás buscando hoy?">
-        </div>
+<!-- BUSCADOR FLOTANTE -->
+<div class="search-float">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="manualSearch" placeholder="Buscá un instructivo o proceso...">
+    </div>
+</div>
 
-        <div class="text-center filter-container mt-4">
-            <input type="radio" class="btn-check" name="filter" id="all" checked onclick="filterItems('all')">
-            <label class="filter-btn" for="all">Todos</label>
+<!-- CONTENIDO -->
+<div class="page-wrapper">
 
-            
-            <!--<input type="radio" class="btn-check" name="filter" id="tecnico" onclick="filterItems('tecnico')">
-            <label class="filter-btn" for="tecnico">Técnico</label>-->
+    <!-- FILTROS -->
+    <div class="filters-row">
+        <input type="radio" class="btn-check" name="filter" id="all" checked onclick="filterItems('all')">
+        <label class="filter-chip" for="all">Todos</label>
 
-            <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('procesos')">
-            <label class="filter-btn" for="procesos">Procesos</label>
+        <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('procesos')">
+        <label class="filter-chip" for="procesos">Procesos</label>
 
-            <input type="radio" class="btn-check" name="filter" id="herramientas" onclick="filterItems('herramientas')">
-            <label class="filter-btn" for="herramientas">Herramientas</label>
-        </div>
+        <input type="radio" class="btn-check" name="filter" id="herramientas" onclick="filterItems('herramientas')">
+        <label class="filter-chip" for="herramientas">Herramientas</label>
     </div>
 
-    <div class="container mb-5">
-        <div class="row g-4" id="manualsGrid">
+    <!-- GRILLA -->
+    <div class="section-label">Guías disponibles</div>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-user-plus"></i></div>
-                    <h5 class="fw-bold">Alta de Usuario Administrativo</h5>
-                    <p class="text-muted small">Gestión del usuario de red para acceso a herramientas institucionales.</p>
-                    <a href="usuario.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+    <div class="card-grid" id="manualsGrid">
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-mobile-screen-button"></i></div>
-                    <h5 class="fw-bold">Oracle Field Service (TOA)</h5>
-                    <p class="text-muted small">Cierre de actividades y carga de fotografías en la herramienta TOA.</p>
-                    <a href="ofsc.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <!-- DESTACADO -->
+        <a href="motivosOfsc.html" class="inst-card card-featured col-span-2 manual-item" data-category="procesos">
+            <div class="card-icon-wrap"><i class="fas fa-clipboard-question"></i></div>
+            <div class="card-category">Proceso destacado</div>
+            <div class="card-title">Motivos Interrupción — TOA</div>
+            <div class="card-desc">Procesos de cierre de tareas según el escenario técnico encontrado.</div>
+            <div class="card-cta">Ver guía completa <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-clipboard-question"></i></div>
-                    <h5 class="fw-bold">Motivos Interrupción TOA</h5>
-                    <p class="text-muted small">Procesos de cierre de tareas según el escenario técnico encontrado.</p>
-                    <a href="motivosOfsc.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <!-- PROCESOS -->
+        <a href="usuario.html" class="inst-card manual-item" data-category="procesos">
+            <div class="card-icon-wrap"><i class="fas fa-user-plus"></i></div>
+            <div class="card-category">Proceso</div>
+            <div class="card-title">Alta de Usuario Administrativo</div>
+            <div class="card-desc">Gestión del usuario de red para acceso a herramientas institucionales.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-truck-moving"></i></div>
-                    <h5 class="fw-bold">Mudanza de Servicio (VIMUD)</h5>
-                    <p class="text-muted small">Guia completa sobre el proceso de las Mudanzas de servicios.</p>
-                    <a href="vimud.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="vimud.html" class="inst-card manual-item" data-category="procesos">
+            <div class="card-icon-wrap"><i class="fas fa-truck-moving"></i></div>
+            <div class="card-category">Proceso</div>
+            <div class="card-title">Mudanza de Servicio — VIMUD</div>
+            <div class="card-desc">Guía completa sobre el proceso de mudanza de servicios: escenarios, revisitas, equipos faltantes y preguntas frecuentes.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
+        <a href="../assets/pdf/Manual Instalaciones.pdf" target="_blank" class="inst-card manual-item" data-category="procesos">
+            <div class="card-icon-wrap"><i class="fas fa-screwdriver-wrench"></i></div>
+            <div class="card-category">Proceso</div>
+            <div class="card-title">Manual de Instalación</div>
+            <div class="card-desc">Guía de instalaciones físicas y configuración de equipos STB y ONT en domicilio.</div>
+            <div class="card-cta">Descargar PDF <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-screwdriver-wrench"></i></div>
-                    <h5 class="fw-bold">Manual de Instalación</h5>
-                    <p class="text-muted small">Guia de instalaciones fisicas y configuración de equipos STB y ONT en domicilio.</p>
-                    <a href="../assets/pdf/Manual Instalaciones.pdf" target="_blank" class="btn btn-view">Descargar PDF</a>
-                </div>
-            </div>
+        <a href="fotosToa.html" class="inst-card manual-item" data-category="procesos">
+            <div class="card-icon-wrap"><i class="fas fa-camera-retro"></i></div>
+            <div class="card-category">Proceso</div>
+            <div class="card-title">Guía Fotos TOA</div>
+            <div class="card-desc">Requerimientos fotográficos obligatorios para el cierre de tareas.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-camera-retro"></i></div>
-                    <h5 class="fw-bold">Guía Fotos TOA</h5>
-                    <p class="text-muted small">Requerimientos fotográficos obligatorios para el cierre de tareas.</p>
-                    <a href="fotosToa.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="precontacto.html" class="inst-card manual-item" data-category="procesos">
+            <div class="card-icon-wrap"><i class="fas fa-headset"></i></div>
+            <div class="card-category">Proceso</div>
+            <div class="card-title">Protocolo Precontacto</div>
+            <div class="card-desc">Normas de comunicación con el cliente previo a la visita técnica. Guía de opciones de escalamiento según el escenario a reportar</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-map-location-dot"></i></div>
-                    <h5 class="fw-bold">PortalGis</h5>
-                    <p class="text-muted small">Uso y navegación del mapa de cobertura de red y facilidades.</p>
-                    <a href="portalgis.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <!-- HERRAMIENTAS -->
+        <a href="ofsc.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-mobile-screen-button"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">Oracle Field Service (TOA)</div>
+            <div class="card-desc">Cierre de actividades y carga de fotografías en la herramienta TOA.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-headset"></i></div>
-                    <h5 class="fw-bold">Protocolo Precontacto</h5>
-                    <p class="text-muted small">Normas de comunicación con el cliente previo a la visita técnica.</p>
-                    <a href="precontacto.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="portalgis.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-map-location-dot"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">PortalGis</div>
+            <div class="card-desc">Uso y navegación del mapa de cobertura de red y facilidades.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-network-wired"></i></div>
-                    <h5 class="fw-bold">SYTEX</h5>
-                    <p class="text-muted small">Identificación de la ubicación de las cajas y sus acrónimos mediante el formulario.</p>
-                    <a href="sytex.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="sytex.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-network-wired"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">SYTEX</div>
+            <div class="card-desc">Identificación de la ubicación de las cajas y sus acrónimos mediante el formulario.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-calendar-check"></i></div>
-                    <h5 class="fw-bold">WFM (Agenda)</h5>
-                    <p class="text-muted small">Manual operativo para la gestión de turnos y agenda técnica.</p>
-                    <a href="wfm.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="wfm.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-calendar-check"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">WFM — Agenda</div>
+            <div class="card-desc">Manual operativo para la gestión de turnos y agenda técnica.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-boxes-stacked"></i></div>
-                    <h5 class="fw-bold">WTM (Inventario)</h5>
-                    <p class="text-muted small">Gestión de materiales y stock de equipos almacen/tecnico.</p>
-                    <a href="wtm.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="wtm.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-boxes-stacked"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">WTM — Inventario</div>
+            <div class="card-desc">Gestión de materiales y stock de equipos almacén / técnico.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-phone-volume"></i></div>
-                    <h5 class="fw-bold">AVAYA</h5>
-                    <p class="text-muted small">Instalacion, Configuracion, Conexión, llamadas y transferencias a mesa de soporte.</p>
-                    <a href="avaya.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="avaya.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-phone-volume"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">AVAYA</div>
+            <div class="card-desc">Instalación, configuración, conexión, llamadas y transferencias a mesa de soporte.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-globe"></i></div>
-                    <h5 class="fw-bold">ORION</h5>
-                    <p class="text-muted small">Monitoreo de estado de clientes y niveles de la rama (OLT).</p>
-                    <a href="orion.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="orion.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-globe"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">ORION</div>
+            <div class="card-desc">Monitoreo de estado de clientes y niveles de la rama (OLT).</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-server"></i></div>
-                    <h5 class="fw-bold">SGT</h5>
-                    <p class="text-muted small">Proceso de aprovisionamiento de equipos desde Despacho y los técnico.</p>
-                    <a href="sgt.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
+        <a href="sgt.html" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-server"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">SGT</div>
+            <div class="card-desc">Proceso de aprovisionamiento de equipos desde Despacho y los técnicos.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="herramientas">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-shield-halved"></i></div>
-                    <h5 class="fw-bold">VPN</h5>
-                    <p class="text-muted small">Conexión segura a la red privada para proveedores externos.</p>
-                    <a href="../assets/pdf/Instructivo VPN Proveedores .pdf" target="_blank" class="btn btn-view">Descargar PDF</a>
-                </div>
-            </div>
+        <a href="../assets/pdf/Instructivo VPN Proveedores .pdf" target="_blank" class="inst-card manual-item" data-category="herramientas">
+            <div class="card-icon-wrap"><i class="fas fa-shield-halved"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">VPN</div>
+            <div class="card-desc">Conexión segura a la red privada para proveedores externos.</div>
+            <div class="card-cta">Descargar PDF <i class="fas fa-arrow-right"></i></div>
+        </a>
 
-            <div class="col-md-6 col-lg-3 manual-item" data-category="procesos">
-                <div class="instruction-card">
-                    <div class="icon-circle"><i class="fas fa-comments"></i></div>
-                    <h5 class="fw-bold">Mesa de Despacho</h5>
-                    <p class="text-muted small">Guía de opciones de escalamiento según el escenario a reportar.</p>
-                    <a href="contactoMesa.html" class="btn btn-view">Ver Guía</a>
-                </div>
-            </div>
-
-        </div>
     </div>
 
-    <footer class="text-center">
-        <div class="container text-muted">
-            <p class="small mb-0">© 2026 Claro Argentina | Instalaciones</p>
-            <p class="small">Uso exclusivo para personal técnico autorizado.</p>
-        </div>
-    </footer>
+    <!-- ESTADO VACÍO (oculto por defecto) -->
+    <div id="emptyState" style="display:none; text-align:center; padding: 60px 0; color: #bbb;">
+        <i class="fas fa-search" style="font-size:2rem; margin-bottom:14px; display:block;"></i>
+        <p style="font-size:0.95rem; margin:0;">No encontramos resultados para esa búsqueda.</p>
+    </div>
 
-    <script>
-        // Buscador interactivo (Tu lógica original mejorada)
-        document.getElementById('manualSearch').addEventListener('input', function(e) {
-            const text = e.target.value.toLowerCase();
-            const items = document.querySelectorAll('.manual-item');
-            
-            items.forEach(item => {
-                const title = item.querySelector('h5').innerText.toLowerCase();
-                const desc = item.querySelector('p').innerText.toLowerCase();
-                if (title.includes(text) || desc.includes(text)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Claro Argentina · Instalaciones</p>
+    <p>Uso exclusivo para personal técnico autorizado.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Buscador
+    document.getElementById('manualSearch').addEventListener('input', function() {
+        const text = this.value.toLowerCase().trim();
+        let visible = 0;
+        document.querySelectorAll('.manual-item').forEach(item => {
+            const title = item.querySelector('.card-title')?.innerText.toLowerCase() || '';
+            const desc  = item.querySelector('.card-desc')?.innerText.toLowerCase() || '';
+            const show  = !text || title.includes(text) || desc.includes(text);
+            item.style.display = show ? '' : 'none';
+            if (show) visible++;
         });
+        document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+    });
 
-        // Filtros por categoría (Tu lógica original)
-        function filterItems(category) {
-            const items = document.querySelectorAll('.manual-item');
-            items.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category') === category) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    // Filtros
+    function filterItems(category) {
+        let visible = 0;
+        document.querySelectorAll('.manual-item').forEach(item => {
+            const show = category === 'all' || item.getAttribute('data-category') === category;
+            item.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+        document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+    }
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
