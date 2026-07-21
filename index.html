@@ -188,7 +188,7 @@
 
         /* ── FOOTER INTERNO ── */
         .footer-text {
-            margin-top: 32px;
+            margin-top: 24px;
             color: #999;
             font-size: 0.75rem;
             line-height: 1.6;
@@ -200,6 +200,25 @@
             margin-bottom: 8px;
             display: block;
         }
+
+        /* ── REGISTER LINK ── */
+        .register-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .register-link span {
+            color: var(--red);
+            font-weight: 800;
+        }
+        .register-link:hover {
+            color: var(--red-dark);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -210,7 +229,7 @@
 </div>
 
 <div class="login-wrapper">
-    <div class="login-card">
+    <div class="login-card text-center">
         
         <img src="assets/img/claro-logo.svg" alt="Claro" class="claro-logo-login">
         
@@ -239,6 +258,10 @@
             </button>
         </form>
 
+        <a href="#" class="register-link" data-bs-toggle="modal" data-bs-target="#registerModal">
+            ¿No tenés usuario? <span>Solicitá Registro</span>
+        </a>
+
         <div class="footer-text">
             <i class="fa-solid fa-shield-halved"></i>
             Acceso Restringido y Monitoreado<br>
@@ -248,16 +271,59 @@
     </div>
 </div>
 
-<script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+<!-- Modal de Registro -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 20px; border: none; box-shadow: 0 15px 30px rgba(0,0,0,0.15);">
+            <div class="modal-header" style="border-bottom: 1px solid #eee; padding: 24px 24px 12px 24px;">
+                <h5 class="modal-title" id="registerModalLabel" style="font-weight: 800; color: #1a1a1a;">Solicitar Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 24px;">
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 24px; text-align: left; line-height: 1.5;">
+                    Registrate para solicitar acceso al portal. Un administrador deberá revisar y aprobar tu cuenta desde Supabase antes de que puedas ingresar.
+                </p>
+                <form id="registerForm">
+                    <div class="text-start mb-4">
+                        <label class="form-label">Nombre Completo</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                            <input type="text" id="regName" class="form-control" placeholder="Juan Pérez" required>
+                        </div>
+                    </div>
 
-    // Datos de Supabase
-    const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
-    const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
-    const supabase = createClient(supabaseUrl, supabaseKey)
+                    <div class="text-start mb-4">
+                        <label class="form-label">Usuario Correo</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                            <input type="email" id="regEmail" class="form-control" placeholder="ejemplo@claro.com.ar" required>
+                        </div>
+                    </div>
+                    
+                    <div class="text-start mb-4">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" id="regPassword" class="form-control" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="btnRegister">
+                        Enviar Solicitud <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module">
+    import { supabase } from './js/auth.js'
 
     const loginForm = document.querySelector('form');
 
+    // Manejar Login
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -280,8 +346,105 @@
             btn.innerHTML = originalHtml;
             btn.disabled = false;
         } else {
-            // Éxito: Redirigir a la portada principal
-            window.location.href = "pages/portada.html";
+            // Validar aprobación en tabla de perfiles
+            try {
+                const { data: profile, error: profileError } = await supabase
+                    .from('profiles')
+                    .select('status')
+                    .eq('id', data.user.id)
+                    .single();
+
+                if (profileError) {
+                    // Si la tabla de perfiles aún no está configurada, permitimos el acceso temporalmente pero advertimos
+                    if (profileError.code === 'PGRST116' || profileError.message.includes('relation "public.profiles" does not exist')) {
+                        console.warn("Table 'profiles' does not exist yet. Admin needs to run database setup in Supabase SQL editor. Logging in anyway.");
+                        window.location.href = "pages/portada.html";
+                        return;
+                    }
+
+                    alert("Error al verificar aprobación de cuenta: " + profileError.message);
+                    await supabase.auth.signOut();
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                    return;
+                }
+
+                if (!profile || profile.status !== 'approved') {
+                    const currentStatus = profile ? profile.status : 'pending';
+                    if (currentStatus === 'pending') {
+                        alert("Acceso denegado: Tu solicitud de registro está PENDIENTE de aprobación por el administrador.");
+                    } else if (currentStatus === 'rejected') {
+                        alert("Acceso denegado: Tu solicitud de registro fue RECHAZADA.");
+                    } else {
+                        alert("Acceso denegado: Tu cuenta no está habilitada.");
+                    }
+                    await supabase.auth.signOut();
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                } else {
+                    // Éxito: Redirigir a la portada principal
+                    window.location.href = "pages/portada.html";
+                }
+            } catch (err) {
+                console.error("Login verification exception:", err);
+                window.location.href = "pages/portada.html";
+            }
+        }
+    });
+
+    // Manejar Registro
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const fullname = document.getElementById('regName').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+        const btnReg = document.getElementById('btnRegister');
+
+        const originalBtnHtml = btnReg.innerHTML;
+        btnReg.innerHTML = 'Enviando solicitud <i class="fas fa-spinner fa-spin"></i>';
+        btnReg.disabled = true;
+
+        // Registrar en Supabase Auth
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    fullname: fullname
+                }
+            }
+        });
+
+        if (error) {
+            alert("Error al registrar solicitud: " + error.message);
+            btnReg.innerHTML = originalBtnHtml;
+            btnReg.disabled = false;
+        } else {
+            // Opcionalmente insertar directamente en profiles (si el trigger no se ha configurado)
+            try {
+                await supabase.from('profiles').insert([
+                    { id: data.user.id, email: email, fullname: fullname, status: 'pending' }
+                ]);
+            } catch (err) {
+                console.warn("Direct profiles insert skipped/failed. This is normal if trigger is configured.", err);
+            }
+
+            alert("¡Solicitud enviada con éxito!\n\nTu cuenta ha sido creada con estado PENDIENTE. Un administrador de Claro deberá verificar y aprobar tu registro desde Supabase para que puedas iniciar sesión.");
+            
+            // Cerrar el modal de bootstrap
+            const modalElement = document.getElementById('registerModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+
+            // Limpiar formulario
+            registerForm.reset();
+            btnReg.innerHTML = originalBtnHtml;
+            btnReg.disabled = false;
+
+            // Asegurarse de cerrar la sesión automática que genera signUp
+            await supabase.auth.signOut();
         }
     });
 </script>
