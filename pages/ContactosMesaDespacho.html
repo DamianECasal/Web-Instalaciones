@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto Mesa de Despacho - Claro</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        const supabaseUrl = 'https://eljykdmzjsdkpojpalen.supabase.co'
+        const supabaseKey = 'sb_publishable_ABlaHEC7sMgmFQAg5h5wBg_P5-I6TBs'
+        const supabase = createClient(supabaseUrl, supabaseKey)
+
+        async function validarAcceso() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error || !session) {
+                window.location.href = "../index.html";
+            }
+        }
+        validarAcceso();
+    </script>
+
+    <style>
+        :root {
+            --red:        #ee122c;
+            --red-dark:   #a50d1f;
+            --red-deeper: #7a0915;
+            --blue:       #0284c7;
+            --white:      #ffffff;
+            --off-white:  #f8f9fa;
+            --text:       #1f2937;
+            --text-muted: #6b7280;
+            --border:     #e5e7eb;
+            --warning-bg: #fefce8;
+            --warning-border: #f59e0b;
+            --warning-text: #92400e;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar-claro {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .claro-logo { height: 34px; }
+        .nav-pill {
+            background: #f3f4f6;
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 55%, var(--red-deeper) 100%);
+            position: relative;
+            overflow: visible; /* Cambiado a visible para que el cartel sobresalga hacia abajo */
+            padding: 72px 24px 80px; /* Reducido el padding bottom */
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .hero-ring-1 { width: 520px; height: 520px; top: -200px; right: -140px; }
+        .hero-ring-2 { width: 320px; height: 320px; bottom: -120px; left: -80px; }
+
+        .btn-back {
+            position: absolute; left: 24px; top: 24px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white; display: flex; align-items: center;
+            justify-content: center; text-decoration: none;
+            transition: background 0.2s;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+        .btn-back:hover { background: white; color: var(--red); }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin: 0 0 12px;
+            position: relative;
+            z-index: 10;
+        }
+        .hero-sub {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin: 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ── CARTEL FLOTANTE (WARNING) DENTRO DEL HERO ── */
+        .exclusive-note-container {
+            max-width: 900px;
+            margin: 40px auto -110px auto; /* Margen negativo para que "cuelgue" del Hero */
+            padding: 0 20px;
+            position: relative;
+            z-index: 30;
+        }
+        .exclusive-note {
+            background-color: var(--warning-bg);
+            border: 1px solid #fde68a;
+            border-left: 6px solid var(--warning-border);
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            color: var(--warning-text);
+            text-align: center;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .exclusive-note strong { font-weight: 800; color: #b45309; }
+        .exclusive-note i { font-size: 1.2rem; color: var(--warning-border); }
+
+        /* ── CONTENEDOR PRINCIPAL ── */
+        .page-wrapper {
+            max-width: 900px;
+            margin: 120px auto 50px; /* Margen top amplio para dar espacio al cartel flotante */
+            padding: 0 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* ── TARJETAS DE CONTACTO PRINCIPALES ── */
+        .contact-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        /* Íconos cuadrados redondeados (Squircles) */
+        .icon-squircle {
+            width: 80px; height: 80px;
+            border-radius: 24px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+        }
+        .icon-squircle.residencial { background: #fff0f2; color: var(--red); }
+        .icon-squircle.pyme { background: #e0f2fe; color: var(--blue); }
+
+        .contact-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .phone-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: -0.03em;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        /* Botones de acción inferiores */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .btn-call-solid {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 16px 24px; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 800; text-decoration: none;
+            transition: all 0.2s; flex: 1; color: white; border: none;
+        }
+        .btn-call-solid.residencial { background: var(--red); }
+        .btn-call-solid.residencial:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(238,18,44,0.25); color: white;}
+        
+        .btn-call-solid.pyme { background: var(--blue); }
+        .btn-call-solid.pyme:hover { background: #0369a1; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(2,132,199,0.25); color: white;}
+
+        .btn-ivr {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 16px 20px; border-radius: 12px;
+            font-size: 0.95rem; font-weight: 700;
+            background: white; border: 1px solid var(--border);
+            color: var(--text); cursor: pointer; transition: all 0.2s;
+        }
+        .btn-ivr:hover { background: var(--off-white); border-color: var(--text-muted); }
+
+        /* ── MODAL IVR (MENÚ DE OPCIONES) ── */
+        .modal-content {
+            border-radius: 24px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .modal-header {
+            background: var(--red);
+            color: white;
+            padding: 24px 30px;
+            border-bottom: none;
+        }
+        .modal-title { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; }
+        .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); opacity: 0.8; }
+        
+        .modal-body { padding: 30px; background: var(--off-white); }
+
+        .ivr-column {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .ivr-option-header {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 20px; padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .option-badge {
+            background: var(--red); color: white;
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1rem;
+        }
+        .option-title { font-size: 1.05rem; font-weight: 800; color: var(--text); margin: 0; }
+
+        .category-label {
+            font-size: 0.75rem; font-weight: 800; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin: 20px 0 10px 0;
+        }
+        .category-label:first-of-type { margin-top: 0; }
+
+        .ivr-motive-list { list-style: none; padding: 0; margin: 0; }
+        .ivr-motive-list li {
+            font-size: 0.88rem; color: var(--text);
+            padding: 6px 0; display: flex; align-items: flex-start; gap: 10px;
+        }
+        .ivr-motive-list i { color: var(--red); font-size: 0.7rem; margin-top: 5px; }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding: 36px 24px;
+            text-align: center;
+        }
+        footer p { font-size: 0.78rem; color: #bbb; margin: 0; line-height: 1.8; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 60px 20px 80px; }
+            .hero-title { font-size: 2.2rem; }
+            .exclusive-note-container { margin-top: 20px; margin-bottom: -80px; }
+            .exclusive-note { flex-direction: column; text-align: center; padding: 20px; }
+            .page-wrapper { margin-top: 100px; }
+            .action-buttons { flex-direction: column; }
+            .btn-call-solid { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar-claro">
+    <div class="navbar-inner">
+        <img src="../assets/img/claro-logo.svg" alt="Claro" class="claro-logo">
+        <span class="nav-pill">Soporte Técnico</span>
+    </div>
+</nav>
+
+<!-- HERO CON CARTEL FLOTANTE -->
+<header class="hero">
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <a href="javascript:window.history.back()" class="btn-back"><i class="fas fa-arrow-left"></i></a>
+    
+    <h1 class="hero-title">Contacto Mesa de Despacho</h1>
+    <p class="hero-sub">Líneas directas y menú de opciones (IVR) para técnicos</p>
+    
+    <!-- CARTEL DE USO EXCLUSIVO (ESTILO TERCERA FOTO) -->
+    <div class="exclusive-note-container">
+        <div class="exclusive-note">
+            <i class="fas fa-user-shield"></i>
+            <span><strong>USO EXCLUSIVO PARA TÉCNICOS.</strong> No brindar el número *6565 a clientes externos bajo ninguna circunstancia.</span>
+        </div>
+    </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="page-wrapper">
+    <div class="row g-4">
+        
+        <!-- TARJETA RESIDENCIAL -->
+        <div class="col-md-6">
+            <div class="contact-card">
+                <!-- ICONO ESTILO SEGUNDA FOTO -->
+                <div class="icon-squircle residencial"><i class="fas fa-home"></i></div>
+                
+                <div class="contact-title">Segmento Residencial</div>
+                <div class="phone-number">*6565</div>
+                
+                <div class="action-buttons">
+                    <!-- BOTÓN LLAMAR ESTILO PRIMERA FOTO -->
+                    <a href="tel:*6565" class="btn-call-solid residencial">
+                        <i class="fas fa-phone-alt"></i> Llamar
+                    </a>
+                    
+                    <!-- BOTÓN QUE ABRE EL MODAL IVR -->
+                    <button class="btn-ivr" data-bs-toggle="modal" data-bs-target="#ivrModal" title="Ver Opciones de IVR">
+                        <i class="fas fa-list-ul"></i> Opciones IVR
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TARJETA PYMES -->
+        <div class="col-md-6">
+            <div class="contact-card">
+                <!-- ICONO ESTILO SEGUNDA FOTO -->
+                <div class="icon-squircle pyme"><i class="fas fa-building"></i></div>
+                
+                <div class="contact-title">Segmento Pymes</div>
+                <div class="phone-number">*617</div>
+                
+                <div class="action-buttons">
+                    <!-- BOTÓN LLAMAR ESTILO PRIMERA FOTO -->
+                    <a href="tel:*617" class="btn-call-solid pyme">
+                        <i class="fas fa-phone-alt"></i> Llamar
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL EMERGENTE: OPCIONES IVR -->
+<div class="modal fade" id="ivrModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-sitemap me-2"></i> Menú de Opciones *6565</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="row g-4">
+                    
+                    <!-- COLUMNA OPCIÓN 1 -->
+                    <div class="col-md-6">
+                        <div class="ivr-column">
+                            <div class="ivr-option-header">
+                                <div class="option-badge">1</div>
+                                <h4 class="option-title">Problemas Lógicos / Físicos</h4>
+                            </div>
+                            
+                            <div class="category-label">Lógicos</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle"></i> Problema de Sistemas / TV</li>
+                                <li><i class="fas fa-circle"></i> Problema Telefonía</li>
+                                <li><i class="fas fa-circle"></i> Error en Provisión</li>
+                                <li><i class="fas fa-circle"></i> No Filtra en SGT</li>
+                            </ul>
+
+                            <div class="category-label">Físicos</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle"></i> Falta caja / CTO mal asignada</li>
+                                <li><i class="fas fa-circle"></i> Fuera de Cobertura / Norma</li>
+                                <li><i class="fas fa-circle"></i> Sin capacidad / Potencia Mala</li>
+                                <li><i class="fas fa-circle"></i> Ramas cruzadas / Pasiva rota</li>
+                                <li><i class="fas fa-circle"></i> Poste en mal estado</li>
+                                <li><i class="fas fa-circle"></i> Cliente desconectado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA OPCIÓN 2 -->
+                    <div class="col-md-6">
+                        <div class="ivr-column">
+                            <div class="ivr-option-header">
+                                <div class="option-badge" style="background: #333;">2</div>
+                                <h4 class="option-title">Otros Problemas</h4>
+                            </div>
+                            
+                            <div class="category-label">Contacto / Comercial</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Cliente Ausente / Adelanto OT</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Mejor Oferta / Plan Erróneo</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Error componentes (Nombre/DNI)</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Diferencia STB / Servicio Caído</li>
+                            </ul>
+
+                            <div class="category-label">Responsabilidad Cliente</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Cañerías Obstruidas / Sin Energía</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Sin Permisos (Cliente/Linderos)</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Cliente Desiste / Posterga Fecha</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Zona Peligrosa / Domicilio Erróneo</li>
+                            </ul>
+
+                            <div class="category-label">Estructura y Otros</div>
+                            <ul class="ivr-motive-list">
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Edificio No Acometido</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Falta de Equipos en Stock</li>
+                                <li><i class="fas fa-circle" style="color:#333;"></i> Inconvenientes Climáticos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Claro Argentina · Instalaciones</p>
+    <p>Guía interna para cuadrillas técnicas.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

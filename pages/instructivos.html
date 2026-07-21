@@ -392,11 +392,11 @@
         <input type="radio" class="btn-check" name="filter" id="all" checked onclick="filterItems('all')">
         <label class="filter-chip" for="all">Todos</label>
 
-        <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('procesos')">
-        <label class="filter-chip" for="procesos">Procesos</label>
+        <input type="radio" class="btn-check" name="filter" id="procesos" onclick="filterItems('Tecnicos')">
+        <label class="filter-chip" for="procesos">Tecnicos</label>
 
-        <input type="radio" class="btn-check" name="filter" id="herramientas" onclick="filterItems('herramientas')">
-        <label class="filter-chip" for="herramientas">Herramientas</label>
+        <input type="radio" class="btn-check" name="filter" id="herramientas" onclick="filterItems('Dispatcher')">
+        <label class="filter-chip" for="herramientas">Dispatcher</label>
     </div>
 
     <!-- GRILLA -->
@@ -405,16 +405,57 @@
     <div class="card-grid" id="manualsGrid">
 
         <!-- DESTACADO -->
-        <a href="motivosOfsc.html" class="inst-card card-featured col-span-2 manual-item" data-category="procesos">
+        <a href="motivosOfsc.html" class="inst-card card-featured manual-item" data-category="Tecnicos">
             <div class="card-icon-wrap"><i class="fas fa-clipboard-question"></i></div>
-            <div class="card-category">Proceso destacado</div>
+            <div class="card-category">Proceso Tecnico destacado</div>
             <div class="card-title">Motivos Interrupción — TOA</div>
             <div class="card-desc">Procesos de cierre de tareas según el escenario técnico encontrado.</div>
             <div class="card-cta">Ver guía completa <i class="fas fa-arrow-right"></i></div>
         </a>
 
+        <a href="fotosToa.html" class="inst-card card-featured manual-item" data-category="Tecnicos">
+            <div class="card-icon-wrap"><i class="fas fa-camera-retro"></i></div>
+            <div class="card-category">Proceso Tecnico</div>
+            <div class="card-title">Guía Fotos TOA</div>
+            <div class="card-desc">Requerimientos fotográficos obligatorios para el cierre de tareas.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="ContactosMesaDespacho.html" class="inst-card card-featured manual-item" data-category="Tecnicos">
+            <div class="card-icon-wrap"><i class="fas fa-comments"></i></div>
+            <div class="card-category">Proceso Tecnico</div>
+            <div class="card-title">Contacto con Mesa de Despacho</div>
+            <div class="card-desc">Que opcion se debe elegir de la mesa de despacho segun el escenario a reportar.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="vimud.html" class="inst-card card-featured manual-item" data-category="Tecnicos">
+            <div class="card-icon-wrap"><i class="fas fa-truck-moving"></i></div>
+            <div class="card-category">Proceso Tecnico</div>
+            <div class="card-title">Mudanza de Servicio — VIMUD</div>
+            <div class="card-desc">Guía completa sobre el proceso de mudanza de servicios: escenarios, revisitas, equipos faltantes y preguntas frecuentes.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        
+        <a href="../assets/pdf/Manual Instalaciones.pdf" target="_blank" class="inst-card card-featured manual-item" data-category="Tecnicos">
+            <div class="card-icon-wrap"><i class="fas fa-screwdriver-wrench"></i></div>
+            <div class="card-category">Proceso Tecnico</div>
+            <div class="card-title">Manual de Instalación</div>
+            <div class="card-desc">Guía de instalaciones físicas y configuración de equipos STB y ONT en domicilio.</div>
+            <div class="card-cta">Descargar PDF <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="sgt.html" class="inst-card card-featured manual-item" data-category="Tecnicos">
+            <div class="card-icon-wrap"><i class="fas fa-server"></i></div>
+            <div class="card-category">Herramienta</div>
+            <div class="card-title">SGT</div>
+            <div class="card-desc">Proceso de aprovisionamiento de equipos desde Despacho y los técnicos.</div>
+            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
+        </a>
+
         <!-- PROCESOS -->
-        <a href="usuario.html" class="inst-card manual-item" data-category="procesos">
+        <a href="usuario.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-user-plus"></i></div>
             <div class="card-category">Proceso</div>
             <div class="card-title">Alta de Usuario Administrativo</div>
@@ -422,31 +463,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="vimud.html" class="inst-card manual-item" data-category="procesos">
-            <div class="card-icon-wrap"><i class="fas fa-truck-moving"></i></div>
-            <div class="card-category">Proceso</div>
-            <div class="card-title">Mudanza de Servicio — VIMUD</div>
-            <div class="card-desc">Guía completa sobre el proceso de mudanza de servicios: escenarios, revisitas, equipos faltantes y preguntas frecuentes.</div>
-            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
-        </a>
-
-        <a href="../assets/pdf/Manual Instalaciones.pdf" target="_blank" class="inst-card manual-item" data-category="procesos">
-            <div class="card-icon-wrap"><i class="fas fa-screwdriver-wrench"></i></div>
-            <div class="card-category">Proceso</div>
-            <div class="card-title">Manual de Instalación</div>
-            <div class="card-desc">Guía de instalaciones físicas y configuración de equipos STB y ONT en domicilio.</div>
-            <div class="card-cta">Descargar PDF <i class="fas fa-arrow-right"></i></div>
-        </a>
-
-        <a href="fotosToa.html" class="inst-card manual-item" data-category="procesos">
-            <div class="card-icon-wrap"><i class="fas fa-camera-retro"></i></div>
-            <div class="card-category">Proceso</div>
-            <div class="card-title">Guía Fotos TOA</div>
-            <div class="card-desc">Requerimientos fotográficos obligatorios para el cierre de tareas.</div>
-            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
-        </a>
-
-        <a href="precontacto.html" class="inst-card manual-item" data-category="procesos">
+        <a href="precontacto.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-headset"></i></div>
             <div class="card-category">Proceso</div>
             <div class="card-title">Protocolo Precontacto</div>
@@ -455,7 +472,7 @@
         </a>
 
         <!-- HERRAMIENTAS -->
-        <a href="ofsc.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="ofsc.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-mobile-screen-button"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">Oracle Field Service (TOA)</div>
@@ -463,7 +480,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="portalgis.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="portalgis.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-map-location-dot"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">PortalGis</div>
@@ -471,7 +488,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="sytex.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="sytex.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-network-wired"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">SYTEX</div>
@@ -479,7 +496,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="wfm.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="wfm.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-calendar-check"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">WFM — Agenda</div>
@@ -487,7 +504,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="wtm.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="wtm.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-boxes-stacked"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">WTM — Inventario</div>
@@ -495,7 +512,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="avaya.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="avaya.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-phone-volume"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">AVAYA</div>
@@ -503,7 +520,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="orion.html" class="inst-card manual-item" data-category="herramientas">
+        <a href="orion.html" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-globe"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">ORION</div>
@@ -511,15 +528,7 @@
             <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="sgt.html" class="inst-card manual-item" data-category="herramientas">
-            <div class="card-icon-wrap"><i class="fas fa-server"></i></div>
-            <div class="card-category">Herramienta</div>
-            <div class="card-title">SGT</div>
-            <div class="card-desc">Proceso de aprovisionamiento de equipos desde Despacho y los técnicos.</div>
-            <div class="card-cta">Ver guía <i class="fas fa-arrow-right"></i></div>
-        </a>
-
-        <a href="../assets/pdf/Instructivo VPN Proveedores .pdf" target="_blank" class="inst-card manual-item" data-category="herramientas">
+        <a href="../assets/pdf/Instructivo VPN Proveedores .pdf" target="_blank" class="inst-card manual-item" data-category="Dispatcher">
             <div class="card-icon-wrap"><i class="fas fa-shield-halved"></i></div>
             <div class="card-category">Herramienta</div>
             <div class="card-title">VPN</div>
